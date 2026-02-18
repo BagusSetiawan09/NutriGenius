@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2D6A4F;
+  --color-secondary: #F4A261;
+  --color-accent: #E9C46A;
+  --color-bgLight: #FFFBF5;
+  --font-sans: "Poppins", "sans-serif";
+  --radius-xl: 1.5rem; 
+}
