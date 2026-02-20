@@ -1,77 +1,388 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriGenius - Test Run</title>
+    <title>NutriGenius</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="./assets/css/output.css" rel="stylesheet">
 </head>
-<body class="bg-bgLight font-sans text-gray-800 antialiased">
+<body class="bg-bg-page font-sans text-secondary antialiased">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-primary flex items-center gap-2">
-                🌱 NutriGenius
+            <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
+                Nutri<span class="text-secondary">Genius</span>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Home</a>
+                <a href="tracker.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Tracker</a>
+                <a href="meal-planner.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Meal Planner</a>
+                <a href="education.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Education</a>
+                <a href="about.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">About</a>
             </div>
-            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
-                <a href="#" class="hover:text-primary transition">Beranda</a>
-                <a href="#" class="hover:text-primary transition">Fitur</a>
+
+            <div class="hidden lg:block">
+                <a href="tracker.html" class="group bg-primary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 border-transparent hover:bg-[#FFF7ED] hover:text-primary hover:border-primary flex items-center gap-2">
+                    Get started
+                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
             </div>
-            <button class="bg-primary text-white px-5 py-2 rounded-full font-semibold hover:bg-green-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Masuk
+
+            <button id="hamburger-btn" class="lg:hidden text-secondary hover:text-primary text-3xl focus:outline-none relative z-50 transition-transform duration-300">
+                <i class="ph ph-list"></i>
             </button>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-16 text-center">
-        
-        <span class="bg-green-100 text-primary px-4 py-1 rounded-full text-sm font-bold tracking-wide">
-            🚀 Tailwind v4 Ready!
-        </span>
+    <div id="mobile-menu" class="fixed inset-0 bg-[#FFF7ED] z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300 -translate-y-2.5">
+        <a href="index.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Home</a>
+        <a href="tracker.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Tracker</a>
+        <a href="meal-planner.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Meal Planner</a>
+        <a href="education.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Education</a>
+        <a href="about.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">About</a>
+        <a href="tracker.html" class="mt-8 bg-primary text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg active:scale-95 transition-transform">
+            Get started <i class="ph-bold ph-arrow-right inline-block ml-2"></i>
+        </a>
+    </div>
 
-        <h1 class="text-5xl md:text-6xl font-bold text-primary mt-6 mb-4 leading-tight">
-            Cetak Generasi Emas <br>
-            <span class="text-secondary decoration-wavy underline decoration-accent">Bebas Stunting</span>
-        </h1>
-
-        <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10">
-            Ini adalah percobaan layout menggunakan Tailwind CSS lokal. 
-            Warnanya harus Krem (Background), Hijau Tua (Teks Utama), dan Oranye (Aksen).
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-12">
+    <section class="relative pt-32 md:pt-40 lg:pt-40 xl:pt-32 pb-20 overflow-hidden bg-bg-page xl:min-h-screen flex items-start xl:items-center">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
-            <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-primary hover:shadow-2xl transition duration-300 group">
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-primary group-hover:text-white transition">
-                    📈
+            <div class="flex flex-col items-start z-10" data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center rounded-full bg-linear-to-r from-primary/80 via-primary/30 to-transparent pl-1 pr-6 py-1 mb-6">
+                    <span class="bg-primary text-white px-4 py-1.5 rounded-full text-sm font-medium">Lorem ipsum</span>
+                    <span class="text-secondary text-sm font-medium ml-3">dolor sit amet</span>
                 </div>
-                <h3 class="text-xl font-bold text-primary mb-2">Pantau Tumbuh</h3>
-                <p class="text-gray-400 text-sm">Cek tinggi dan berat badan anak sesuai standar WHO secara real-time.</p>
+
+                <h1 class="font-sans font-extrabold text-4xl lg:text-5xl xl:text-6xl leading-tight mb-6 tracking-tight">
+                    <span class="text-secondary block">Lorem Ipsum Dolor</span>
+                    <span class="text-primary block mt-2">consectetur adipiscing</span>
+                </h1>
+
+                <p class="font-sans text-gray-600 max-w-md mb-10 text-lg leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae nulla at mauris
+                </p>
+
+                <div class="flex items-center">
+                    <a href="tracker.html" class="group flex items-center active:scale-95 transition-transform duration-300 w-fit">
+                        <div class="bg-primary text-white px-8 py-3.5 rounded-full font-medium group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-0">
+                            Tracker now
+                        </div>
+                        <div class="bg-primary text-white p-3.5 rounded-full group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 flex items-center justify-center relative z-10 ml-0">
+                            <i class="ph-bold ph-arrow-up-right text-xl group-hover:rotate-12 transition-transform duration-300"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-secondary hover:shadow-2xl transition duration-300 group">
-                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-secondary group-hover:text-white transition">
-                    🍱
+            <div class="relative w-full flex flex-col lg:flex-row justify-center lg:justify-end items-center mt-8 lg:mt-0 z-10 lg:-mr-10">
+                <div class="relative w-full max-w-[420px] md:max-w-[480px] lg:max-w-[500px] xl:max-w-[750px] flex flex-col items-center lg:items-end">
+                    
+                    <img src="./assets/img/hero-doctor.png" 
+                         data-aos="zoom-in-up" 
+                         data-aos-duration="1200" 
+                         alt="Dokter Cilik NutriGenius" 
+                         class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-2xl" />
+
+                    <div class="hidden xl:block">
+                        <div class="absolute top-[35%] right-7 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300"
+                             data-aos="fade-left" 
+                             data-aos-delay="600" 
+                             data-aos-duration="800">
+                            <div class="flex justify-between items-start">
+                                <span class="font-title font-bold text-3xl">95%</span>
+                                <span class="text-[10px] leading-tight text-left text-orange-100">Lorem ipsum<br>dolor sit amet</span>
+                            </div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="flex -space-x-2">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=1" alt="User">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=2" alt="User">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=3" alt="User">
+                                </div>
+                                <span class="text-[8px] text-orange-100 leading-tight">Orang tua telah<br>terbantu</span>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-[20%] -left-16 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300"
+                             data-aos="fade-right" 
+                             data-aos-delay="900" 
+                             data-aos-duration="800">
+                            <div class="flex justify-between items-start">
+                                <span class="font-title font-bold text-3xl">95%</span>
+                                <span class="text-[10px] leading-tight text-left text-orange-100">Lorem ipsum<br>dolor sit amet</span>
+                            </div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="flex -space-x-2">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=4" alt="User">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=5" alt="User">
+                                    <img class="w-6 h-6 rounded-full border-2 border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=6" alt="User">
+                                </div>
+                                <span class="text-[8px] text-orange-100 leading-tight">Anak bebas<br>stunting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex md:hidden flex-row gap-3 mt-2 z-20 w-full justify-center px-2">
+                        <div class="bg-primary text-white p-3 rounded-xl shadow-xl flex flex-col gap-2 w-1/2 max-w-55">
+                            <div class="flex justify-between items-start">
+                                <span class="font-title font-bold text-2xl">95%</span>
+                                <span class="text-[8px] leading-tight text-right text-orange-100">Lorem ipsum<br>dolor sit amet</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <div class="flex -space-x-2">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=1" alt="User">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=2" alt="User">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=3" alt="User">
+                                </div>
+                                <span class="text-[7px] text-orange-100 leading-tight">Orang tua telah<br>terbantu</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary text-white p-3 rounded-xl shadow-xl flex flex-col gap-2 w-1/2 max-w-55">
+                            <div class="flex justify-between items-start">
+                                <span class="font-title font-bold text-2xl">95%</span>
+                                <span class="text-[8px] leading-tight text-right text-orange-100">Lorem ipsum<br>dolor sit amet</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <div class="flex -space-x-2">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=4" alt="User">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=5" alt="User">
+                                    <img class="w-5 h-5 rounded-full border border-primary bg-white object-cover" src="https://i.pravatar.cc/100?img=6" alt="User">
+                                </div>
+                                <span class="text-[7px] text-orange-100 leading-tight">Anak bebas<br>stunting</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold text-primary mb-2">Piring Nutrisi</h3>
-                <p class="text-gray-400 text-sm">Fitur drag-and-drop makanan sehat untuk menghitung kalori harian.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-bg-page overflow-hidden">
+        <div class="container mx-auto px-6">
+            
+            <div class="flex flex-col items-center text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-[1px] bg-primary"></div>
+                    <span class="text-primary font-sans font-medium tracking-wider uppercase text-sm">Lorem Ipsum</span>
+                    <div class="w-12 h-[1px] bg-primary"></div>
+                </div>
+                
+                <h2 class="font-sans font-bold text-3xl md:text-4xl text-primary mb-6 max-w-3xl leading-tight">
+                    Maksimalkan Tumbuh Kembang Si Kecil
+                </h2>
+                
+                <p class="font-sans text-gray-600 max-w-2xl mb-10 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc mi, varius ut ipsum a, accumsan mollis velit. Aenean facilisis purus velit, sit amet pulvinar purus maximus in.
+                </p>
+
+                <div class="flex items-center mb-16" data-aos="fade-up" data-aos-delay="200">
+                    <a href="meal-planner.html" class="group flex items-center active:scale-95 transition-transform duration-300 w-fit">
+                        <div class="bg-primary text-white px-8 py-3.5 rounded-full font-sans font-medium group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-0">
+                            More meal planner
+                        </div>
+                        <div class="bg-primary text-white p-3.5 rounded-full group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 flex items-center justify-center relative z-10 ml-0">
+                            <i class="ph-bold ph-arrow-up-right text-xl group-hover:rotate-12 transition-transform duration-300"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-accent hover:shadow-2xl transition duration-300 group">
-                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-accent group-hover:text-white transition">
-                    🎮
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-8 mt-20">
+                
+                <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    <div class="relative bg-primary rounded-3xl p-8 pt-16 text-center group h-full transition-all duration-500 ease-in-out hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-500/30 cursor-pointer">
+                        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-primary border-4 border-bg-page rounded-full flex items-center justify-center shadow-xl">
+                            <i class="ph ph-pill text-white text-4xl"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl text-white mb-4">Pencegahan Malnutrisi</h3>
+                        <p class="font-sans text-orange-50 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc mi, varius ut ipsum a, accumsan mollis velit.
+                        </p>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold text-primary mb-2">Belajar Seru</h3>
-                <p class="text-gray-400 text-sm">Modul edukasi interaktif untuk orang tua dengan sistem level & badge.</p>
+
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                    <div class="relative bg-primary rounded-3xl p-8 pt-16 text-center group h-full transition-all duration-500 ease-in-out hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-500/30 cursor-pointer">
+                        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-primary border-4 border-bg-page rounded-full flex items-center justify-center shadow-xl">
+                            <i class="ph ph-bone text-white text-4xl"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl text-white mb-4">Tolak Stunting Fisik</h3>
+                        <p class="font-sans text-orange-50 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc mi, varius ut ipsum a, accumsan mollis velit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                    <div class="relative bg-primary rounded-3xl p-8 pt-16 text-center group h-full transition-all duration-500 ease-in-out hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-500/30 cursor-pointer">
+                        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-primary border-4 border-bg-page rounded-full flex items-center justify-center shadow-xl">
+                            <i class="ph ph-shield-plus text-white text-4xl"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl text-white mb-4">Sistem Imunitas</h3>
+                        <p class="font-sans text-orange-50 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc mi, varius ut ipsum a, accumsan mollis velit.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-bg-page overflow-hidden">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            <div class="lg:col-span-5 flex justify-center lg:justify-start" data-aos="fade-right" data-aos-duration="1000">
+                <div class="w-full max-w-[550px] bg-primary rounded-[2rem] pt-8 px-6 flex justify-center items-end shadow-xl">
+                    <img src="./assets/img/doctor-woman.png" alt="Konsultasi NutriGenius" class="w-full h-auto object-cover object-bottom" />
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 flex flex-col items-start lg:pl-8" data-aos="fade-left" data-aos-duration="1000">
+                
+                <h2 class="font-sans font-medium text-3xl md:text-4xl lg:text-4xl xl:text-5xl leading-tight mb-6">
+                    <span class="text-primary block mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    <span class="text-[#6b7280] block">In nunc mi, varius ut ipsum a, accumsan mollis velit.</span>
+                </h2>
+                
+                <p class="font-sans text-gray-600 text-sm md:text-base lg:text-base xl:text-lg leading-relaxed mb-12 max-w-2xl">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc mi, varius ut ipsum a, accumsan mollis velit.
+                </p>
+
+                <div class="stats-container w-full flex flex-wrap gap-8 md:gap-12 lg:gap-10 xl:gap-16">
+                    <div>
+                        <h3 class="font-sans font-medium text-4xl md:text-5xl lg:text-4xl xl:text-5xl text-primary mb-2 flex items-center">
+                            <span class="counter" data-target="95">0</span>%
+                        </h3>
+                        <p class="font-sans text-gray-500 text-sm leading-tight">Lorem<br>ipsum dolor</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-sans font-medium text-4xl md:text-5xl lg:text-4xl xl:text-5xl text-primary mb-2 flex items-center">
+                            <span class="counter" data-target="100">0</span>k
+                        </h3>
+                        <p class="font-sans text-gray-500 text-sm leading-tight">Lorem<br>ipsum dolor</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-medium text-4xl md:text-5xl lg:text-4xl xl:text-5xl text-primary mb-2 flex items-center">
+                            <span class="counter" data-target="90">0</span>k
+                        </h3>
+                        <p class="font-sans text-gray-500 text-sm leading-tight">Lorem<br>ipsum dolor</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
-    </main>
+    </section>
 
+    <section class="py-20 bg-primary overflow-hidden">
+        <div class="container mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12" data-aos="fade-up" data-aos-duration="1000">
+                <div class="max-w-2xl">
+                    <h2 class="font-sans font-bold text-4xl md:text-5xl text-white mb-4 leading-tight">
+                        Lorem ipsum dolor sit
+                    </h2>
+                    <p class="font-sans text-white/80 text-lg leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum, ex quis bibendum euismod.
+                    </p>
+                </div>
+
+                <div class="flex items-center mt-2 md:mt-0">
+                    <a href="education.html" class="group flex items-center active:scale-95 transition-transform duration-300 w-fit">
+                        <div class="bg-[#0f172a] text-white px-6 md:px-8 py-3.5 rounded-full font-sans font-medium group-hover:bg-black transition-colors duration-300 shadow-lg relative z-0 text-sm md:text-base whitespace-nowrap">
+                            See all education
+                        </div>
+                        <div class="bg-[#0f172a] text-white p-3.5 rounded-full group-hover:bg-black transition-colors duration-300 shadow-lg flex items-center justify-center relative z-10 ml-2">
+                            <i class="ph-bold ph-arrow-up-right text-xl group-hover:rotate-12 transition-transform duration-300"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">01</h3>
+                        <h4 class="font-sans font-bold text-xl text-secondary mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="bg-[#0f172a] rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-xl cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-white mb-4">02</h3>
+                        <h4 class="font-sans font-bold text-xl text-white mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-400 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">03</h3>
+                        <h4 class="font-sans font-bold text-xl text-secondary mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">04</h3>
+                        <h4 class="font-sans font-bold text-xl text-secondary mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">05</h3>
+                        <h4 class="font-sans font-bold text-xl text-secondary mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                        <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">06</h3>
+                        <h4 class="font-sans font-bold text-xl text-secondary mb-3">Lorem ipsum dolor sit</h4>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 h-full" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
+                    <div class="rounded-[2rem] overflow-hidden relative h-[250px] md:h-full group shadow-xl">
+                        <img src="./assets/img/cooking-mom.jpg" alt="Aktivitas Edukasi" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

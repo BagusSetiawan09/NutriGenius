@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2D6A4F;
-  --color-secondary: #F4A261;
-  --color-accent: #E9C46A;
-  --color-bgLight: #FFFBF5;
-  --font-sans: "Poppins", "sans-serif";
-  --radius-xl: 1.5rem; 
+  --color-primary: #F97316;
+  --color-secondary: #030712;
+  --color-bg-nav: #FFF7ED;
+  --color-bg-page: #FFF7ED;
+  --font-sans: "Poppins", sans-serif;
+  --font-title: "Unbounded", sans-serif;
+}
+
+@utility no-scroll {
+  overflow: hidden;
 }
