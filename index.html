@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>NutriGenius</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <link href="./assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body class="bg-bg-page font-sans text-secondary antialiased">
 
-    <!-- NAVBAR -->
+    <!-- Navbar -->
     <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
             <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
                 Nutri<span class="text-secondary">Genius</span>
             </a>
@@ -44,7 +47,6 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="fixed inset-0 bg-[#FFF7ED] z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300 -translate-y-2.5">
         <a href="index.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Home</a>
         <a href="tracker.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Tracker</a>
@@ -56,7 +58,7 @@
         </a>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- Hero -->
     <section class="relative pt-32 md:pt-40 lg:pt-40 xl:pt-32 pb-20 overflow-hidden bg-bg-page xl:min-h-screen flex items-start xl:items-center">
         <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
@@ -90,17 +92,10 @@
             <div class="relative w-full flex flex-col lg:flex-row justify-center lg:justify-end items-center mt-8 lg:mt-0 z-10 lg:-mr-10">
                 <div class="relative w-full max-w-[420px] md:max-w-[480px] lg:max-w-[500px] xl:max-w-[750px] flex flex-col items-center lg:items-end">
                     
-                    <img src="./assets/img/hero-doctor.png" 
-                         data-aos="zoom-in-up" 
-                         data-aos-duration="1200" 
-                         alt="Dokter Cilik NutriGenius" 
-                         class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-2xl" />
+                    <img src="./assets/img/hero-doctor.png" data-aos="zoom-in-up" data-aos-duration="1200" alt="Dokter Cilik NutriGenius" class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-2xl" />
 
                     <div class="hidden xl:block">
-                        <div class="absolute top-[35%] right-7 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300"
-                             data-aos="fade-left" 
-                             data-aos-delay="600" 
-                             data-aos-duration="800">
+                        <div class="absolute top-[35%] right-7 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300" data-aos="fade-left" data-aos-delay="600" data-aos-duration="800">
                             <div class="flex justify-between items-start">
                                 <span class="font-title font-bold text-3xl">98%</span>
                                 <span class="text-[10px] leading-tight text-left text-orange-100">Asupan Nutrisi<br>Terpenuhi</span>
@@ -115,10 +110,7 @@
                             </div>
                         </div>
 
-                        <div class="absolute bottom-[20%] -left-16 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300"
-                             data-aos="fade-right" 
-                             data-aos-delay="900" 
-                             data-aos-duration="800">
+                        <div class="absolute bottom-[20%] -left-16 bg-primary text-white p-4 rounded-xl shadow-xl z-20 flex flex-col gap-2 w-52 transform hover:-translate-y-2 transition-transform duration-300" data-aos="fade-right" data-aos-delay="900" data-aos-duration="800">
                             <div class="flex justify-between items-start">
                                 <span class="font-title font-bold text-3xl">10k</span>
                                 <span class="text-[10px] leading-tight text-left text-orange-100">Tumbuh Kembang<br>Optimal</span>
@@ -201,7 +193,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-8 mt-20">
-                
                 <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                     <div class="relative bg-primary rounded-3xl p-8 pt-16 text-center group h-full transition-all duration-500 ease-in-out hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-500/30 cursor-pointer">
                         <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-primary border-4 border-bg-page rounded-full flex items-center justify-center shadow-xl">
@@ -237,12 +228,11 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Konsultasi -->
+    <!-- Solusi NutriGenius -->
     <section class="py-20 bg-bg-page overflow-hidden">
         <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
@@ -287,7 +277,6 @@
                 </div>
 
             </div>
-
         </div>
     </section>
 
@@ -320,17 +309,17 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">01</h3>
                         <h4 class="font-sans font-bold text-xl text-secondary mb-3">Penuhi Kebutuhan Harian</h4>
                         <p class="font-sans text-gray-500 text-sm leading-relaxed">
-                            Pastikan komposisi karbohidrat, protein, dan vitamin anak selalu seimbang di setiap piringnya
+                            Pastikan komposisi karbohidrat, protein, dan vitamin anak selalu seimbang di setiap piringnya.
                         </p>
                     </div>
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
-                    <div class="bg-[#0f172a] rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-xl cursor-pointer">
+                    <div class="bg-[#0f172a] rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-xl cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-white mb-4">02</h3>
                         <h4 class="font-sans font-bold text-xl text-white mb-3">Cek Kualitas MBG</h4>
                         <p class="font-sans text-gray-400 text-sm leading-relaxed">
@@ -340,7 +329,7 @@
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">03</h3>
                         <h4 class="font-sans font-bold text-xl text-secondary mb-3">Rencanakan Menu Bekal</h4>
                         <p class="font-sans text-gray-500 text-sm leading-relaxed">
@@ -350,7 +339,7 @@
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
-                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">04</h3>
                         <h4 class="font-sans font-bold text-xl text-secondary mb-3">Fokus Protein Hewani</h4>
                         <p class="font-sans text-gray-500 text-sm leading-relaxed">
@@ -360,7 +349,7 @@
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
-                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">05</h3>
                         <h4 class="font-sans font-bold text-xl text-secondary mb-3">Pantau Tumbuh Kembang</h4>
                         <p class="font-sans text-gray-500 text-sm leading-relaxed">
@@ -370,7 +359,7 @@
                 </div>
 
                 <div data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
-                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer">
+                    <div class="bg-bg-page rounded-[2rem] p-8 flex flex-col justify-start group hover:-translate-y-4 transition-all duration-500 ease-in-out shadow-lg cursor-pointer h-full">
                         <h3 class="font-sans font-bold italic text-5xl text-primary mb-4">06</h3>
                         <h4 class="font-sans font-bold text-xl text-secondary mb-3">Kenali Bahan Segar</h4>
                         <p class="font-sans text-gray-500 text-sm leading-relaxed">
@@ -381,99 +370,348 @@
 
                 <div class="md:col-span-2 h-full" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
                     <div class="rounded-[2rem] overflow-hidden relative h-[250px] md:h-full group shadow-xl">
-                        <img src="./assets/img/cooking-mom.jpg" alt="Aktivitas Edukasi" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                        <img src="./assets/img/cooking-mom.jpg" alt="Aktivitas Edukasi Ibu Memasak" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                     </div>
                 </div>
 
             </div>
+        </div>
     </section>
-    <!-- Edukasi -->
+
+    <!-- Manfaat Pemantauan Gizi -->
     <section class="pt-32 pb-20 mt-10 bg-bg-page overflow-hidden">
         <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             <div class="relative w-full flex items-end justify-center h-[450px] md:h-[500px] lg:h-[550px]" data-aos="fade-right" data-aos-duration="1000">
-                
                 <div class="absolute bottom-0 left-0 w-full h-[85%] lg:h-[90%] bg-primary rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl z-10">
                     <div class="absolute -top-20 -right-20 w-[250px] h-[250px] md:w-[300px] md:h-[300px] border-[30px] md:border-[36px] border-bg-page rounded-full opacity-90"></div>
                     <div class="absolute -bottom-20 -left-20 w-[200px] h-[200px] md:w-[250px] md:h-[250px] border-[30px] md:border-[36px] border-bg-page rounded-full opacity-90"></div>
                 </div>
-
-                <img src="./assets/img/kids-doctor.png" 
-                    alt="Anak Sehat NutriGenius" 
-                    class="absolute -bottom-2 md:-bottom-3 right-0 md:right-4 lg:-right-8 w-[90%] md:w-[85%] lg:w-[95%] xl:w-[90%] object-contain object-bottom z-30 drop-shadow-xl block" />
-                    </div>
+                <img src="./assets/img/kids-doctor.png" alt="Anak Sehat NutriGenius" class="absolute -bottom-2 md:-bottom-3 right-0 md:right-4 lg:-right-8 w-[90%] md:w-[85%] lg:w-[95%] xl:w-[90%] object-contain object-bottom z-30 drop-shadow-xl block" />
+            </div>
 
             <div class="flex flex-col items-start lg:pl-10" data-aos="fade-left" data-aos-duration="1000">
-                
                 <div class="flex flex-col mb-12">
-                    
                     <div class="flex items-start gap-3 md:gap-4 mb-1">
                         <h2 class="font-sans font-bold text-4xl md:text-5xl lg:text-6xl text-secondary">Manfaat</h2>
-                        
-                        <img src="./assets/img/sparkle-icon.png" 
-                             alt="Sparkle" 
-                             class="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain -mt-2 md:-mt-4 lg:-mt-5">
+                        <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain -mt-2 md:-mt-4 lg:-mt-5">
                     </div>
-                    
                     <h2 class="font-sans font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">
                         Pemantauan Gizi
                     </h2>
                 </div>
 
                 <div class="stats-container w-full grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
-                    
                     <div>
                         <h3 class="font-sans font-medium text-4xl md:text-5xl text-secondary mb-2 flex items-baseline">
                             <span class="counter" data-target="95">0</span>
                             <span class="text-primary text-3xl md:text-4xl ml-1">%</span>
                         </h3>
                         <h4 class="font-sans font-bold text-lg text-secondary mb-2">Pantau Tumbuh Kembang</h4>
-                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">
-                            Pantau tinggi dan berat badan anak untuk memastikan pertumbuhan yang ideal.
-                        </p>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">Pantau tinggi dan berat badan anak untuk memastikan pertumbuhan yang ideal.</p>
                     </div>
-
                     <div>
                         <h3 class="font-sans font-medium text-4xl md:text-5xl text-secondary mb-2 flex items-baseline">
                             <span class="counter" data-target="95">0</span>
                             <span class="text-primary text-3xl md:text-4xl ml-1">%</span>
                         </h3>
                         <h4 class="font-sans font-bold text-lg text-secondary mb-2">Cegah Stunting Dini</h4>
-                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">
-                            Deteksi potensi malnutrisi lebih awal dengan panduan asupan gizi yang akurat.
-                        </p>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">Deteksi potensi malnutrisi lebih awal dengan panduan asupan gizi yang akurat.</p>
                     </div>
-
                     <div>
                         <h3 class="font-sans font-medium text-4xl md:text-5xl text-secondary mb-2 flex items-baseline">
                             <span class="counter" data-target="95">0</span>
                             <span class="text-primary text-3xl md:text-4xl ml-1">%</span>
                         </h3>
                         <h4 class="font-sans font-bold text-lg text-secondary mb-2">Kawal Kualitas MBG</h4>
-                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">
-                            Pastikan porsi bekal dan Makan Bergizi Gratis (MBG) sesuai standar gizi harian.
-                        </p>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">Pastikan porsi bekal dan Makan Bergizi Gratis (MBG) sesuai standar gizi harian.</p>
                     </div>
-
                     <div>
                         <h3 class="font-sans font-medium text-4xl md:text-5xl text-secondary mb-2 flex items-baseline">
                             <span class="counter" data-target="95">0</span>
                             <span class="text-primary text-3xl md:text-4xl ml-1">%</span>
                         </h3>
                         <h4 class="font-sans font-bold text-lg text-secondary mb-2">Pola Makan Sehat</h4>
-                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">
-                            Bangun kebiasaan makan sehat untuk mendukung kecerdasan dan imunitas.
-                        </p>
+                        <p class="font-sans text-gray-500 text-sm leading-relaxed pr-2 md:pr-4">Bangun kebiasaan makan sehat untuk mendukung kecerdasan dan imunitas.</p>
                     </div>
-
                 </div>
-
             </div>
 
         </div>
     </section>
 
+    <!-- CTA -->
+    <section class="py-20 bg-bg-page overflow-hidden">
+        <div class="container mx-auto px-6">
+            
+            <div class="relative w-full bg-primary rounded-[2.5rem] md:rounded-[3rem] overflow-hidden px-6 py-16 md:py-20 flex flex-col items-center justify-center shadow-2xl" data-aos="fade-up" data-aos-duration="1000">
+                
+                <div class="absolute -top-12 -left-12 md:-top-16 md:-left-16 w-32 h-32 md:w-48 md:h-48 border-[16px] md:border-[20px] border-white rounded-full opacity-90 pointer-events-none"></div>
+                <div class="absolute top-1/2 -translate-y-1/2 -right-16 md:-right-24 w-40 h-40 md:w-56 md:h-56 border-[16px] md:border-[24px] border-white rounded-full opacity-90 pointer-events-none"></div>
+
+                <svg class="absolute bottom-10 left-10 md:bottom-16 md:left-32 w-8 h-8 md:w-12 md:h-12 text-white opacity-90 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.5 8.5L23 11L14.5 13.5L12 22L9.5 13.5L1 11L9.5 8.5L12 0Z" />
+                </svg>
+
+                <div class="absolute top-10 right-10 md:top-16 md:right-32 text-white opacity-90 pointer-events-none">
+                    <svg class="w-8 h-8 md:w-10 md:h-10 inline-block" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0L14.5 8.5L23 11L14.5 13.5L12 22L9.5 13.5L1 11L9.5 8.5L12 0Z" />
+                    </svg>
+                    <svg class="w-4 h-4 md:w-5 md:h-5 inline-block -ml-2 -mt-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0L14.5 8.5L23 11L14.5 13.5L12 22L9.5 13.5L1 11L9.5 8.5L12 0Z" />
+                    </svg>
+                </div>
+
+                <h2 class="font-sans font-medium text-3xl md:text-4xl lg:text-4xl text-white text-center max-w-2xl lg:max-w-3xl leading-snug md:leading-tight mb-10 relative z-10 drop-shadow-sm">
+                    Mulai Pantau Gizi Anak Hari Ini untuk Masa Depan yang Lebih Sehat
+                </h2>
+
+                <a href="tracker.html" class="group flex items-center gap-0 relative z-10 active:scale-95 transition-transform duration-300 mt-2">
+                    <div class="bg-[#0f172a] group-hover:bg-black transition-colors duration-300 text-white font-sans font-medium text-sm md:text-base px-8 py-3.5 md:py-4 rounded-full shadow-xl flex items-center">
+                        Tracker Now
+                    </div>
+                    <div class="bg-[#0f172a] group-hover:bg-black transition-colors duration-300 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl">
+                        <i class="ph-bold ph-arrow-up-right text-lg md:text-xl group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="relative py-20 md:py-32 bg-bg-page overflow-hidden">
+        
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-start gap-4 md:gap-12 lg:gap-20 mb-12 md:mb-24 w-full" data-aos="fade-up" data-aos-duration="1000">
+                <div class="relative">
+                    <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="absolute -top-10 right-4 md:-top-16 md:-right-12 w-14 h-14 md:w-20 md:h-20 object-contain pointer-events-none">
+                    <h2 class="font-sans font-bold text-4xl md:text-5xl lg:text-5xl text-primary leading-tight">
+                        Question<br>and Answer
+                    </h2>
+                </div>
+                <p class="font-sans text-gray-500 text-sm md:text-base max-w-xs md:max-w-md leading-relaxed mt-2 md:mt-0">
+                    Temukan jawaban cepat untuk pertanyaan yang paling sering ditanyakan oleh para Bunda seputar fitur NutriGenius.
+                </p>
+            </div>
+
+            <div class="relative w-full h-[350px] md:h-[350px] mt-8 md:mt-10" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-sans font-extrabold text-[6rem] md:text-[11rem] lg:text-[15rem] text-primary opacity-10 whitespace-nowrap pointer-events-none z-0">
+                    Question / Faq
+                </div>
+
+                <div id="faq-carousel" class="absolute top-0 left-0 w-full h-full z-10 overflow-visible">
+
+                    <div class="faq-card group absolute top-1/2 left-1/2 w-[85%] sm:w-[80%] max-w-[340px] md:max-w-[480px] lg:max-w-[600px] h-[320px] md:h-[300px] bg-white rounded-[2rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer shadow-2xl
+                        data-[pos=center]:-translate-x-1/2 data-[pos=center]:-translate-y-1/2 data-[pos=center]:z-30 data-[pos=center]:scale-100 data-[pos=center]:opacity-100 data-[pos=center]:blur-none
+                        data-[pos=left]:-translate-x-[115%] sm:data-[pos=left]:-translate-x-[110%] md:data-[pos=left]:-translate-x-full lg:data-[pos=left]:-translate-x-full data-[pos=left]:-translate-y-1/2 data-[pos=left]:z-10 data-[pos=left]:scale-85 md:data-[pos=left]:scale-90 data-[pos=left]:opacity-40 md:data-[pos=left]:opacity-50 data-[pos=left]:blur-[2px]
+                        data-[pos=right]:translate-x-[15%] sm:data-[pos=right]:translate-x-[10%] md:data-[pos=right]:translate-x-0 lg:data-[pos=right]:translate-x-0 data-[pos=right]:-translate-y-1/2 data-[pos=right]:z-10 data-[pos=right]:scale-85 md:data-[pos=right]:scale-90 data-[pos=right]:opacity-40 md:data-[pos=right]:opacity-50 data-[pos=right]:blur-[2px]"
+                        data-pos="left">
+                        <h3 class="font-sans font-bold text-secondary transition-all duration-500 text-lg md:text-xl mb-3 group-data-[pos=center]:text-xl group-data-[pos=center]:md:text-2xl group-data-[pos=center]:mb-4">
+                            Apa itu NutriGenius?
+                        </h3>
+                        <p class="font-sans text-gray-500 leading-relaxed flex-grow transition-all duration-500 text-xs md:text-sm mb-4 group-data-[pos=center]:text-sm group-data-[pos=center]:md:text-base">
+                            Platform cerdas yang dirancang khusus untuk membantu orang tua memantau dan merencanakan gizi harian anak.
+                        </p>
+                        <div class="flex items-center justify-between w-full mt-auto pointer-events-none">
+                            <div class="flex items-center gap-3 group-data-[pos=center]:gap-4">
+                                <div class="bg-gray-300 transition-all duration-500 w-8 h-[1px] group-data-[pos=center]:w-12 group-data-[pos=center]:h-[2px]"></div>
+                                <span class="text-gray-400 font-medium tracking-wide transition-all duration-500 text-[10px] group-data-[pos=center]:text-xs">Bagus Setiawan</span>
+                            </div>
+                            <div class="rounded-full bg-primary flex items-center justify-center text-white transition-all duration-500 w-8 h-8 shadow-md group-data-[pos=center]:w-10 group-data-[pos=center]:h-10 group-data-[pos=center]:shadow-lg">
+                                <i class="ph-bold ph-arrow-right transition-all duration-500 text-sm group-data-[pos=center]:text-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-card group absolute top-1/2 left-1/2 w-[85%] sm:w-[80%] max-w-[340px] md:max-w-[480px] lg:max-w-[600px] h-[320px] md:h-[300px] bg-white rounded-[2rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer shadow-2xl
+                        data-[pos=center]:-translate-x-1/2 data-[pos=center]:-translate-y-1/2 data-[pos=center]:z-30 data-[pos=center]:scale-100 data-[pos=center]:opacity-100 data-[pos=center]:blur-none
+                        data-[pos=left]:-translate-x-[115%] sm:data-[pos=left]:-translate-x-[110%] md:data-[pos=left]:-translate-x-full lg:data-[pos=left]:-translate-x-full data-[pos=left]:-translate-y-1/2 data-[pos=left]:z-10 data-[pos=left]:scale-85 md:data-[pos=left]:scale-90 data-[pos=left]:opacity-40 md:data-[pos=left]:opacity-50 data-[pos=left]:blur-[2px]
+                        data-[pos=right]:translate-x-[15%] sm:data-[pos=right]:translate-x-[10%] md:data-[pos=right]:translate-x-0 lg:data-[pos=right]:translate-x-0 data-[pos=right]:-translate-y-1/2 data-[pos=right]:z-10 data-[pos=right]:scale-85 md:data-[pos=right]:scale-90 data-[pos=right]:opacity-40 md:data-[pos=right]:opacity-50 data-[pos=right]:blur-[2px]"
+                        data-pos="center">
+                        <h3 class="font-sans font-bold text-secondary transition-all duration-500 text-lg md:text-xl mb-3 group-data-[pos=center]:text-xl group-data-[pos=center]:md:text-2xl group-data-[pos=center]:mb-4">
+                            Bagaimana cara cek stunting?
+                        </h3>
+                        <p class="font-sans text-gray-500 leading-relaxed flex-grow transition-all duration-500 text-xs md:text-sm mb-4 group-data-[pos=center]:text-sm group-data-[pos=center]:md:text-base">
+                            Gunakan fitur Tracker kami secara rutin untuk memasukkan data. Sistem akan membandingkan tinggi anak dengan kurva standar WHO.
+                        </p>
+                        <div class="flex items-center justify-between w-full mt-auto pointer-events-none">
+                            <div class="flex items-center gap-3 group-data-[pos=center]:gap-4">
+                                <div class="bg-gray-300 transition-all duration-500 w-8 h-[1px] group-data-[pos=center]:w-12 group-data-[pos=center]:h-[2px]"></div>
+                                <span class="text-gray-400 font-medium tracking-wide transition-all duration-500 text-[10px] group-data-[pos=center]:text-xs">Bagus Setiawan</span>
+                            </div>
+                            <div class="rounded-full bg-primary flex items-center justify-center text-white transition-all duration-500 w-8 h-8 shadow-md group-data-[pos=center]:w-10 group-data-[pos=center]:h-10 group-data-[pos=center]:shadow-lg shadow-orange-500/30">
+                                <i class="ph-bold ph-arrow-right transition-all duration-500 text-sm group-data-[pos=center]:text-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-card group absolute top-1/2 left-1/2 w-[85%] sm:w-[80%] max-w-[340px] md:max-w-[480px] lg:max-w-[600px] h-[320px] md:h-[300px] bg-white rounded-[2rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer shadow-2xl
+                        data-[pos=center]:-translate-x-1/2 data-[pos=center]:-translate-y-1/2 data-[pos=center]:z-30 data-[pos=center]:scale-100 data-[pos=center]:opacity-100 data-[pos=center]:blur-none
+                        data-[pos=left]:-translate-x-[115%] sm:data-[pos=left]:-translate-x-[110%] md:data-[pos=left]:-translate-x-full lg:data-[pos=left]:-translate-x-full data-[pos=left]:-translate-y-1/2 data-[pos=left]:z-10 data-[pos=left]:scale-85 md:data-[pos=left]:scale-90 data-[pos=left]:opacity-40 md:data-[pos=left]:opacity-50 data-[pos=left]:blur-[2px]
+                        data-[pos=right]:translate-x-[15%] sm:data-[pos=right]:translate-x-[10%] md:data-[pos=right]:translate-x-0 lg:data-[pos=right]:translate-x-0 data-[pos=right]:-translate-y-1/2 data-[pos=right]:z-10 data-[pos=right]:scale-85 md:data-[pos=right]:scale-90 data-[pos=right]:opacity-40 md:data-[pos=right]:opacity-50 data-[pos=right]:blur-[2px]"
+                        data-pos="right">
+                        <h3 class="font-sans font-bold text-secondary transition-all duration-500 text-lg md:text-xl mb-3 group-data-[pos=center]:text-xl group-data-[pos=center]:md:text-2xl group-data-[pos=center]:mb-4">
+                            Apakah Meal Planner gratis?
+                        </h3>
+                        <p class="font-sans text-gray-500 leading-relaxed flex-grow transition-all duration-500 text-xs md:text-sm mb-4 group-data-[pos=center]:text-sm group-data-[pos=center]:md:text-base">
+                            Ya, kami menyediakan akses bebas biaya ke ratusan panduan porsi Makan Bergizi Gratis (MBG) kapan saja.
+                        </p>
+                        <div class="flex items-center justify-between w-full mt-auto pointer-events-none">
+                            <div class="flex items-center gap-3 group-data-[pos=center]:gap-4">
+                                <div class="bg-gray-300 transition-all duration-500 w-8 h-[1px] group-data-[pos=center]:w-12 group-data-[pos=center]:h-[2px]"></div>
+                                <span class="text-gray-400 font-medium tracking-wide transition-all duration-500 text-[10px] group-data-[pos=center]:text-xs">Bagus Setiawan</span>
+                            </div>
+                            <div class="rounded-full bg-primary flex items-center justify-center text-white transition-all duration-500 w-8 h-8 shadow-md group-data-[pos=center]:w-10 group-data-[pos=center]:h-10 group-data-[pos=center]:shadow-lg">
+                                <i class="ph-bold ph-arrow-right transition-all duration-500 text-sm group-data-[pos=center]:text-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-bg-page pt-20 pb-8 overflow-hidden">
+        
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle Dekorasi" class="absolute top-8 md:top-12 -right-4 md:right-8 w-16 md:w-24 object-contain pointer-events-none opacity-90" data-aos="fade-left" data-aos-duration="1500">
+        <!-- <img src="./assets/img/sparkle-icon.png" alt="Sparkle Dekorasi" class="absolute bottom-4 md:bottom-8 -left-6 md:left-4 w-16 md:w-24 object-contain pointer-events-none opacity-90" data-aos="fade-right" data-aos-duration="1500"> -->
+
+        <div class="container mx-auto px-6 w-full relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 md:gap-8 xl:gap-10 mb-10 md:mb-12 w-full">
+                
+                <div class="w-full xl:max-w-sm shrink-0">
+                    <a href="index.html" class="font-sans font-bold text-3xl md:text-4xl text-primary tracking-tight mb-2 md:mb-3 block hover:opacity-80 transition-opacity">
+                        NutriGenius
+                    </a>
+                    <p class="font-sans text-gray-500 text-sm leading-relaxed pr-4 max-w-[320px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-none">
+                        Pendamping cerdas Bunda untuk memantau tumbuh kembang dan memastikan asupan gizi harian anak terpenuhi secara optimal.
+                    </p>
+                </div>
+
+                <div class="w-full xl:w-auto flex flex-col sm:flex-row flex-wrap justify-start xl:justify-end items-start sm:items-center gap-6 md:gap-x-12 lg:gap-x-16 xl:gap-x-12 mt-2 xl:mt-0">
+                    
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-phone text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Tel</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">0895 6288 94070</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-envelope-simple text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Mail</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">hello@nutrigenius.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-map-pin text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Address</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">Medan, Sumatera Utara</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-10 w-full">
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 mb-12 w-full">
+                
+                <div class="w-full lg:w-1/3 flex flex-col items-start">
+                    <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Follow for News Letter</h3>
+                    
+                    <form class="flex items-center gap-3 w-full max-w-md lg:max-w-full">
+                        <div class="flex-grow bg-primary rounded-full px-5 py-3 md:py-3.5 flex items-center text-white shadow-md focus-within:ring-2 focus-within:ring-orange-300 transition-all">
+                            <i class="ph ph-envelope-simple text-xl mr-3 opacity-90"></i>
+                            <input type="email" placeholder="enter email here ..." required class="bg-transparent border-none outline-none text-white placeholder-white/80 text-sm w-full p-0 focus:ring-0">
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-orange-600 transition-colors duration-300 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-md active:scale-95">
+                            <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 lg:pl-16 xl:pl-24">
+                    
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Support</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Pusat Bantuan</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Panduan Pengguna</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Hubungi Kami</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Quick Link</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="index.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Beranda Utama</a></li>
+                            <li><a href="tracker.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Fitur Tracker</a></li>
+                            <li><a href="meal-planner.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Meal Planner</a></li>
+                            <li><a href="education.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Artikel Edukasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Faqs</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Cara Cek Stunting?</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Info Meal Planner</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Konsultasi Gizi</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Keamanan Data</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-6 md:mb-8 w-full">
+
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-6 w-full">
+                
+                <p class="font-sans text-gray-600 text-xs md:text-sm text-center md:text-left font-medium">
+                    Copyright 2026 NutriGenius. All rights reserved
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4">
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Instagram">
+                        <i class="ph ph-instagram-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Facebook">
+                        <i class="ph ph-facebook-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="YouTube">
+                        <i class="ph ph-youtube-logo text-base md:text-lg"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+    </script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
