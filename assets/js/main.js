@@ -38,7 +38,7 @@ hamburgerBtn.addEventListener('click', () => {
     }
 });
 
-// Menutup menu mobile saat link diklik
+// Menutup menu mobile
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
         isMenuOpen = false;
@@ -59,42 +59,58 @@ AOS.init({
     offset: 100
 });
 
-// ANIMASI COUNTER ANGKA
-const counters = document.querySelectorAll('.counter');
-const speed = 150;
+/**
+ * Intersection Observer for Number Counter Animation
+ * Animates numerical values when their parent container enters the viewport.
+ */
 
-const animateCounters = () => {
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
+const COUNTER_SPEED = 150;
 
-            const inc = target / speed;
+// Retrieve all stats containers from the DOM
+const statsContainers = document.querySelectorAll('.stats-container');
 
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 20);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        updateCount();
-    });
-}
-
-const statsContainer = document.querySelector('.stats-container');
-
-if (statsContainer) {
+if (statsContainers.length > 0) {
     const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
+            // Check if the target element is visible in the viewport
             if (entry.isIntersecting) {
-                animateCounters();
+                
+                // Scope the query to the intersecting container only
+                const counters = entry.target.querySelectorAll('.counter');
+                
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        
+                        // Calculate the increment step
+                        const inc = target / COUNTER_SPEED;
+
+                        // Increment logic using requestAnimationFrame for smoother rendering 
+                        // or setTimeout as fallback
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    
+                    // Initialize the animation loop
+                    updateCount();
+                });
+
+                // Unobserve the current target to prevent re-triggering the animation
                 observer.unobserve(entry.target);
             }
         });
     }, { 
-        threshold: 0.5
+        // Trigger execution when 50% of the element is visible
+        threshold: 0.5 
     });
 
-    counterObserver.observe(statsContainer);
+    // Attach the observer to each stats container
+    statsContainers.forEach(container => {
+        counterObserver.observe(container);
+    });
 }
