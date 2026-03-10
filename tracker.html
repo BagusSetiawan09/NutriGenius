@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link href="./assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-bg-page font-sans text-secondary antialiased">
+
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
+                Nutri<span class="text-secondary">Genius</span>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Home</a>
+                <a href="tracker.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Tracker</a>
+                <a href="meal-planner.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Meal Planner</a>
+                <a href="education.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Education</a>
+                <a href="about.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">About</a>
+            </div>
+
+            <div class="hidden lg:block">
+                <a href="tracker.html" class="group bg-primary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 border-transparent hover:bg-[#FFF7ED] hover:text-primary hover:border-primary flex items-center gap-2">
+                    Get started
+                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+
+            <button id="hamburger-btn" class="lg:hidden text-secondary hover:text-primary text-3xl focus:outline-none relative z-50 transition-transform duration-300">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#FFF7ED] z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300 -translate-y-2.5">
+        <a href="index.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Home</a>
+        <a href="tracker.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Tracker</a>
+        <a href="meal-planner.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Meal Planner</a>
+        <a href="education.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Education</a>
+        <a href="about.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">About</a>
+        <a href="tracker.html" class="mt-8 bg-primary text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg active:scale-95 transition-transform">
+            Get started <i class="ph-bold ph-arrow-right inline-block ml-2"></i>
+        </a>
+    </div>
+
+    <section class="relative pt-24 md:pt-28 lg:pt-28 pb-20 overflow-hidden bg-bg-page">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-center">
+            
+            <div class="flex flex-col items-start z-10 lg:pr-6" data-aos="fade-right" data-aos-duration="1000">
+                
+                <h3 class="font-sans font-bold text-3xl lg:text-3xl xl:text-4xl text-primary mb-2 md:mb-3">
+                    Halo Bunda!
+                </h3>
+
+                <h1 class="font-sans font-semibold text-4xl lg:text-4xl xl:text-5xl text-secondary leading-tight lg:leading-[1.15] mb-4 md:mb-6">
+                    Mari pantau tumbuh<br>
+                    kembang si kecil hari ini.
+                </h1>
+
+                <p class="font-sans text-gray-600 text-base lg:text-base xl:text-lg leading-relaxed max-w-sm lg:max-w-md">
+                    Catat tinggi dan berat badan anak secara berkala untuk memastikan ia selalu berada di jalur pertumbuhan yang optimal.
+                </p>
+
+                <a href="#kalkulator" class="group flex items-center gap-4 mt-8 md:mt-10 active:scale-95 transition-transform duration-300 w-fit">
+                    
+                    <div class="bg-primary text-white pl-6 pr-8 py-3.5 md:pl-8 md:pr-10 md:py-4 rounded-full font-sans font-medium text-sm md:text-base group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-10">
+                        Mulai Sekarang
+                    </div>
+                    
+                    <div class="bg-primary text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-20 -ml-4">
+                        <i class="ph-bold ph-arrow-down text-lg md:text-xl group-hover:translate-y-1 transition-transform duration-300"></i>
+                    </div>
+
+                </a>
+
+            </div>
+
+            <div class="relative w-full flex justify-center lg:justify-end items-end z-10 mt-10 lg:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                
+                <div class="relative w-full max-w-[500px] lg:max-w-none lg:w-[80%] xl:w-[100%] lg:-mr-10 xl:-mr-12 flex flex-col items-center lg:items-end">
+                    
+                    <img src="./assets/img/kids-doctor-hero.png" 
+                         alt="Dokter Cilik NutriGenius" 
+                         class="relative z-10 w-full h-auto object-contain object-bottom pointer-events-none">
+
+                    <div class="absolute bottom-0 left-0 w-full h-32 md:h-40 lg:h-56 xl:h-64 bg-gradient-to-t from-bg-page to-transparent z-20 pointer-events-none"></div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-bg-page relative overflow-hidden" id="kalkulator">
+        
+        <div class="container mx-auto px-4 md:px-6 max-w-5xl relative z-10">
+
+            <div class="flex flex-col items-center text-center mb-8 md:mb-12" data-aos="fade-up" data-aos-duration="1000">
+                <p class="font-sans text-gray-700 font-medium text-sm md:text-lg mb-1 md:mb-2">
+                    Kalkulator Status Gizi & Stunting
+                </p>
+                
+                <div class="relative inline-block">
+                    <h2 class="font-sans font-bold text-2xl md:text-4xl lg:text-5xl text-primary leading-tight px-4">
+                        Pantau Tumbuh Kembang Anak
+                    </h2>
+                    <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="absolute -top-6 -right-4 md:-top-8 md:-right-12 w-8 md:w-14 object-contain animate-pulse pointer-events-none hidden md:block">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-10 md:mb-12">
+                
+                <div class="bg-primary rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-4 flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left shadow-lg shadow-orange-500/20" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 bg-[#FFD7A8] rounded-md md:rounded-xl flex items-center justify-center shrink-0 mb-1 md:mb-0 md:mr-3 lg:mr-4">
+                        <i class="ph ph-scales text-lg sm:text-xl md:text-3xl lg:text-4xl text-primary"></i>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start w-full overflow-hidden">
+                        <span class="font-sans text-orange-100 text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-medium mb-0.5 whitespace-nowrap truncate w-full">Berat Badan</span>
+                        <span class="font-sans font-bold text-white text-sm sm:text-lg md:text-2xl lg:text-3xl leading-none flex items-baseline gap-0.5">
+                            0 <span class="text-[8px] sm:text-[10px] md:text-sm lg:text-base font-medium">KG</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-primary rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-4 flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left shadow-lg shadow-orange-500/20" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 bg-[#FFD7A8] rounded-md md:rounded-xl flex items-center justify-center shrink-0 mb-1 md:mb-0 md:mr-3 lg:mr-4">
+                        <i class="ph ph-arrows-down-up text-lg sm:text-xl md:text-3xl lg:text-4xl text-primary"></i>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start w-full overflow-hidden">
+                        <span class="font-sans text-orange-100 text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-medium mb-0.5 whitespace-nowrap truncate w-full">Tinggi Badan</span>
+                        <span class="font-sans font-bold text-white text-sm sm:text-lg md:text-2xl lg:text-3xl leading-none flex items-baseline gap-0.5">
+                            0 <span class="text-[8px] sm:text-[10px] md:text-sm lg:text-base font-medium">CM</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-primary rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-4 flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left shadow-lg shadow-orange-500/20" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 bg-[#FFD7A8] rounded-md md:rounded-xl flex items-center justify-center shrink-0 mb-1 md:mb-0 md:mr-3 lg:mr-4">
+                        <i class="ph ph-activity text-lg sm:text-xl md:text-3xl lg:text-4xl text-primary"></i>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start w-full overflow-hidden">
+                        <span class="font-sans text-orange-100 text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-medium mb-0.5 whitespace-nowrap truncate w-full">Status Gizi</span>
+                        <span class="font-sans font-bold text-white text-sm sm:text-lg md:text-2xl lg:text-3xl leading-none">
+                            -
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <form action="#" method="POST" class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+                    
+                    <div class="flex flex-col relative z-20" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                        <label class="font-sans text-gray-600 text-xs md:text-sm font-medium mb-1.5 md:mb-2 pl-1">Usia anak (Bulan)</label>
+                        <div class="flex items-stretch bg-white border border-primary/40 focus-within:border-primary rounded-xl overflow-hidden transition-colors h-12 md:h-14">
+                            <div class="bg-[#FFD7A8]/50 w-12 md:w-14 flex items-center justify-center border-r border-primary/20 shrink-0">
+                                <i class="ph ph-baby text-xl md:text-2xl text-primary"></i>
+                            </div>
+                            <input type="number" placeholder="masukkan usia anak" class="w-full bg-transparent font-sans text-gray-700 text-xs md:text-sm px-4 py-2 focus:outline-none placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col relative z-20" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
+                        <label class="font-sans text-gray-600 text-xs md:text-sm font-medium mb-1.5 md:mb-2 pl-1">Berat badan anak (KG)</label>
+                        <div class="flex items-stretch bg-white border border-primary/40 focus-within:border-primary rounded-xl overflow-hidden transition-colors h-12 md:h-14">
+                            <div class="bg-[#FFD7A8]/50 w-12 md:w-14 flex items-center justify-center border-r border-primary/20 shrink-0">
+                                <i class="ph ph-scales text-xl md:text-2xl text-primary"></i>
+                            </div>
+                            <input type="number" step="0.1" placeholder="masukkan berat badan anak" class="w-full bg-transparent font-sans text-gray-700 text-xs md:text-sm px-4 py-2 focus:outline-none placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col relative z-20" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+                        <label class="font-sans text-gray-600 text-xs md:text-sm font-medium mb-1.5 md:mb-2 pl-1">Tinggi badan anak (CM)</label>
+                        <div class="flex items-stretch bg-white border border-primary/40 focus-within:border-primary rounded-xl overflow-hidden transition-colors h-12 md:h-14">
+                            <div class="bg-[#FFD7A8]/50 w-12 md:w-14 flex items-center justify-center border-r border-primary/20 shrink-0">
+                                <i class="ph ph-arrows-down-up text-xl md:text-2xl text-primary"></i>
+                            </div>
+                            <input type="number" step="0.1" placeholder="masukkan tinggi badan anak" class="w-full bg-transparent font-sans text-gray-700 text-xs md:text-sm px-4 py-2 focus:outline-none placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col relative z-30" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
+                        <label class="font-sans text-gray-600 text-xs md:text-sm font-medium mb-1.5 md:mb-2 pl-1">Jenis kelamin</label>
+                        
+                        <div class="relative w-full" id="custom-gender-select">
+                            
+                            <div id="gender-trigger" class="flex items-stretch bg-white border border-primary/40 hover:border-primary rounded-xl overflow-hidden transition-colors h-12 md:h-14 cursor-pointer">
+                                <div class="bg-[#FFD7A8]/50 w-12 md:w-14 flex items-center justify-center border-r border-primary/20 shrink-0">
+                                    <i class="ph ph-gender-intersex text-xl md:text-2xl text-primary"></i>
+                                </div>
+                                <div class="w-full bg-transparent px-4 flex justify-between items-center select-none">
+                                    <span id="gender-text" class="font-sans text-gray-400 text-xs md:text-sm">Pilih jenis kelamin anak</span>
+                                    <i class="ph ph-caret-down text-primary transition-transform duration-300" id="gender-arrow"></i>
+                                </div>
+                            </div>
+
+                            <ul id="gender-options" class="absolute z-[100] w-full mt-2 bg-white border border-primary/20 rounded-xl shadow-xl shadow-orange-500/10 overflow-hidden transition-all duration-300 opacity-0 pointer-events-none -translate-y-2">
+                                <li class="gender-option px-5 py-3.5 hover:bg-[#FFD7A8]/30 flex items-center gap-3 cursor-pointer border-b border-gray-100 transition-colors" data-value="L">
+                                    <i class="ph ph-gender-male text-xl text-blue-500"></i>
+                                    <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Laki-laki</span>
+                                </li>
+                                <li class="gender-option px-5 py-3.5 hover:bg-[#FFD7A8]/30 flex items-center gap-3 cursor-pointer transition-colors" data-value="P">
+                                    <i class="ph ph-gender-female text-xl text-pink-500"></i>
+                                    <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Perempuan</span>
+                                </li>
+                            </ul>
+
+                            <input type="hidden" name="jenis_kelamin" id="gender-input-hidden" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 md:mt-10" data-aos="fade-up" data-aos-delay="800" data-aos-duration="800">
+                    <button type="button" class="w-full bg-primary hover:bg-orange-600 text-white font-sans font-bold text-base md:text-xl py-3.5 md:py-4 rounded-xl shadow-xl shadow-orange-500/30 transition-all duration-300 active:scale-[0.98]">
+                        Cek Status
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <section class="pt-10 md:pt-20 pb-10 md:pb-16 bg-bg-page relative hidden" id="overview-section">
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <div class="mb-8 md:mb-12 flex flex-col items-start" data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="font-sans font-bold text-3xl md:text-5xl text-primary mb-2 md:mb-4">
+                    Ringkasan Gizi
+                </h2>
+                <p class="font-sans text-gray-700 text-sm md:text-lg max-w-2xl text-left">
+                    Berdasarkan data yang Bunda masukkan, berikut adalah estimasi kebutuhan nutrisi harian si kecil untuk mencegah stunting.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-stretch">
+                
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-[0_10px_40px_-10px_rgba(249,115,22,0.15)] flex flex-col justify-start z-20" data-aos="fade-up" data-aos-duration="1000">
+                    
+                    <div class="flex justify-between items-start mb-4 md:mb-6">
+                        <div>
+                            <p class="text-gray-400 font-sans text-sm font-medium mb-1">Kebutuhan Harian</p>
+                            <h3 class="text-secondary font-sans font-bold text-xl md:text-2xl">Makronutrien</h3>
+                        </div>
+                        <div class="bg-gray-50 p-1.5 rounded-xl flex items-center shadow-inner">
+                            <div class="px-4 py-1.5 rounded-lg text-gray-500 font-medium text-xs md:text-sm cursor-pointer hover:bg-white transition-colors">Gram</div>
+                            <div class="px-4 py-1.5 rounded-lg bg-secondary text-white font-medium text-xs md:text-sm shadow-md cursor-pointer">Kalori</div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col gap-4 md:gap-6 mt-4 pb-2">
+                        
+                        <div class="absolute inset-0 flex justify-between px-[50px] md:px-[70px] pointer-events-none z-0">
+                            <div class="h-full border-l border-dashed border-gray-200"></div>
+                            <div class="h-full border-l border-dashed border-gray-200"></div>
+                            <div class="h-full border-l border-dashed border-gray-200"></div>
+                            <div class="h-full border-l border-dashed border-gray-200 hidden md:block"></div>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-end mb-1.5 md:mb-2">
+                                <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Karbohidrat</span>
+                                <span class="font-sans font-regular text-blue-600 text-xs md:text-sm">130 g</span>
+                            </div>
+                            <div class="w-full h-6 md:h-8 bg-[#FFEDD5] rounded-lg overflow-hidden">
+                                <div class="h-full bg-primary rounded-lg w-[85%] transition-all duration-1000 ease-out" id="bar-karbo"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-end mb-1.5 md:mb-2">
+                                <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Protein</span>
+                                <span class="font-sans font-regular text-blue-600 text-xs md:text-sm">35 g</span>
+                            </div>
+                            <div class="w-full h-6 md:h-8 bg-[#FFEDD5] rounded-lg overflow-hidden">
+                                <div class="h-full bg-primary rounded-lg w-[60%] transition-all duration-1000 ease-out delay-100" id="bar-protein"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-end mb-1.5 md:mb-2">
+                                <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Lemak Sehat</span>
+                                <span class="font-sans font-regular text-blue-600 text-xs md:text-sm">40 g</span>
+                            </div>
+                            <div class="w-full h-6 md:h-8 bg-[#FFEDD5] rounded-lg overflow-hidden">
+                                <div class="h-full bg-primary rounded-lg w-[45%] transition-all duration-1000 ease-out delay-200" id="bar-lemak"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-end mb-1.5 md:mb-2">
+                                <span class="font-sans font-medium text-gray-600 text-xs md:text-sm">Serat</span>
+                                <span class="font-sans font-regular text-blue-600 text-xs md:text-sm">16 g</span>
+                            </div>
+                            <div class="w-full h-6 md:h-8 bg-[#FFEDD5] rounded-lg overflow-hidden">
+                                <div class="h-full bg-primary rounded-lg w-[20%] transition-all duration-1000 ease-out delay-300" id="bar-serat"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between text-[10px] md:text-xs text-gray-400 font-medium px-[2px] mt-2 z-10">
+                            <span>0</span>
+                            <span>25</span>
+                            <span>50</span>
+                            <span>75</span>
+                            <span>150</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl pt-6 px-6 pb-0 md:pt-8 md:px-8 md:pb-0 shadow-[0_10px_40px_-10px_rgba(249,115,22,0.15)] flex flex-col z-10 overflow-hidden" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    
+                    <div class="flex justify-between items-start mb-6 md:mb-8">
+                        <div>
+                            <p class="text-gray-400 font-sans text-sm font-medium mb-1">Total Target</p>
+                            <div class="flex items-baseline gap-2">
+                                <h3 class="text-secondary font-sans font-bold text-3xl md:text-4xl">1,250</h3>
+                                <span class="text-gray-400 font-medium text-sm">Kkal</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-sm text-secondary">Optimal</span>
+                                <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                            </div>
+                            <span class="text-[10px] text-gray-400 font-medium uppercase mt-1">Status Anak</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-between items-center gap-2 mb-4 px-2 md:px-6 relative z-10">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#FFEDD5]"></div><span class="text-xs font-medium text-gray-600">Sarapan</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#FDBA74]"></div><span class="text-xs font-medium text-gray-600">Siang</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#FB923C]"></div><span class="text-xs font-medium text-gray-600">Malam</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-primary"></div><span class="text-xs font-medium text-gray-600">Camilan</span></div>
+                    </div>
+
+                    <div class="relative w-full flex-grow flex items-end justify-center mt-auto pt-4 md:pt-6">
+                        <div class="w-full max-w-[500px] md:max-w-[650px] lg:max-w-[700px] translate-y-2">
+                            <canvas id="kaloriDonutChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-bg-page relative" id="checklist-harian">
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            
+            <div class="flex flex-col items-center text-center mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center gap-2 mb-2 md:mb-3">
+                    <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="w-5 md:w-6 animate-pulse">
+                    <span class="font-sans text-gray-700 font-medium text-sm md:text-base">Checklist Nutrisi Harian</span>
+                </div>
+                <h2 class="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-primary leading-tight">
+                    Pantau Asupan Gizi Harian
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                
+                <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <form id="nutrisi-form" class="w-full">
+                        
+                        <div class="flex flex-col gap-4 md:gap-5 mb-8 md:mb-10">
+                            
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah anak sudah makan protein hewani hari ini? (Ikan, Telur, Ayam)</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah asupan sayur dan buah hari ini sudah terpenuhi?</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah karbohidrat kompleks sudah diberikan? (Nasi, Kentang, Ubi)</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah kebutuhan air putih si kecil sudah tercapai? (Minimal 4 gelas)</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah camilan yang diberikan bebas dari gula berlebih?</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah anak minum susu atau produk olahan susu (kalsium) hari ini?</span>
+                            </label>
+
+                            <label class="flex items-start gap-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7 shrink-0 mt-0.5">
+                                    <input type="checkbox" class="peer absolute opacity-0 w-full h-full cursor-pointer z-10 nutrisi-checkbox">
+                                    <div class="w-full h-full border-2 border-primary rounded-md bg-transparent peer-checked:bg-primary peer-checked:shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-all duration-300"></div>
+                                    <i class="ph-bold ph-check text-white absolute text-sm md:text-base opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none scale-50 peer-checked:scale-100"></i>
+                                </div>
+                                <span class="font-sans text-sm md:text-base text-gray-700 group-hover:text-primary transition-colors">Apakah anak makan dengan durasi waktu yang ideal (maksimal 30 menit)?</span>
+                            </label>
+
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 w-full">
+                            <button type="button" id="btn-cek-checklist" class="flex-1 bg-primary hover:bg-orange-600 text-white font-sans font-bold text-base md:text-lg py-3.5 md:py-4 rounded-xl shadow-lg shadow-orange-500/30 transition-all duration-300 active:scale-[0.98]">
+                                Cek Status
+                            </button>
+                            <button type="button" id="btn-clear-checklist" class="flex-1 bg-transparent hover:bg-orange-50 border-2 border-primary text-primary font-sans font-bold text-base md:text-lg py-3.5 md:py-4 rounded-xl transition-all duration-300 active:scale-[0.98]">
+                                Clear
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="bg-white rounded-3xl p-6 md:p-10 shadow-[0_15px_50px_-15px_rgba(249,115,22,0.15)] border border-gray-100 flex flex-col items-center">
+                        
+                        <div class="w-full text-left mb-4 md:mb-6">
+                            <p class="font-sans text-gray-400 font-medium text-xs md:text-sm">Statistics</p>
+                            <h3 class="font-sans text-secondary font-bold text-xl md:text-2xl mt-1">Pencapaian Hari Ini</h3>
+                            <hr class="mt-4 border-gray-100">
+                        </div>
+
+                        <div class="relative w-full max-w-[280px] md:max-w-[320px] py-4 md:py-8 flex justify-center items-center">
+                            
+                            <div class="relative z-10 w-full">
+                                <canvas id="progressRingChart"></canvas>
+                            </div>
+
+                            <div class="absolute inset-0 flex flex-col items-center justify-center z-0 translate-y-6 md:translate-y-8 pointer-events-none">
+                                <span class="font-sans text-gray-400 font-medium text-xs md:text-sm mb-1">Target Nutrisi</span>
+                                <h2 class="font-sans font-bold text-5xl md:text-6xl text-secondary leading-none" id="progress-text">0%</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 mt-2 md:mt-6 w-full px-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-primary shadow-sm shadow-orange-500/50"></div>
+                                <span class="font-sans text-gray-500 font-medium text-xs md:text-sm">Terpenuhi <strong class="text-secondary ml-1" id="terpenuhi-val">0%</strong></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#FFEDD5]"></div>
+                                <span class="font-sans text-gray-500 font-medium text-xs md:text-sm">Belum <strong class="text-secondary ml-1" id="belum-val">100%</strong></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-bg-page relative overflow-hidden hidden" id="reminder-section">
+        
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 md:w-80 md:h-80 border-[30px] md:border-[40px] border-[#FDBA74] rounded-full opacity-50 z-0 pointer-events-none" data-aos="fade-left" data-aos-duration="1500"></div>
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="absolute bottom-16 left-12 w-10 md:w-14 opacity-80 z-0 animate-pulse pointer-events-none">
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle" class="absolute top-24 right-16 w-12 md:w-16 opacity-80 z-0 animate-pulse pointer-events-none" style="animation-delay: 1s;">
+
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <div class="mb-10 md:mb-12 flex flex-col items-start" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="font-sans font-bold text-4xl md:text-5xl text-primary mb-3 md:mb-4 leading-tight">
+                    Rekomendasi Tindakan
+                </h2>
+                <p class="font-sans text-gray-600 text-base md:text-lg max-w-2xl text-left">
+                    Berdasarkan hasil analisa nutrisi, berikut adalah beberapa langkah yang disarankan untuk mengoptimalkan tumbuh kembang si kecil.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-8 md:mt-10">
+                
+                <div class="relative overflow-hidden rounded-[2rem] group min-h-[320px] md:min-h-[360px] bg-primary border border-white/20 shadow-[0_10px_40px_-10px_rgba(249,115,22,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.5)] cursor-pointer transition-shadow duration-500" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                    
+                    <img src="./assets/img/reminder-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1615461066159-fea0960485d5?q=80&w=500&auto=format&fit=crop'" alt="Protein" class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 scale-110 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out">
+
+                    <div class="absolute inset-0 bg-black/40 backdrop-blur-[4px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out z-0"></div>
+
+                    <div class="relative z-10 flex flex-col h-full p-8 md:p-10">
+                        <div class="flex flex-col gap-4 mt-auto">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/30 flex items-center justify-center mb-0">
+                                <i class="ph ph-first-aid text-2xl md:text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-white font-sans font-bold text-2xl mb-0 leading-snug">Tingkatkan Protein</h3>
+                            <p class="font-sans text-white/80 text-sm md:text-base leading-relaxed">
+                                Anak membutuhkan lebih banyak protein hewani. Coba tambahkan variasi telur, ikan, atau ayam pada menu makan siangnya.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="relative overflow-hidden rounded-[2rem] group min-h-[320px] md:min-h-[360px] bg-primary border border-white/20 shadow-[0_10px_40px_-10px_rgba(249,115,22,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.5)] cursor-pointer transition-shadow duration-500" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    
+                    <img src="./assets/img/reminder-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=500&auto=format&fit=crop'" alt="Dokter" class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 scale-110 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out">
+
+                    <div class="absolute inset-0 bg-black/40 backdrop-blur-[4px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out z-0"></div>
+
+                    <div class="relative z-10 flex flex-col h-full p-8 md:p-10">
+                        <div class="flex flex-col gap-4 mt-auto">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/30 flex items-center justify-center mb-0">
+                                <i class="ph ph-flask text-2xl md:text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-white font-sans font-bold text-2xl mb-0 leading-snug">Cek Laboratorium</h3>
+                            <p class="font-sans text-white/80 text-sm md:text-base leading-relaxed">
+                                Berdasarkan grafik, berat badan tertinggal dari usia. Disarankan menjadwalkan konsultasi dengan dokter anak untuk evaluasi menyeluruh.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="relative overflow-hidden rounded-[2rem] group min-h-[320px] md:min-h-[360px] bg-primary border border-white/20 shadow-[0_10px_40px_-10px_rgba(249,115,22,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.5)] cursor-pointer transition-shadow duration-500" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                    
+                    <img src="./assets/img/reminder-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1588710929895-6ee7a0a4d155?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'" alt="Vitamin" class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 scale-110 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out">
+
+                    <div class="absolute inset-0 bg-black/40 backdrop-blur-[4px] opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out z-0"></div>
+
+                    <div class="relative z-10 flex flex-col h-full p-8 md:p-10">
+                        <div class="flex flex-col gap-4 mt-auto">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/30 flex items-center justify-center mb-0">
+                                <i class="ph ph-syringe text-2xl md:text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-white font-sans font-bold text-2xl mb-0 leading-snug">Suplemen Kalsium</h3>
+                            <p class="font-sans text-white/80 text-sm md:text-base leading-relaxed">
+                                Tinggi badan berada di ambang batas bawah. Berikan tambahan suplemen kalsium dan pastikan anak tidur cukup setiap malam.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="relative bg-bg-page pt-20 pb-8 overflow-hidden">
+        
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle Dekorasi" class="absolute top-8 md:top-12 -right-4 md:right-8 w-16 md:w-24 object-contain pointer-events-none opacity-90" data-aos="fade-left" data-aos-duration="1500">
+
+        <div class="container mx-auto px-6 w-full relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 md:gap-8 xl:gap-10 mb-10 md:mb-12 w-full">
+                
+                <div class="w-full xl:max-w-sm shrink-0">
+                    <a href="index.html" class="font-sans font-bold text-3xl md:text-4xl text-primary tracking-tight mb-2 md:mb-3 block hover:opacity-80 transition-opacity">
+                        NutriGenius
+                    </a>
+                    <p class="font-sans text-gray-500 text-sm leading-relaxed pr-4 max-w-[320px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-none">
+                        Pendamping cerdas Bunda untuk memantau tumbuh kembang dan memastikan asupan gizi harian anak terpenuhi secara optimal.
+                    </p>
+                </div>
+
+                <div class="w-full xl:w-auto flex flex-col sm:flex-row flex-wrap justify-start xl:justify-end items-start sm:items-center gap-6 md:gap-x-12 lg:gap-x-16 xl:gap-x-12 mt-2 xl:mt-0">
+                    
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-phone text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Tel</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">0895 6288 94070</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-envelope-simple text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Mail</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">hello@nutrigenius.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-map-pin text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Address</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">Medan, Sumatera Utara</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-10 w-full">
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 mb-12 w-full">
+                
+                <div class="w-full lg:w-1/3 flex flex-col items-start">
+                    <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Follow for News Letter</h3>
+                    
+                    <form class="flex items-center gap-3 w-full max-w-md lg:max-w-full">
+                        <div class="flex-grow bg-primary rounded-full px-5 py-3 md:py-3.5 flex items-center text-white shadow-md focus-within:ring-2 focus-within:ring-orange-300 transition-all">
+                            <i class="ph ph-envelope-simple text-xl mr-3 opacity-90"></i>
+                            <input type="email" placeholder="enter email here ..." required class="bg-transparent border-none outline-none text-white placeholder-white/80 text-sm w-full p-0 focus:ring-0">
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-orange-600 transition-colors duration-300 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-md active:scale-95">
+                            <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 lg:pl-16 xl:pl-24">
+                    
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Support</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Pusat Bantuan</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Panduan Pengguna</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Hubungi Kami</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Quick Link</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="index.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Beranda Utama</a></li>
+                            <li><a href="tracker.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Fitur Tracker</a></li>
+                            <li><a href="meal-planner.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Meal Planner</a></li>
+                            <li><a href="education.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Artikel Edukasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Faqs</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Cara Cek Stunting?</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Info Meal Planner</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Konsultasi Gizi</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Keamanan Data</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-6 md:mb-8 w-full">
+
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-6 w-full">
+                
+                <p class="font-sans text-gray-600 text-xs md:text-sm text-center md:text-left font-medium">
+                    Copyright 2026 NutriGenius. All rights reserved
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4">
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Instagram">
+                        <i class="ph ph-instagram-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Facebook">
+                        <i class="ph ph-facebook-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="YouTube">
+                        <i class="ph ph-youtube-logo text-base md:text-lg"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <div id="custom-alert" class="fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        
+        <div class="absolute inset-0 bg-secondary/60 backdrop-blur-sm transition-opacity" id="alert-backdrop"></div>
+
+        <div class="bg-white rounded-3xl p-8 md:p-10 max-w-sm md:max-w-md w-full relative z-10 transform scale-95 opacity-0 transition-all duration-300 shadow-2xl flex flex-col items-center text-center" id="alert-card">
+            
+            <div class="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-5 md:mb-6 shadow-inner" id="alert-icon-wrap">
+                <i class="ph-fill ph-check-circle text-5xl md:text-6xl" id="alert-icon"></i>
+            </div>
+
+            <h3 class="font-sans font-bold text-2xl md:text-3xl text-secondary mb-3" id="alert-title">Judul Alert</h3>
+            <p class="font-sans text-gray-600 text-sm md:text-base leading-relaxed mb-8" id="alert-message">
+                Pesan deskripsi alert akan muncul di sini.
+            </p>
+
+            <button type="button" id="btn-close-alert" class="w-full bg-primary hover:bg-orange-600 text-white font-sans font-bold text-base md:text-lg py-3.5 md:py-4 rounded-xl transition-all duration-300 active:scale-[0.98] shadow-lg shadow-orange-500/30">
+                Tutup & Lanjutkan
+            </button>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+    </script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
