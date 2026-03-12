@@ -751,7 +751,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: item.querySelector('span').innerText
             };
             
-            e.dataTransfer.setData('application/json', JSON.stringify(foodData));
+            e.dataTransfer.setData('text/plain', JSON.stringify(foodData));
             setTimeout(() => item.classList.add('opacity-50'), 0);
         });
 
@@ -774,7 +774,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             zone.classList.remove('bg-orange-50', 'border-orange-300');
 
-            const foodDataString = e.dataTransfer.getData('application/json');
+            const foodDataString = e.dataTransfer.getData('text/plain');
             if (!foodDataString) return;
             
             const foodData = JSON.parse(foodDataString);
@@ -795,6 +795,8 @@ document.addEventListener('DOMContentLoaded', function() {
      * Mendukung interaksi Klik Kanan (Desktop) dan Tekan Tahan / Long Press (Mobile).
      */
     let pressTimer; 
+    let startX = 0; // Menyimpan kordinat X awal sentuhan
+    let startY = 0; // Menyimpan kordinat Y awal sentuhan
 
     dropzones.forEach(zone => {
         
@@ -811,15 +813,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         zone.addEventListener('touchstart', (e) => {
             if (trayState[zone.id] !== null) {
+                const touch = e.touches[0];
+                startX = touch.clientX;
+                startY = touch.clientY;
+
                 pressTimer = window.setTimeout(() => {
                     activeZoneForDelete = zone.id;
-                    
-                    const touch = e.touches[0];
                     contextMenu.style.left = `${touch.clientX}px`;
                     contextMenu.style.top = `${touch.clientY}px`;
                     
                     contextMenu.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
-                }, 800); 
+                }, 600);
             }
         }, { passive: true });
 
@@ -827,8 +831,14 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(pressTimer);
         });
 
-        zone.addEventListener('touchmove', () => {
-            clearTimeout(pressTimer);
+        zone.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            const moveX = Math.abs(touch.clientX - startX);
+            const moveY = Math.abs(touch.clientY - startY);
+            
+            if (moveX > 15 || moveY > 15) {
+                clearTimeout(pressTimer);
+            }
         });
     });
 
