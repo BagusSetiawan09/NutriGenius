@@ -688,10 +688,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initBentoChart();
 
-    // Listener adaptasi ukuran layar untuk instans grafik bento
-    window.addEventListener('resize', () => {
+    /**
+     * Listener adaptasi ukuran layar untuk instans grafik bento
+     * dan MENCEGAH BUG NAMPAN MENEMPEL DI MOBILE.
+     */
+    function handleResize() {
         if (bentoChartInstance) bentoChartInstance.resize();
-    });
+        
+        // Memaksa Kotak Lingkaran (zone-4) agar tingginya selalu proporsional 
+        // mengikuti lebarnya saat layar berubah (Solusi Anti-Nempel)
+        const circleZone = document.getElementById('zone-4');
+        if (circleZone) {
+            circleZone.style.height = circleZone.offsetWidth + 'px';
+        }
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Eksekusi fungsi saat pertama kali halaman dimuat
 
     /**
      * Memperbarui seluruh statistik gizi berdasarkan state nampan saat ini.
@@ -780,9 +792,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const foodData = JSON.parse(foodDataString);
             trayState[zone.id] = foodData;
 
+            // Menggunakan w-full h-full agar makanan nyata pas di nampan
             zone.innerHTML = `
                 <div class="relative w-full h-full flex items-center justify-center p-1 transform transition-transform animate-[bounce_0.5s_ease-out]">
-                    <img src="${foodData.imgSrcTray}" alt="${foodData.name}" class="w-[90%] h-[90%] object-contain drop-shadow-xl pointer-events-none">
+                    <img src="${foodData.imgSrcTray}" alt="${foodData.name}" class="w-full h-full object-contain drop-shadow-xl pointer-events-none">
                 </div>
             `;
 
@@ -795,8 +808,8 @@ document.addEventListener('DOMContentLoaded', function() {
      * Mendukung interaksi Klik Kanan (Desktop) dan Tekan Tahan / Long Press (Mobile).
      */
     let pressTimer; 
-    let startX = 0; // Menyimpan kordinat X awal sentuhan
-    let startY = 0; // Menyimpan kordinat Y awal sentuhan
+    let startX = 0; 
+    let startY = 0; 
 
     dropzones.forEach(zone => {
         
