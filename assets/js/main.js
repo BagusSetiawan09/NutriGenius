@@ -791,26 +791,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Penanganan Menu Konteks Kustom
-     * Mendukung interaksi Klik Kanan (Desktop) dan Tekan Tahan / Long Press (Mobile).
+     * Penanganan Menu Konteks Kustom (Smart Position - Centered to Zone)
+     * Mendukung interaksi Klik Kanan (Desktop) dan Tekan Tahan (Mobile).
      */
     let pressTimer; 
-    let startX = 0; // Menyimpan kordinat X awal sentuhan
-    let startY = 0; // Menyimpan kordinat Y awal sentuhan
+    let startX = 0; 
+    let startY = 0; 
+
+    // Fungsi cerdas untuk memunculkan menu persis di TENGAH nampan makanan (Ide Bagus!)
+    function showContextMenuCentered(zone) {
+        activeZoneForDelete = zone.id;
+        
+        // 1. Dapatkan kordinat dan ukuran kotak nampan saat ini
+        const rect = zone.getBoundingClientRect();
+        
+        // Tampilkan sementara (transparan) untuk membaca ukuran menunya
+        contextMenu.style.visibility = 'hidden'; 
+        contextMenu.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+        
+        const menuWidth = contextMenu.offsetWidth;
+        const menuHeight = contextMenu.offsetHeight;
+        
+        // 2. Hitung posisi tengah persis!
+        let posX = rect.left + (rect.width / 2) - (menuWidth / 2);
+        let posY = rect.top + (rect.height / 2) - (menuHeight / 2);
+        
+        // 3. Keamanan Ekstra: Cegah nabrak batas ujung layar kiri/kanan/atas/bawah
+        posX = Math.max(10, Math.min(posX, window.innerWidth - menuWidth - 10));
+        posY = Math.max(10, Math.min(posY, window.innerHeight - menuHeight - 10));
+
+        // 4. Set kordinat final dan tampilkan!
+        contextMenu.style.left = `${posX}px`;
+        contextMenu.style.top = `${posY}px`;
+        contextMenu.style.visibility = 'visible';
+    }
 
     dropzones.forEach(zone => {
-        
+        // Interaksi Desktop (Klik Kanan)
         zone.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            
             if (trayState[zone.id] !== null) {
-                activeZoneForDelete = zone.id; 
-                contextMenu.style.left = `${e.clientX}px`;
-                contextMenu.style.top = `${e.clientY}px`;
-                contextMenu.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+                showContextMenuCentered(zone);
             }
         });
 
+        // Interaksi Mobile (Tekan Tahan)
         zone.addEventListener('touchstart', (e) => {
             if (trayState[zone.id] !== null) {
                 const touch = e.touches[0];
@@ -818,12 +843,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 startY = touch.clientY;
 
                 pressTimer = window.setTimeout(() => {
-                    activeZoneForDelete = zone.id;
-                    contextMenu.style.left = `${touch.clientX}px`;
-                    contextMenu.style.top = `${touch.clientY}px`;
-                    
-                    contextMenu.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
-                }, 600);
+                    // Panggil fungsi tengah
+                    showContextMenuCentered(zone);
+                }, 500); // Dipercepat sedikit jadi 0.5 detik biar responsif
             }
         }, { passive: true });
 
@@ -836,6 +858,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const moveX = Math.abs(touch.clientX - startX);
             const moveY = Math.abs(touch.clientY - startY);
             
+            // Batal munculkan menu jika user malah niatnya nge-scroll layar
             if (moveX > 15 || moveY > 15) {
                 clearTimeout(pressTimer);
             }
