@@ -798,7 +798,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let startX = 0; 
     let startY = 0; 
 
-    // Fungsi cerdas untuk memunculkan menu persis di TENGAH nampan makanan (Ide Bagus!)
     function showContextMenuCentered(zone) {
         activeZoneForDelete = zone.id;
         
@@ -816,11 +815,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let posX = rect.left + (rect.width / 2) - (menuWidth / 2);
         let posY = rect.top + (rect.height / 2) - (menuHeight / 2);
         
-        // 3. Keamanan Ekstra: Cegah nabrak batas ujung layar kiri/kanan/atas/bawah
+        // 3. Cegah batas ujung layar kiri/kanan/atas/bawah
         posX = Math.max(10, Math.min(posX, window.innerWidth - menuWidth - 10));
         posY = Math.max(10, Math.min(posY, window.innerHeight - menuHeight - 10));
 
-        // 4. Set kordinat final dan tampilkan!
+        // 4. Set kordinat
         contextMenu.style.left = `${posX}px`;
         contextMenu.style.top = `${posY}px`;
         contextMenu.style.visibility = 'visible';
@@ -845,7 +844,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 pressTimer = window.setTimeout(() => {
                     // Panggil fungsi tengah
                     showContextMenuCentered(zone);
-                }, 500); // Dipercepat sedikit jadi 0.5 detik biar responsif
+                }, 500);
             }
         }, { passive: true });
 
@@ -858,7 +857,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const moveX = Math.abs(touch.clientX - startX);
             const moveY = Math.abs(touch.clientY - startY);
             
-            // Batal munculkan menu jika user malah niatnya nge-scroll layar
             if (moveX > 15 || moveY > 15) {
                 clearTimeout(pressTimer);
             }
