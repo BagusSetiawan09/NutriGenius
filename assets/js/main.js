@@ -42,6 +42,9 @@ window.addEventListener('scroll', () => {
  * scroll pada body document.
  */
 const closeMobileMenu = () => {
+    // PAGAR PENGAMAN: Jika elemen sudah dihapus dari HTML, hentikan fungsi agar tidak error!
+    if (!mobileMenu || !hamburgerBtn) return; 
+
     isMenuOpen = false;
     mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2.5');
     body.classList.remove('overflow-hidden');
@@ -1116,3 +1119,110 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+/** 
+/* 14. MOBILE BOTTOM NAVIGATION: SCROLL BEHAVIOR & AUTO-HIDE LOGIC            */
+/**
+ * Mengelola visibilitas Bottom Navigation pada perangkat mobile/tablet.
+ * Menerapkan algoritma auto-hide saat pengguna melakukan scroll ke bawah untuk
+ * memperluas area viewport (optimalisasi UX pada fitur Drag & Drop), 
+ * dan menampilkannya kembali saat pengguna melakukan scroll ke atas.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const bottomNav = document.getElementById('bottom-nav');
+    
+    // Terminasi eksekusi jika elemen Bottom Navigation tidak ditemukan pada DOM
+    if (!bottomNav) return; 
+
+    let lastScrollY = window.scrollY;
+    let isNavHidden = false;
+    
+    // Throttling flag menggunakan requestAnimationFrame untuk mencegah frame drop 
+    // pada event listener yang berjalan terus-menerus (high-frequency event).
+    let ticking = false; 
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                const currentScrollY = window.scrollY;
+
+                // Kondisi 1: Scroll ke bawah melewati batas toleransi 10px 
+                // dan offset absolut > 100px (Menyembunyikan komponen navigasi)
+                if (currentScrollY > lastScrollY + 10 && !isNavHidden && currentScrollY > 100) {
+                    bottomNav.classList.remove('translate-y-0');
+                    bottomNav.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+                    isNavHidden = true;
+                } 
+                // Kondisi 2: Scroll ke atas melewati batas toleransi 5px 
+                // (Menampilkan kembali komponen navigasi)
+                else if (currentScrollY < lastScrollY - 5 && isNavHidden) {
+                    bottomNav.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+                    bottomNav.classList.add('translate-y-0');
+                    isNavHidden = false;
+                }
+
+                // Perbarui posisi titik scroll terakhir
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true }); // passive:true mengoptimalkan kinerja scroll pada layar sentuh
+});
+
+/**
+/* 15. MOBILE BOTTOM NAVIGATION: DYNAMIC ACTIVE STATE & SHIFTING UI           */
+/**
+ * Mengelola state visual Bottom Navigation berdasarkan current pathname (URL).
+ * Menerapkan konsep "Shifting Bottom Navigation" di mana menu yang aktif 
+ * bertransformasi menjadi kapsul (pill) interaktif, sementara menu inaktif 
+ * diminimalisir menjadi ikon reguler untuk efisiensi ruang horizontal.
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const navItems = document.querySelectorAll('#bottom-nav .nav-item');
+        if (navItems.length === 0) return;
+
+        let currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        navItems.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetHref = link.getAttribute('href');
+                if (targetHref === currentPath) return;
+
+                e.preventDefault(); // Tahan perpindahan halaman
+
+                // 1. Menyusutkan Kapsul Aktif Saat Ini Kembali ke Ikon Reguler
+                const activeItem = document.querySelector('#bottom-nav .nav-item.active');
+                if (activeItem) {
+                    const activeIcon = activeItem.querySelector('i');
+                    const activeText = activeItem.querySelector('span');
+                    
+                    activeItem.className = 'nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out';
+                    
+                    // Mendeteksi kelas ikon dasar (ph-*) untuk memastikan hanya kelas ikon yang dipertahankan, dan menghapus kelas 'ph-fill' serta efek drop-shadow.
+                    activeIcon.className = activeIcon.className.replace('ph-fill ', 'ph ').replace(' drop-shadow-sm', '').replace('transition-none', 'transition-all duration-300 ease-out') + ' text-2xl';
+                    activeText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out';
+                }
+
+                // 2. Memperluas Kapsul Menu yang Diklik Menjadi Aktif dengan Efek Transformasi
+                const newIcon = link.querySelector('i');
+                const newText = link.querySelector('span');
+                
+                let baseIconClass = '';
+                newIcon.classList.forEach(cls => {
+                    if (cls.startsWith('ph-') && cls !== 'ph-fill') baseIconClass = cls;
+                });
+
+                link.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-all duration-300 ease-out shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
+                newIcon.className = `ph-fill ${baseIconClass} drop-shadow-sm text-xl md:text-2xl transition-all duration-300 ease-out`;
+                newText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-all duration-300 ease-out';
+
+                // 3. Setelah animasi selesai, lakukan perpindahan halaman ke target href
+                setTimeout(() => {
+                    window.location.href = targetHref;
+                }, 300); 
+            });
+        });
+    });
+})();

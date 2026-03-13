@@ -18,7 +18,8 @@
 </head>
 <body class="bg-bg-page font-sans text-secondary antialiased overflow-x-hidden relative w-full">
 
-    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
+    <!-- Navbar -->
+     <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             
             <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
@@ -28,7 +29,7 @@
             <div class="hidden lg:flex items-center gap-8">
                 <a href="index.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Home</a>
                 <a href="tracker.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Tracker</a>
-                <a href="meal-planner.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Meal Planner</a>
+                <a href="meal-planner.html" class="text-primary font-medium transition-colors duration-300">Meal Planner</a>
                 <a href="education.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Education</a>
                 <a href="about.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">About</a>
             </div>
@@ -39,24 +40,53 @@
                     <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
                 </a>
             </div>
-
-            <button id="hamburger-btn" class="lg:hidden text-secondary hover:text-primary text-3xl focus:outline-none relative z-50 transition-transform duration-300">
-                <i class="ph ph-list"></i>
-            </button>
+            
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-[#FFF7ED] z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300 -translate-y-2.5">
-        <a href="index.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Home</a>
-        <a href="tracker.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Tracker</a>
-        <a href="meal-planner.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Meal Planner</a>
-        <a href="education.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">Education</a>
-        <a href="about.html" class="mobile-link text-2xl font-title font-semibold text-secondary hover:text-primary transition-colors">About</a>
-        <a href="tracker.html" class="mt-8 bg-primary text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg active:scale-95 transition-transform">
-            Get started <i class="ph-bold ph-arrow-right inline-block ml-2"></i>
-        </a>
-    </div>
+    <nav id="bottom-nav" class="lg:hidden fixed bottom-6 left-4 right-4 z-[999] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform translate-y-0">
+        <div class="bg-white/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 p-2 flex justify-between items-center max-w-md mx-auto">
+            
+            <a href="index.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-house text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Home</span>
+            </a>
+            <a href="tracker.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-chart-line-up text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Tracker</span>
+            </a>
+            <a href="meal-planner.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-cookie text-2xl transition-all duration-300"></i>
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Meal Planner</span>
+            </a>
+            <a href="education.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-book-open text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Edu</span>
+            </a>
+            <a href="about.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-info text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">About</span>
+            </a>
 
+        </div>
+    </nav>
+
+    <script>
+        (function() {
+            var path = window.location.pathname.split('/').pop() || 'index.html';
+            var activeItem = document.querySelector('#bottom-nav a[href="' + path + '"]');
+            if (activeItem) {
+                // Setel kelas untuk item aktif dan ubah ikon serta teksnya
+                activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
+                var icon = activeItem.querySelector('i');
+                icon.className = icon.className.replace('ph ', 'ph-fill ') + ' drop-shadow-sm text-xl md:text-2xl transition-none';
+                var text = activeItem.querySelector('span');
+                text.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-none';
+            }
+        })();
+    </script>
+
+    <!-- Hero -->
     <section class="relative pt-24 md:pt-28 lg:pt-28 pb-20 overflow-hidden bg-bg-page w-full">
         <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-center">
             
