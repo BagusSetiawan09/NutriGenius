@@ -888,3 +888,210 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+/**
+ * Modul 13: Rekomendasi Menu Harian
+ * Mengelola antarmuka navigasi tab, render kalender dinamis, 
+ * serta pemutar video modal pada section rekomendasi.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    
+    /**
+     * 1. Navigasi Tab Kategori Makanan
+     * Mengelola state aktif dan transisi visibilitas antar kartu menu.
+     */
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const menuContents = document.querySelectorAll('.menu-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            
+            // Mereset state visual pada seluruh elemen tombol tab
+            tabBtns.forEach(b => {
+                b.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                b.classList.add('text-orange-600', 'hover:bg-orange-200/50');
+            });
+            
+            // Menetapkan state visual aktif pada tombol yang dipilih
+            btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+            btn.classList.remove('text-orange-600', 'hover:bg-orange-200/50');
+
+            // Menyembunyikan seluruh instance konten kartu menu
+            menuContents.forEach(content => content.classList.add('hidden', 'opacity-0'));
+
+            // Mengambil target ID dan merender konten menu yang relevan
+            const targetId = btn.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+            
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                // Mengaplikasikan delay untuk efek transisi fade-in yang halus
+                setTimeout(() => targetContent.classList.remove('opacity-0'), 50);
+            }
+        });
+    });
+
+    /**
+     * 2. Kalender Dinamis
+     * Menghasilkan grid kalender bulanan secara dinamis berdasarkan 
+     * kalkulasi objek Date JavaScript.
+     */
+    const monthYearText = document.getElementById('calendar-month-year');
+    const calendarGrid = document.getElementById('calendar-grid');
+    const btnPrevMonth = document.getElementById('btn-prev-month');
+    const btnNextMonth = document.getElementById('btn-next-month');
+
+    if (monthYearText && calendarGrid) {
+        let currentDate = new Date();
+        const namaBulanIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        /**
+         * Memproses perhitungan tanggal dan merender struktur HTML 
+         * untuk elemen kalender pada bulan yang sedang aktif.
+         */
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Memperbarui label bulan dan tahun pada antarmuka
+            monthYearText.innerText = `${namaBulanIndo[month]} ${year}`;
+
+            // Kalkulasi offset hari pertama dan total hari dalam bulan aktif
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+            
+            const today = new Date();
+            const isCurrentMonthAndYear = today.getMonth() === month && today.getFullYear() === year;
+
+            let daysHTML = "";
+
+            // Menginjeksi elemen kosong untuk penyesuaian offset kolom hari
+            for (let i = 0; i < firstDayIndex; i++) {
+                daysHTML += `<span></span>`;
+            }
+
+            // Melakukan iterasi untuk merender elemen node tanggal aktif
+            for (let i = 1; i <= lastDay; i++) {
+                if (i === today.getDate() && isCurrentMonthAndYear) {
+                    // Styling spesifik untuk elemen penanda hari ini (Current Date)
+                    daysHTML += `<span class="p-2 cursor-pointer bg-primary text-white font-bold rounded-xl shadow-lg shadow-orange-500/40 transform scale-105 transition-all">${i < 10 ? '0'+i : i}</span>`;
+                } else {
+                    // Logika validasi untuk mewarnai kolom hari Minggu (Index 0)
+                    const currentDayOfWeek = new Date(year, month, i).getDay();
+                    const textClass = (currentDayOfWeek === 0) ? 'text-red-400' : 'text-gray-600';
+                    
+                    daysHTML += `<span class="p-2 cursor-pointer hover:bg-orange-100 rounded-xl transition-colors ${textClass}">${i < 10 ? '0'+i : i}</span>`;
+                }
+            }
+
+            // Menyisipkan DOM string ke dalam container kalender
+            calendarGrid.innerHTML = daysHTML;
+        }
+
+        // Listener navigasi decremental (Bulan Sebelumnya)
+        btnPrevMonth.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        // Listener navigasi incremental (Bulan Selanjutnya)
+        btnNextMonth.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Pemanggilan awal untuk inisialisasi instance kalender
+        renderCalendar();
+    }
+
+    /**
+     * 3. Modal Video YouTube
+     * Mengelola siklus hidup komponen modal dan instance pemutar iframe.
+     */
+    const videoModal = document.getElementById('video-modal');
+    const videoCard = document.getElementById('video-card');
+    const youtubeIframe = document.getElementById('youtube-iframe');
+    const btnPlayVideos = document.querySelectorAll('.btn-play-video');
+    const btnCloseVideo = document.getElementById('close-video-modal');
+    const videoBackdrop = document.getElementById('video-backdrop');
+
+    if (videoModal && youtubeIframe) {
+        
+        /**
+         * Membuka modal dan merender URL video ke dalam iframe.
+         * Dilengkapi regex pintar untuk auto-convert link YouTube biasa menjadi format Embed.
+         * @param {string} videoUrl - Endpoint URL YouTube
+         */
+        function openVideoModal(videoUrl) {
+            let finalUrl = videoUrl;
+            
+            // Regex untuk mengambil ID video dari berbagai jenis format link YouTube
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = videoUrl.match(regExp);
+            
+            // Jika ID video ditemukan, ubah paksa menjadi link embed resmi
+            if (match && match[2].length === 11) {
+                finalUrl = `https://www.youtube.com/embed/${match[2]}`;
+            }
+
+            youtubeIframe.src = `${finalUrl}?autoplay=1`; 
+            videoModal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => videoCard.classList.remove('scale-95', 'opacity-0'), 10);
+        }
+
+        /**
+         * Menutup modal dan membersihkan instance source iframe 
+         * untuk mematikan pemutaran audio di background.
+         */
+        function closeVideoModal() {
+            videoCard.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                videoModal.classList.add('opacity-0', 'pointer-events-none');
+                youtubeIframe.src = ""; 
+            }, 300);
+        }
+
+        // Mengikat event listener pada seluruh trigger komponen video
+        btnPlayVideos.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.getAttribute('data-video-url');
+                if (url) openVideoModal(url);
+            });
+        });
+
+        // Mengikat event penutupan modal pada tombol dismiss dan backdrop
+        if (btnCloseVideo) btnCloseVideo.addEventListener('click', closeVideoModal);
+        if (videoBackdrop) videoBackdrop.addEventListener('click', closeVideoModal);
+    }
+
+    /**
+     * 4. Interaksi Filter Kategori (Pills)
+     * Mengelola status aktif (background orange) pada tombol filter secara dinamis 
+     * berdasarkan grup kategorinya masing-masing (Usia & Kondisi).
+     */
+    const filterGroups = [
+        document.getElementById('filter-usia'), 
+        document.getElementById('filter-kondisi')
+    ];
+
+    filterGroups.forEach(group => {
+        if (!group) return;
+        const buttons = group.querySelectorAll('.filter-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                
+                // Mereset seluruh tombol di dalam grup ini ke state default (transparan & teks abu)
+                buttons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'active');
+                    b.classList.add('bg-transparent', 'text-gray-700', 'hover:bg-orange-50');
+                });
+                
+                // Menetapkan state aktif (background orange solid & teks putih) pada tombol yang di-klik
+                btn.classList.add('bg-primary', 'text-white', 'active');
+                btn.classList.remove('bg-transparent', 'text-gray-700', 'hover:bg-orange-50');
+                
+            });
+        });
+    });
+});
