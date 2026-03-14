@@ -50,23 +50,23 @@
     <nav id="bottom-nav" class="lg:hidden fixed bottom-6 left-4 right-4 z-[999] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform translate-y-0">
         <div class="bg-white/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 p-2 flex justify-between items-center max-w-md mx-auto">
             
-            <a href="index.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+            <a href="index.html" id="nav-index" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
                 <i class="ph ph-house text-2xl transition-all duration-300"></i> 
                 <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Home</span>
             </a>
-            <a href="tracker.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+            <a href="tracker.html" id="nav-tracker" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
                 <i class="ph ph-chart-line-up text-2xl transition-all duration-300"></i> 
                 <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Tracker</span>
             </a>
-            <a href="meal-planner.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+            <a href="meal-planner.html" id="nav-meal-planner" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
                 <i class="ph ph-cookie text-2xl transition-all duration-300"></i>
                 <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Meal Planner</span>
             </a>
-            <a href="education.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+            <a href="education.html" id="nav-education" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
                 <i class="ph ph-book-open text-2xl transition-all duration-300"></i> 
                 <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Edu</span>
             </a>
-            <a href="about.html" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+            <a href="about.html" id="nav-about" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
                 <i class="ph ph-info text-2xl transition-all duration-300"></i> 
                 <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">About</span>
             </a>
@@ -77,16 +77,14 @@
     <script>
         (function() {
             var url = window.location.href;
-            var targetMenu = 'index'; // Anggap Home sebagai default
+            var targetMenu = 'index';
             
-            // Logika pencocokan kata kunci (Sangat Akurat)
             if (url.includes('tracker')) targetMenu = 'tracker';
             else if (url.includes('meal-planner')) targetMenu = 'meal-planner';
             else if (url.includes('education')) targetMenu = 'education';
             else if (url.includes('about')) targetMenu = 'about';
 
-            // Cari link yang href-nya mengandung kata kunci tersebut
-            var activeItem = document.querySelector('#bottom-nav a[href*="' + targetMenu + '"]');
+            var activeItem = document.getElementById('nav-' + targetMenu);
 
             if (activeItem) {
                 activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
