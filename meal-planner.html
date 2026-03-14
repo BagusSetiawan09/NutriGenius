@@ -74,12 +74,17 @@
 
     <script>
         (function() {
-            var path = window.location.pathname.split('/').pop().split('?')[0].replace('.html', '');
+            // 1. Ambil URL, hapus garis miring di akhir (jika ada), lalu potong dan bersihkan
+            var rawPath = window.location.pathname.replace(/\/$/, '');
+            var path = rawPath.split('/').pop().split('?')[0].replace('.html', '');
+            
+            // 2. Fallback resolusi state jika user berada di root directory
             if (path === '') path = 'index';
             
             var navLinks = document.querySelectorAll('#bottom-nav a');
             var activeItem = null;
             
+            // 3. Iterasi DOM node untuk komparasi routing
             for (var i = 0; i < navLinks.length; i++) {
                 var href = navLinks[i].getAttribute('href').replace('.html', '');
                 if (href === path) {
@@ -88,6 +93,7 @@
                 }
             }
 
+            // 4. Injeksi state aktif secara sinkron sebelum proses paint oleh browser
             if (activeItem) {
                 activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
                 var icon = activeItem.querySelector('i');

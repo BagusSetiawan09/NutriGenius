@@ -1174,9 +1174,9 @@ document.addEventListener('DOMContentLoaded', function() {
 /* 15. MOBILE BOTTOM NAVIGATION: SPA ILLUSION & DEPLOYMENT-SAFE ROUTING       */
 /**
  * Mengelola state visual Bottom Navigation berdasarkan current pathname (URL).
- * Dilengkapi dengan algoritma sanitasi URL (menghapus ekstensi .html) untuk 
- * mencegah bug pada environment production/hosting yang menerapkan URL Rewriting.
- * Menerapkan "Shifting Bottom Navigation" dengan transisi animasi sebelum redirect,
+ * Dilengkapi dengan algoritma sanitasi "Trailing Slash" dan ekstensi (.html) untuk 
+ * memitigasi anomali pada environment Netlify/Vercel yang menerapkan Pretty URLs.
+ * Menerapkan "Shifting UI" dengan transisi animasi sebelum proses redirect,
  * menciptakan ilusi Single Page Application (SPA) pada arsitektur multi-page.
  */
 (function() {
@@ -1184,15 +1184,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const navItems = document.querySelectorAll('#bottom-nav .nav-item');
         if (navItems.length === 0) return;
 
-        // Ekstraksi dan sanitasi current pathname (kompatibilitas local & production)
-        let currentPath = window.location.pathname.split('/').pop().split('?')[0].replace('.html', '');
+        // Ekstraksi dan sanitasi current pathname (Kompatibilitas Netlify Trailing Slashes)
+        // Regex .replace(/\/$/, '') menghapus slash di akhir URL secara deterministik
+        let rawPath = window.location.pathname.replace(/\/$/, '');
+        let currentPath = rawPath.split('/').pop().split('?')[0].replace('.html', '');
+        
+        // Fallback state resolution untuk direktori root (contoh: nutrigenius.com/)
         if (currentPath === '') currentPath = 'index';
 
         navItems.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetHrefRaw = link.getAttribute('href');
                 
-                // Sanitasi target href untuk komparasi logika routing
+                // Sanitasi target href untuk komparasi logika routing internal
                 const targetPath = targetHrefRaw.replace('.html', '');
                 
                 // Terminasi eksekusi jika user mengklik rute yang saat ini sedang aktif
@@ -1201,7 +1205,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mengintersep event click default untuk menyisipkan animasi transisi visual
                 e.preventDefault(); 
 
-                // 1. Menyusutkan Kapsul Aktif Saat Ini Kembali ke State Ikon Reguler
+                // 1. Restorasi Kapsul Aktif Saat Ini Kembali ke State Ikon Reguler
                 const activeItem = document.querySelector('#bottom-nav .nav-item.active');
                 if (activeItem) {
                     const activeIcon = activeItem.querySelector('i');
@@ -1217,11 +1221,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     activeText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out';
                 }
 
-                // 2. Memperluas Kapsul Menu yang Diklik Menjadi State Aktif
+                // 2. Ekspansi Kapsul Menu yang Diklik Menjadi State Aktif
                 const newIcon = link.querySelector('i');
                 const newText = link.querySelector('span');
                 
-                // Ekstraksi prefix ikon dasar secara otomatis (contoh: 'ph-house' atau 'ph-cookie')
+                // Ekstraksi dinamis prefix ikon dasar (contoh: 'ph-house' atau 'ph-cookie')
                 let baseIconClass = '';
                 newIcon.classList.forEach(cls => {
                     if (cls.startsWith('ph-') && cls !== 'ph-fill') baseIconClass = cls;
@@ -1233,7 +1237,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Transformasi ikon menjadi solid ('ph-fill') dengan efek elevasi (drop-shadow)
                 newIcon.className = `ph-fill ${baseIconClass} drop-shadow-sm text-xl md:text-2xl transition-all duration-300 ease-out`;
                 
-                // Menampilkan label teks secara presisi menggunakan ekspansi max-width
+                // Menampilkan label teks secara presisi menggunakan transisi max-width
                 newText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-all duration-300 ease-out';
 
                 // 3. Asynchronous Routing: Eksekusi navigasi setelah siklus animasi CSS selesai (300ms)
