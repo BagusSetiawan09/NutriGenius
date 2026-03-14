@@ -76,21 +76,17 @@
 
     <script>
         (function() {
-            // PERBAIKAN: Hapus trailing slash dari Netlify menggunakan replace(/\/$/, '')
-            var cleanPath = window.location.pathname.replace(/\/$/, '');
-            var path = cleanPath.split('/').pop().split('?')[0].replace('.html', '');
-            if (path === '') path = 'index';
+            var url = window.location.href;
+            var targetMenu = 'index'; // Anggap Home sebagai default
             
-            var navLinks = document.querySelectorAll('#bottom-nav a');
-            var activeItem = null;
-            
-            for (var i = 0; i < navLinks.length; i++) {
-                var href = navLinks[i].getAttribute('href').replace('.html', '');
-                if (href === path) {
-                    activeItem = navLinks[i];
-                    break;
-                }
-            }
+            // Logika pencocokan kata kunci (Sangat Akurat)
+            if (url.includes('tracker')) targetMenu = 'tracker';
+            else if (url.includes('meal-planner')) targetMenu = 'meal-planner';
+            else if (url.includes('education')) targetMenu = 'education';
+            else if (url.includes('about')) targetMenu = 'about';
+
+            // Cari link yang href-nya mengandung kata kunci tersebut
+            var activeItem = document.querySelector('#bottom-nav a[href*="' + targetMenu + '"]');
 
             if (activeItem) {
                 activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';

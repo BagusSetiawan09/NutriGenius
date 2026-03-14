@@ -1184,65 +1184,57 @@ document.addEventListener('DOMContentLoaded', function() {
         const navItems = document.querySelectorAll('#bottom-nav .nav-item');
         if (navItems.length === 0) return;
 
-        // Ekstraksi dan sanitasi current pathname (Kompatibilitas Netlify Trailing Slashes)
-        // Regex .replace(/\/$/, '') menghapus slash di akhir URL secara deterministik
-        let cleanPath = window.location.pathname.replace(/\/$/, '');
-        let currentPath = cleanPath.split('/').pop().split('?')[0].replace('.html', '');
-        
-        // Fallback state resolution untuk direktori root (contoh: nutrigenius.com/)
-        if (currentPath === '') currentPath = 'index';
+        // Identifikasi halaman aktif berdasarkan Keyword URL
+        let url = window.location.href;
+        let currentPath = 'index';
+        if (url.includes('tracker')) currentPath = 'tracker';
+        else if (url.includes('meal-planner')) currentPath = 'meal-planner';
+        else if (url.includes('education')) currentPath = 'education';
+        else if (url.includes('about')) currentPath = 'about';
 
         navItems.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetHrefRaw = link.getAttribute('href');
                 
-                // Sanitasi target href untuk komparasi logika routing internal
-                const targetPath = targetHrefRaw.replace('.html', '');
+                // Identifikasi halaman tujuan berdasarkan Keyword URL
+                let targetPath = 'index';
+                if (targetHrefRaw.includes('tracker')) targetPath = 'tracker';
+                else if (targetHrefRaw.includes('meal-planner')) targetPath = 'meal-planner';
+                else if (targetHrefRaw.includes('education')) targetPath = 'education';
+                else if (targetHrefRaw.includes('about')) targetPath = 'about';
                 
-                // Terminasi eksekusi jika user mengklik rute yang saat ini sedang aktif
+                // Cegah animasi jika user mengklik menu yang sudah aktif
                 if (targetPath === currentPath) return;
 
-                // Mengintersep event click default untuk menyisipkan animasi transisi visual
                 e.preventDefault(); 
 
-                // 1. Restorasi Kapsul Aktif Saat Ini Kembali ke State Ikon Reguler
+                // 1. Matikan Kapsul Aktif Saat Ini
                 const activeItem = document.querySelector('#bottom-nav .nav-item.active');
                 if (activeItem) {
                     const activeIcon = activeItem.querySelector('i');
                     const activeText = activeItem.querySelector('span');
                     
-                    // Restorasi dimensi kontainer dan pewarnaan ke state inaktif
                     activeItem.className = 'nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out';
-                    
-                    // Menghapus atribut 'ph-fill' dan shadow, mengembalikan ke line-icon ('ph')
                     activeIcon.className = activeIcon.className.replace('ph-fill ', 'ph ').replace(' drop-shadow-sm', '').replace('transition-none', 'transition-all duration-300 ease-out') + ' text-2xl';
-                    
-                    // Menyembunyikan label teks dengan memanipulasi max-width dan opacity secara dinamis
                     activeText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out';
                 }
 
-                // 2. Ekspansi Kapsul Menu yang Diklik Menjadi State Aktif
+                // 2. Mekarkan Kapsul Baru
                 const newIcon = link.querySelector('i');
                 const newText = link.querySelector('span');
                 
-                // Ekstraksi dinamis prefix ikon dasar (contoh: 'ph-house' atau 'ph-cookie')
                 let baseIconClass = '';
                 newIcon.classList.forEach(cls => {
                     if (cls.startsWith('ph-') && cls !== 'ph-fill') baseIconClass = cls;
                 });
 
-                // Injeksi utilitas kelas untuk ekspansi kapsul, background gradient, dan shadow
                 link.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-all duration-300 ease-out shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
-                
-                // Transformasi ikon menjadi solid ('ph-fill') dengan efek elevasi (drop-shadow)
                 newIcon.className = `ph-fill ${baseIconClass} drop-shadow-sm text-xl md:text-2xl transition-all duration-300 ease-out`;
-                
-                // Menampilkan label teks secara presisi menggunakan transisi max-width
                 newText.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-all duration-300 ease-out';
 
-                // 3. Asynchronous Routing: Eksekusi navigasi setelah siklus animasi CSS selesai (300ms)
+                // 3. Pindah Halaman
                 setTimeout(() => {
-                    window.location.href = targetHrefRaw; // Pindah menggunakan raw URL untuk akurasi path
+                    window.location.href = targetHrefRaw; 
                 }, 300); 
             });
         });
