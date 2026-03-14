@@ -74,15 +74,26 @@
 
     <script>
         (function() {
-            var path = window.location.pathname.split('/').pop() || 'index.html';
-            var activeItem = document.querySelector('#bottom-nav a[href="' + path + '"]');
+            var path = window.location.pathname.split('/').pop().split('?')[0].replace('.html', '');
+            if (path === '') path = 'index';
+            
+            var navLinks = document.querySelectorAll('#bottom-nav a');
+            var activeItem = null;
+            
+            for (var i = 0; i < navLinks.length; i++) {
+                var href = navLinks[i].getAttribute('href').replace('.html', '');
+                if (href === path) {
+                    activeItem = navLinks[i];
+                    break;
+                }
+            }
+
             if (activeItem) {
-                // Setel kelas untuk item aktif dan ubah ikon serta teksnya
                 activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
                 var icon = activeItem.querySelector('i');
-                icon.className = icon.className.replace('ph ', 'ph-fill ') + ' drop-shadow-sm text-xl md:text-2xl transition-none';
+                if (icon) icon.className = icon.className.replace('ph ', 'ph-fill ') + ' drop-shadow-sm text-xl md:text-2xl transition-none';
                 var text = activeItem.querySelector('span');
-                text.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-none';
+                if (text) text.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-none';
             }
         })();
     </script>
