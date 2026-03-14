@@ -45,6 +45,8 @@
         </div>
     </nav>
 
+    <div class="hidden nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border-orange-200/50 ph-fill drop-shadow-sm text-xl md:text-2xl whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 duration-300 ease-out transition-all"></div>
+
     <nav id="bottom-nav" class="lg:hidden fixed bottom-6 left-4 right-4 z-[999] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform translate-y-0">
         <div class="bg-white/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 p-2 flex justify-between items-center max-w-md mx-auto">
             
@@ -74,17 +76,14 @@
 
     <script>
         (function() {
-            // 1. Ambil URL, hapus garis miring di akhir (jika ada), lalu potong dan bersihkan
-            var rawPath = window.location.pathname.replace(/\/$/, '');
-            var path = rawPath.split('/').pop().split('?')[0].replace('.html', '');
-            
-            // 2. Fallback resolusi state jika user berada di root directory
+            // PERBAIKAN: Hapus trailing slash dari Netlify menggunakan replace(/\/$/, '')
+            var cleanPath = window.location.pathname.replace(/\/$/, '');
+            var path = cleanPath.split('/').pop().split('?')[0].replace('.html', '');
             if (path === '') path = 'index';
             
             var navLinks = document.querySelectorAll('#bottom-nav a');
             var activeItem = null;
             
-            // 3. Iterasi DOM node untuk komparasi routing
             for (var i = 0; i < navLinks.length; i++) {
                 var href = navLinks[i].getAttribute('href').replace('.html', '');
                 if (href === path) {
@@ -93,7 +92,6 @@
                 }
             }
 
-            // 4. Injeksi state aktif secara sinkron sebelum proses paint oleh browser
             if (activeItem) {
                 activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
                 var icon = activeItem.querySelector('i');

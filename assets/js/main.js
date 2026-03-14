@@ -1175,7 +1175,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Mengelola state visual Bottom Navigation berdasarkan current pathname (URL).
  * Dilengkapi dengan algoritma sanitasi "Trailing Slash" dan ekstensi (.html) untuk 
- * memitigasi anomali pada environment Netlify/Vercel yang menerapkan Pretty URLs.
+ * memitigasi anomali routing pada environment Netlify/Vercel (Pretty URLs).
  * Menerapkan "Shifting UI" dengan transisi animasi sebelum proses redirect,
  * menciptakan ilusi Single Page Application (SPA) pada arsitektur multi-page.
  */
@@ -1186,8 +1186,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Ekstraksi dan sanitasi current pathname (Kompatibilitas Netlify Trailing Slashes)
         // Regex .replace(/\/$/, '') menghapus slash di akhir URL secara deterministik
-        let rawPath = window.location.pathname.replace(/\/$/, '');
-        let currentPath = rawPath.split('/').pop().split('?')[0].replace('.html', '');
+        let cleanPath = window.location.pathname.replace(/\/$/, '');
+        let currentPath = cleanPath.split('/').pop().split('?')[0].replace('.html', '');
         
         // Fallback state resolution untuk direktori root (contoh: nutrigenius.com/)
         if (currentPath === '') currentPath = 'index';
