@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth overflow-x-hidden max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+    
+    <link href="./assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-bg-page font-sans text-secondary antialiased overflow-x-hidden w-full relative">
+
+    <!-- Navbar -->
+     <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
+                Nutri<span class="text-secondary">Genius</span>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Home</a>
+                <a href="tracker.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Tracker</a>
+                <a href="meal-planner.html" class="text-secondary font-medium transition-colors duration-300">Meal Planner</a>
+                <a href="education.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Education</a>
+                <a href="about.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">About</a>
+            </div>
+
+            <div class="hidden lg:block">
+                <a href="tracker.html" class="group bg-primary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 border-transparent hover:bg-[#FFF7ED] hover:text-primary hover:border-primary flex items-center gap-2">
+                    Get started
+                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="hidden nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border-orange-200/50 ph-fill drop-shadow-sm text-xl md:text-2xl whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 duration-300 ease-out transition-all"></div>
+
+    <nav id="bottom-nav" class="lg:hidden fixed bottom-6 left-4 right-4 z-[999] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform translate-y-0">
+        <div class="bg-white/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 p-2 flex justify-between items-center max-w-md mx-auto">
+            
+            <a href="index.html" id="nav-index" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-house text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Home</span>
+            </a>
+            <a href="tracker.html" id="nav-tracker" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-chart-line-up text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Tracker</span>
+            </a>
+            <a href="meal-planner.html" id="nav-meal-planner" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-cookie text-2xl transition-all duration-300"></i>
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Meal Planner</span>
+            </a>
+            <a href="education.html" id="nav-education" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-book-open text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Edu</span>
+            </a>
+            <a href="about.html" id="nav-about" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-info text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">About</span>
+            </a>
+
+        </div>
+    </nav>
+
+    <script>
+        (function() {
+            var url = window.location.href;
+            var targetMenu = 'index';
+            
+            if (url.includes('tracker')) targetMenu = 'tracker';
+            else if (url.includes('meal-planner')) targetMenu = 'meal-planner';
+            else if (url.includes('education')) targetMenu = 'education';
+            else if (url.includes('about')) targetMenu = 'about';
+
+            var activeItem = document.getElementById('nav-' + targetMenu);
+
+            if (activeItem) {
+                activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
+                var icon = activeItem.querySelector('i');
+                if (icon) icon.className = icon.className.replace('ph ', 'ph-fill ') + ' drop-shadow-sm text-xl md:text-2xl transition-none';
+                var text = activeItem.querySelector('span');
+                if (text) text.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-none';
+            }
+        })();
+    </script>
+
+    <!-- Hero -->
+     <section class="relative w-full bg-[#FFF6EB] pt-32 pb-20 md:pt-36 lg:pt-40 lg:pb-28 overflow-x-hidden">
+        
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 xl:gap-20 items-center relative z-10">
+            
+            <div class="flex flex-col justify-center text-center lg:text-left order-1 lg:order-1 relative z-20">
+                
+                <h1 class="text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[4rem] font-extrabold text-gray-900 leading-[1.2] tracking-tight mb-4 px-2 lg:px-0">
+                    Bekali Diri, Cegah <br class="hidden md:block" />
+                    <span class="text-[#F06D24]">Stunting Sejak Dini</span>
+                </h1>
+                
+                <p class="text-[13.5px] sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed max-w-sm md:max-w-xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
+                    Pelajari cara menjaga gizi anak melalui informasi terpercaya, tips kesehatan, dan panduan nutrisi untuk mendukung tumbuh kembang optimal.
+                </p>
+
+                <a href="#artikel-edukasi" class="group flex items-center gap-4 mt-6 md:mt-10 active:scale-95 transition-transform duration-300 w-fit mx-auto lg:mx-0 relative z-10">
+                    <div class="bg-primary text-white pl-6 pr-8 py-3 md:pl-8 md:pr-10 md:py-4 rounded-full font-sans font-medium text-sm md:text-base group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-10">
+                        Mulai Sekarang
+                    </div>
+                    
+                    <div class="bg-primary text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/30 relative z-20 -ml-4">
+                        <i class="ph-bold ph-arrow-down text-base md:text-xl group-hover:translate-y-1 transition-transform duration-300"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="relative w-full max-w-[450px] md:max-w-[500px] lg:max-w-[550px] mx-auto lg:ml-auto lg:mr-0 h-[350px] md:h-[400px] lg:h-[480px] xl:h-[520px] order-2 lg:order-2 mt-12 lg:mt-0 z-10">
+                
+                <div class="block md:hidden xl:block absolute top-16 -left-4 xl:top-24 xl:-left-16 z-0 drop-shadow-xl animate-float-slow">
+                    <img src="./assets/img/ornaments/avocado.svg" alt="Alpukat" class="w-12 xl:w-24 object-contain">
+                </div>
+
+                <div class="block md:hidden xl:block absolute -bottom-4 -right-4 xl:-bottom-12 xl:-right-12 z-30 drop-shadow-xl animate-float-slower">
+                    <img src="./assets/img/ornaments/broccoli.svg" alt="Brokoli" class="w-16 xl:w-32 object-contain">
+                </div>
+
+                <div class="absolute -top-4 left-[20%] z-30 w-14 md:w-20 xl:w-24 animate-[bounce_3s_ease-in-out_infinite]">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M45 5C45 27.0914 27.0914 45 5 45C27.0914 45 45 62.9086 45 85C45 62.9086 62.9086 45 85 45C62.9086 45 45 27.0914 45 5Z" fill="#F06D24"/>
+                        <path d="M85 10C85 18.2843 78.2843 25 70 25C78.2843 25 85 31.7157 85 40C85 31.7157 91.7157 25 100 25C91.7157 25 85 18.2843 85 10Z" fill="#F06D24"/>
+                    </svg>
+                </div>
+                
+                <div class="absolute top-0 right-0 w-[75%] h-[80%] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-12px_rgba(240,109,36,0.15)] border-4 lg:border-8 border-white z-10 transform hover:translate-y-[-5px] transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1543352634-99a5d50ae78e?auto=format&fit=crop&q=80&w=800" alt="Sayuran Sehat" class="w-full h-full object-cover object-center" />
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 lg:border-8 border-white z-20 transform hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600" alt="Salad Buah Sehat" class="w-full h-full object-cover object-center" />
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Jelajah Edukasi Anak -->
+     <section id="artikel-edukasi" class="relative w-full bg-[#FFF6EB] py-16 md:py-24 border-t border-orange-100">
+        <div class="container mx-auto px-6 max-w-6xl">
+            
+            <div class="text-center mb-10 md:mb-12" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="text-[1.75rem] md:text-4xl lg:text-[2.75rem] font-extrabold text-gray-900 tracking-tight">
+                    Jelajahi Edukasi Gizi Anak
+                </h2>
+            </div>
+
+            <div class="w-full max-w-4xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <form id="search-form" class="relative flex items-center bg-white border border-[#F06D24] rounded-full shadow-[0_8px_30px_rgba(240,109,36,0.08)] p-1.5 md:p-2 transition-all duration-300 focus-within:shadow-[0_8px_30px_rgba(240,109,36,0.15)] focus-within:-translate-y-1">
+                    
+                    <input 
+                        type="text" 
+                        placeholder="Cari artikel kesehatan anak..." 
+                        class="flex-1 bg-transparent border-none outline-none pl-6 pr-4 py-3 md:py-4 text-sm md:text-base text-gray-700 placeholder-gray-400 w-full"
+                    >
+                    
+                    <button type="submit" class="bg-[#F06D24] hover:bg-orange-600 active:scale-95 text-white rounded-full px-5 py-3 md:px-8 md:py-4 font-medium transition-all duration-300 flex items-center gap-2 shadow-md shadow-orange-500/20">
+                        <i class="ph-bold ph-magnifying-glass text-lg md:text-xl"></i>
+                        <span class="hidden sm:block text-sm md:text-base">Search now</span>
+                    </button>
+                    
+                </form>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                
+                <button type="button" class="category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Tumbuh Kembang, MPASI 6 Bulan
+                </button>
+                
+                <button type="button" class="category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Gejala Stunting
+                </button>
+                
+                <button type="button" class="category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Panduan Gizi Seimbang
+                </button>
+                
+                <button type="button" class="category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Kebutuhan Nutrisi Anak
+                </button>
+                
+                <button type="button" class="category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Pola Makan Sehat Anak
+                </button>
+                
+                <button type="button" class="hidden sm:inline-block category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Rekomendasi Menu Sehat
+                </button>
+                
+                <button type="button" class="hidden sm:inline-block category-filter bg-transparent text-gray-800 hover:bg-orange-100 border border-[#F06D24] rounded-full px-4 py-1.5 md:px-6 md:py-3 text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 active:scale-95 whitespace-nowrap">
+                    Perhitungan Status Gizi Anak
+                </button>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Artikel Edukasi Kesehatan -->
+     <section class="relative w-full bg-[#FFF6EB] py-16 md:py-24">
+        <div class="container mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6" data-aos="fade-up" data-aos-duration="1000">
+                <div>
+                    <span class="text-gray-500 font-regular tracking-wide text-sm md:text-base uppercase mb-1 block">
+                        Edukasi Kesehatan
+                    </span>
+                    <h2 class="text-[1.75rem] md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-gray-900 tracking-tight md:whitespace-nowrap">
+                        Artikel Edukasi <span class="text-[#F06D24]">Gizi</span>
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
+                    <button type="button" data-filter="Semua" class="article-filter bg-[#F06D24] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md shadow-orange-500/30 whitespace-nowrap shrink-0">
+                        Semua
+                    </button>
+                    <button type="button" data-filter="Kehamilan" class="article-filter bg-transparent text-gray-600 hover:text-[#F06D24] px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0">
+                        Kehamilan
+                    </button>
+                    <button type="button" data-filter="Bayi 0-6 Bulan" class="article-filter bg-transparent text-gray-600 hover:text-[#F06D24] px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0">
+                        Bayi 0-6 Bulan
+                    </button>
+                    <button type="button" data-filter="Resep Sehat" class="article-filter bg-transparent text-gray-600 hover:text-[#F06D24] px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0">
+                        Resep Sehat
+                    </button>
+                    <button type="button" data-filter="Parenting" class="article-filter bg-transparent text-gray-600 hover:text-[#F06D24] px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0">
+                        Parenting
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+
+                <div class="article-card h-full" data-category="Bayi 0-6 Bulan" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    
+                    <div class="smooth-hover-card bg-white rounded-[1.5rem] border border-[#F06D24]/20 shadow-[0_10px_40px_-15px_rgba(240,109,36,0.08)] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 sm:gap-6 h-full cursor-pointer">
+                        <div class="w-full sm:w-[40%] xl:w-[35%] aspect-[4/3] sm:aspect-square rounded-[1.5rem] overflow-hidden shrink-0 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800" alt="Bayi Tersenyum" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out">
+                        </div>
+                        <div class="flex flex-col py-1 pr-2 w-full">
+                            <div class="mb-3">
+                                <span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">Bayi 0-6 Bulan</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-extrabold text-gray-900 leading-snug mb-2 line-clamp-2">
+                                Panduan ASI Eksklusif untuk Tumbuh Kembang Optimal
+                            </h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                                Ketahui manfaat luar biasa ASI bagi kekebalan tubuh bayi dan tips menyusui yang benar bagi ibu baru untuk mencegah stunting sejak lahir.
+                            </p>
+                            <a href="#" class="mt-auto inline-flex items-center text-[#F06D24] font-bold text-sm hover:text-orange-700 transition-colors group w-fit">
+                                Read more 
+                                <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card h-full" data-category="Kehamilan" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="smooth-hover-card bg-white rounded-[1.5rem] border border-[#F06D24]/20 shadow-[0_10px_40px_-15px_rgba(240,109,36,0.08)] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 sm:gap-6 h-full cursor-pointer">
+                        <div class="w-full sm:w-[40%] xl:w-[35%] aspect-[4/3] sm:aspect-square rounded-[1.5rem] overflow-hidden shrink-0 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1615766553246-9147b6d50e90?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ibu Hamil" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out">
+                        </div>
+                        <div class="flex flex-col py-1 pr-2 w-full">
+                            <div class="mb-3">
+                                <span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">Kehamilan</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-extrabold text-gray-900 leading-snug mb-2 line-clamp-2">
+                                Kebutuhan Nutrisi Esensial Selama Trimester Pertama
+                            </h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                                Penuhi asupan asam folat, zat besi, dan kalsium harian. Kenali makanan pendukung untuk mencegah risiko cacat tabung saraf pada janin.
+                            </p>
+                            <a href="#" class="mt-auto inline-flex items-center text-[#F06D24] font-bold text-sm hover:text-orange-700 transition-colors group w-fit">
+                                Read more 
+                                <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card h-full" data-category="Resep Sehat" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="smooth-hover-card bg-white rounded-[1.5rem] border border-[#F06D24]/20 shadow-[0_10px_40px_-15px_rgba(240,109,36,0.08)] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 sm:gap-6 h-full cursor-pointer">
+                        <div class="w-full sm:w-[40%] xl:w-[35%] aspect-[4/3] sm:aspect-square rounded-[1.5rem] overflow-hidden shrink-0 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800" alt="Makanan Sehat" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out">
+                        </div>
+                        <div class="flex flex-col py-1 pr-2 w-full">
+                            <div class="mb-3">
+                                <span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">Resep Sehat</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-extrabold text-gray-900 leading-snug mb-2 line-clamp-2">
+                                Resep MPASI Padat Gizi Pembentuk Kecerdasan Otak
+                            </h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                                Ide menu makanan pendamping ASI berbahan dasar ikan salmon, brokoli, dan alpukat yang lezat serta disukai oleh si kecil.
+                            </p>
+                            <a href="#" class="mt-auto inline-flex items-center text-[#F06D24] font-bold text-sm hover:text-orange-700 transition-colors group w-fit">
+                                Read more 
+                                <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card h-full" data-category="Parenting" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="smooth-hover-card bg-white rounded-[1.5rem] border border-[#F06D24]/20 shadow-[0_10px_40px_-15px_rgba(240,109,36,0.08)] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 sm:gap-6 h-full cursor-pointer">
+                        <div class="w-full sm:w-[40%] xl:w-[35%] aspect-[4/3] sm:aspect-square rounded-[1.5rem] overflow-hidden shrink-0 relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Ibu dan Anak" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out">
+                        </div>
+                        <div class="flex flex-col py-1 pr-2 w-full">
+                            <div class="mb-3">
+                                <span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full tracking-wide">Parenting</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-extrabold text-gray-900 leading-snug mb-2 line-clamp-2">
+                                Pentingnya Aktivitas Fisik Ringan Bersama Si Kecil
+                            </h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                                Cara menyenangkan melatih motorik kasar anak sekaligus mempererat ikatan emosional (bonding) antara ibu dan anak di rumah.
+                            </p>
+                            <a href="#" class="mt-auto inline-flex items-center text-[#F06D24] font-bold text-sm hover:text-orange-700 transition-colors group w-fit">
+                                Read more 
+                                <i class="ph-bold ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Artikel Populer -->
+     <section class="relative w-full px-4 md:px-8 pt-8 pb-16 mt-8">
+        
+        <div class="relative bg-[#F97316] w-full rounded-t-[2.5rem] md:rounded-t-[4rem] rounded-b-[2rem] pt-16 pb-12 px-6 md:px-12 lg:px-16 shadow-2xl">
+            
+            <div class="hidden md:block absolute z-0 pointer-events-none md:-top-10 md:-left-6 md:w-36 lg:-top-16 lg:-left-12 lg:w-48 xl:-top-28 xl:-left-24 xl:w-[22rem]">
+                <img src="./assets/img/ornaments-article-left.png" alt="Ornamen Bintang Kiri" class="w-full h-full object-contain">
+            </div>
+            
+            <div class="hidden md:block absolute z-0 pointer-events-none md:-top-8 md:-right-6 md:w-32 lg:-top-12 lg:-right-10 lg:w-40 xl:-top-16 xl:-right-8 xl:w-64">
+                <img src="./assets/img/ornaments-article-right.png" alt="Ornamen Bintang Kanan" class="w-full h-full object-contain">
+            </div>
+
+            <div class="relative z-10 text-center max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    Artikel Populer
+                </h2>
+                <p class="text-white/90 text-sm md:text-base leading-relaxed font-medium px-4">
+                    Temukan informasi kesehatan anak yang paling banyak dibaca dan bermanfaat bagi orang tua.
+                </p>
+            </div>
+
+            <div class="relative z-10 w-full">
+                
+                <div id="popular-carousel" class="flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4 items-stretch scroll-smooth">
+                    
+                    <div class="snap-start shrink-0 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-[1.5rem] p-4 flex flex-col relative group cursor-pointer transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="absolute -top-4 -right-4 w-14 h-14 md:w-16 md:h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center text-xs md:text-sm font-extrabold tracking-wider shadow-lg z-20 border-[3px] border-[#F06D24]">
+                            HOT
+                        </div>
+                        <div class="w-full aspect-[4/3] rounded-[1rem] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&q=80&w=800" alt="Dokter Anak" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex flex-col flex-1 px-2 justify-center pt-6 pb-4 text-left">
+                            <div class="mb-4"><span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-4 py-1.5 rounded-full">Gejala Stunting</span></div>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-3 line-clamp-2">Tanda-Tanda Anak Mengalami Stunting</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Kenali ciri-ciri stunting sejak dini agar dapat segera melakukan pencegahan dan penanganan medis yang tepat.</p>
+                        </div>
+                    </div>
+
+                    <div class="snap-start shrink-0 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-[1.5rem] p-4 flex flex-col relative group cursor-pointer transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="absolute -top-4 -right-4 w-14 h-14 md:w-16 md:h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center text-xs md:text-sm font-extrabold tracking-wider shadow-lg z-20 border-[3px] border-[#F06D24]">HOT</div>
+                        <div class="w-full aspect-[4/3] rounded-[1rem] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=800" alt="Nutrisi Anak" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex flex-col flex-1 px-2 justify-center pt-6 pb-4 text-left">
+                            <div class="mb-4"><span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-4 py-1.5 rounded-full">Kebutuhan Nutrisi</span></div>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-3 line-clamp-2">Makanan Bergizi yang Penting untuk Pertumbuhan Anak</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Kenali jenis makanan yang membantu mendukung tumbuh kembang anak secara optimal di masa periode emas.</p>
+                        </div>
+                    </div>
+
+                    <div class="snap-start shrink-0 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-[1.5rem] p-4 flex flex-col relative group cursor-pointer transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="absolute -top-4 -right-4 w-14 h-14 md:w-16 md:h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center text-xs md:text-sm font-extrabold tracking-wider shadow-lg z-20 border-[3px] border-[#F06D24]">HOT</div>
+                        <div class="w-full aspect-[4/3] rounded-[1rem] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&q=80&w=800" alt="Gizi Seimbang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex flex-col flex-1 px-2 justify-center pt-6 pb-4 text-left">
+                            <div class="mb-4"><span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-4 py-1.5 rounded-full">Panduan Gizi</span></div>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-3 line-clamp-2">Pentingnya Gizi Seimbang untuk Anak</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Gizi yang cukup membantu meningkatkan daya tahan tubuh dan perkembangan otak anak di usia balita.</p>
+                        </div>
+                    </div>
+
+                    <div class="snap-start shrink-0 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-[1.5rem] p-4 flex flex-col relative group cursor-pointer transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="absolute -top-4 -right-4 w-14 h-14 md:w-16 md:h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center text-xs md:text-sm font-extrabold tracking-wider shadow-lg z-20 border-[3px] border-[#F06D24]">HOT</div>
+                        <div class="w-full aspect-[4/3] rounded-[1rem] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800" alt="MPASI Pertama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex flex-col flex-1 px-2 justify-center pt-6 pb-4 text-left">
+                            <div class="mb-4"><span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-4 py-1.5 rounded-full">MPASI 6 Bulan</span></div>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-3 line-clamp-2">Menu MPASI Pertama untuk Si Kecil</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Panduan tekstur dan porsi makan yang tepat saat mengenalkan makanan padat pertama kali pada bayi usia 6 bulan.</p>
+                        </div>
+                    </div>
+
+                    <div class="snap-start shrink-0 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-[1.5rem] p-4 flex flex-col relative group cursor-pointer transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
+                        <div class="absolute -top-4 -right-4 w-14 h-14 md:w-16 md:h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center text-xs md:text-sm font-extrabold tracking-wider shadow-lg z-20 border-[3px] border-[#F06D24]">HOT</div>
+                        <div class="w-full aspect-[4/3] rounded-[1rem] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Ibu Menyuapi Anak" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex flex-col flex-1 px-2 justify-center pt-6 pb-4 text-left">
+                            <div class="mb-4"><span class="bg-[#F06D24] text-white text-[10px] md:text-xs font-bold px-4 py-1.5 rounded-full">Parenting</span></div>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-3 line-clamp-2">Mengatasi Balita Susah Makan (GTM)</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Trik psikologis dan variasi menu kreatif untuk mengatasi fase gerakan tutup mulut pada balita dengan sabar.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                </div> <div class="flex items-center justify-between mt-8 gap-6 w-full">
+                    <div class="flex-1 h-[2px] bg-white/30 rounded-full relative overflow-hidden">
+                        <div class="absolute top-0 left-0 h-full w-1/3 bg-white rounded-full"></div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button id="btn-carousel-prev" type="button" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-[#F06D24] flex justify-center items-center transition-transform duration-300 hover:scale-110 active:scale-95 shadow-lg">
+                            <i class="ph-bold ph-caret-left text-lg md:text-xl"></i>
+                        </button>
+                        <button id="btn-carousel-next" type="button" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-[#F06D24] flex justify-center items-center transition-transform duration-300 hover:scale-110 active:scale-95 shadow-lg">
+                            <i class="ph-bold ph-caret-right text-lg md:text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Video Edukasi -->
+     <section class="w-full bg-[#FFF6EB] py-16 md:py-24 overflow-hidden">
+        
+        <div class="container mx-auto px-4 md:px-8 max-w-4xl text-center flex flex-col items-center mb-10 md:mb-14" data-aos="fade-up">
+            
+            <div class="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-6">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+                    Video Edukasi
+                </h2>
+                
+                <div class="relative mt-1 md:mt-0">
+                    <div class="bg-[#F06D24] text-white font-bold text-2xl md:text-xl lg:text-2xl px-6 py-2 md:px-8 md:py-2.5 rounded-xl md:rounded-2xl -rotate-6 shadow-lg shadow-orange-500/30 transform transition-transform hover:-rotate-3 whitespace-nowrap z-10">
+                        Singkat
+                    </div>
+                    <div class="hidden md:block absolute -top-6 -right-6 md:-top-8 md:-right-8 w-12 md:w-16 h-12 md:h-16 rotate-12 drop-shadow-lg z-10 pointer-events-none">
+                        <img src="./assets/img/ornaments/cherry.svg" alt="Cherry" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray-500 mt-6 max-w-2xl mx-auto text-sm md:text-base font-medium px-4">
+                Berikut ini adalah video edukasi singkat mengenai nutrisi, kesehatan, dan tips pencegahan stunting untuk anak.
+            </p>
+        </div>
+
+        <div class="container mx-auto px-4 md:px-8 max-w-[1400px]">
+            <div id="video-wrapper" class="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl bg-black" data-aos="zoom-in" data-aos-duration="1000">
+                
+                <div id="video-cover-ui" class="absolute inset-0 z-20 w-full h-full flex flex-col justify-end group cursor-pointer">
+                    
+                    <img id="main-video-cover" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1600" alt="Video Utama" class="absolute inset-0 w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105 z-0">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/80 via-black/40 md:via-black/50 to-transparent z-10 pointer-events-none"></div>
+                    
+                    <button id="btn-play-video" type="button" class="absolute top-[40%] md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-24 md:h-24 bg-[#F06D24] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(240,109,36,0.6)] group-hover:scale-110 group-hover:bg-orange-500 transition-all duration-300 z-20">
+                        <i class="ph-fill ph-play text-white text-xl md:text-4xl translate-x-[2px]"></i>
+                    </button>
+                    
+                    <div class="relative z-30 p-3 sm:p-4 md:p-12 w-full md:w-2/3 pointer-events-none">
+                        <h3 id="main-video-title" class="text-white text-base sm:text-xl md:text-3xl lg:text-4xl font-bold mb-1 md:mb-3 leading-tight drop-shadow-md line-clamp-1 md:line-clamp-none">
+                            Edukasi Gizi untuk Anak
+                        </h3>
+                        <p id="main-video-desc" class="text-gray-200 text-[10px] sm:text-sm md:text-base lg:text-lg max-w-lg drop-shadow-md line-clamp-1 md:line-clamp-none">
+                            Tips sederhana memilih dan menyiapkan makanan sehat untuk membantu mencegah stunting.
+                        </p>
+                    </div>
+                </div>
+
+                <iframe id="main-video-iframe" class="absolute inset-0 w-full h-full hidden z-30 bg-black" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 mt-8 md:mt-12 flex items-center justify-center gap-2 md:gap-6" data-aos="fade-up" data-aos-delay="200">
+            
+            <button id="btn-vid-prev" type="button" class="hidden md:flex shrink-0 w-12 h-12 bg-[#F06D24] text-white rounded-full items-center justify-center hover:bg-orange-600 transition-transform active:scale-95 shadow-md z-10">
+                <i class="ph-bold ph-caret-left text-xl"></i>
+            </button>
+
+            <div id="vid-thumb-container" class="flex gap-3 md:gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide py-4 max-w-full md:max-w-4xl px-2 scroll-smooth">
+                
+                <div class="vid-thumb active snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-[3px] border-[#F06D24] shadow-lg transform scale-105 transition-all"
+                     data-youtube-id="LXb3EKWsInQ"
+                     data-cover="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Edukasi Gizi untuk Anak"
+                     data-desc="Tips sederhana memilih dan menyiapkan makanan sehat untuk membantu mencegah stunting.">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="tgbNymZ7vqY"
+                     data-cover="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Pentingnya Protein Hewani"
+                     data-desc="Penjelasan mengapa protein hewani wajib ada dalam piring si kecil setiap hari.">
+                    <img src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="M7lc1UVf-VE"
+                     data-cover="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Stimulasi Tumbuh Kembang"
+                     data-desc="Tidak hanya makanan, stimulasi motorik juga sangat penting.">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="jNQXAC9IVRw"
+                     data-cover="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Kreasi MPASI Lezat"
+                     data-desc="Resep MPASI berbahan lokal yang murah meriah namun tinggi gizi.">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="dQw4w9WgXcQ"
+                     data-cover="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Menjaga Kebersihan Makanan"
+                     data-desc="Sanitasi adalah kunci. Pelajari cara mencuci dan mengolah bahan makanan.">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="3jWRrafhO7M"
+                     data-cover="https://images.unsplash.com/photo-1513807016779-d51c0c026263?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Pentingnya Jam Tidur Anak"
+                     data-desc="Durasi tidur yang cukup sangat mempengaruhi hormon pertumbuhan anak usia dini.">
+                    <img src="https://images.unsplash.com/photo-1513807016779-d51c0c026263?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+
+                <div class="vid-thumb snap-center shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-[1rem] overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-300 transition-all"
+                     data-youtube-id="V-_O7nl0Ii0"
+                     data-cover="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&q=80&w=1600"
+                     data-title="Aktivitas Fisik & Olahraga"
+                     data-desc="Ajak anak aktif bergerak di luar ruangan untuk membangun metabolisme dan tulang yang kuat.">
+                    <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                </div>
+
+            </div>
+
+            <button id="btn-vid-next" type="button" class="hidden md:flex shrink-0 w-12 h-12 bg-[#F06D24] text-white rounded-full items-center justify-center hover:bg-orange-600 transition-transform active:scale-95 shadow-md z-10">
+                <i class="ph-bold ph-caret-right text-xl"></i>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- Mitos VS Fakta -->
+     <section id="mitos-fakta-section" class="w-full bg-[#FFF6EB] py-16 md:py-24 overflow-hidden select-none">
+        
+        <div class="w-full mx-auto px-6 md:px-12 lg:px-16 xl:px-20 max-w-[1600px]">
+            
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-8 items-center">
+                
+                <div class="xl:col-span-5 flex flex-col items-center xl:items-start text-center xl:text-left w-full" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="text-4xl md:text-5xl xl:text-6xl font-extrabold text-[#111827] tracking-tight mb-4 w-full">
+                        Mitos <span class="text-[#F06D24]">vs</span> Fakta
+                    </h2>
+                    <p class="text-gray-600 text-base md:text-lg font-medium leading-relaxed w-full max-w-2xl xl:max-w-full mb-8 xl:pr-10">
+                        Yuk kenali perbedaan mitos dan fakta agar tidak salah dalam menjaga tumbuh kembang anak.
+                    </p>
+                    <div class="inline-flex items-center justify-center xl:justify-start gap-2 px-6 py-3 bg-orange-100 text-[#F06D24] rounded-full text-sm font-bold animate-pulse">
+                        <i class="ph-bold ph-hand-tap text-lg"></i> Klik kartu untuk melihat mitos lainnya
+                    </div>
+                </div>
+
+                <div class="xl:col-span-7 flex flex-col md:flex-row gap-12 md:gap-8 lg:gap-16 justify-center xl:justify-end cursor-pointer group mt-4 xl:mt-0" id="cards-wrapper" onclick="swapMythFact()" data-aos="fade-left" data-aos-duration="1000">
+                    
+                    <div class="relative w-full md:w-1/2 max-w-sm mx-auto md:mx-0">
+                        <div class="absolute inset-0 bg-[#FDE3C8] rounded-[2rem] transform -rotate-6 scale-105 transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-[#FCD1A1] rounded-[2rem] transform rotate-3 scale-105 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"></div>
+                        
+                        <div class="relative bg-[#F06D24] p-6 md:p-8 rounded-[2rem] flex flex-col items-center text-center shadow-xl transition-all duration-500 transform group-hover:-translate-y-2 h-full z-10">
+                            <h3 class="text-white text-2xl md:text-3xl font-extrabold mb-5 tracking-wide drop-shadow-md">Mitos</h3>
+                            <div class="w-full h-32 md:h-40 lg:h-48 rounded-xl overflow-hidden mb-5 shadow-inner border-2 border-white/20">
+                                <img id="mitos-img" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=600" alt="Mitos Image" class="w-full h-full object-cover transition-opacity duration-300">
+                            </div>
+                            <h4 id="mitos-statement" class="text-white font-bold text-sm md:text-base lg:text-lg leading-snug mb-3 transition-opacity duration-300">
+                                Anak pendek sudah pasti karena keturunan orang tuanya.
+                            </h4>
+                            <p id="mitos-detail" class="text-white/90 text-xs md:text-sm font-light leading-relaxed transition-opacity duration-300">
+                                Tinggi badan anak tidak hanya dipengaruhi genetik, tetapi juga oleh asupan gizi dan kesehatan selama masa tumbuh kembang.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full md:w-1/2 max-w-sm mx-auto md:mx-0 mt-8 md:mt-0">
+                        <div class="absolute inset-0 bg-[#FDE3C8] rounded-[2rem] transform rotate-6 scale-105 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-[#FCD1A1] rounded-[2rem] transform -rotate-3 scale-105 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"></div>
+                        
+                        <div class="relative bg-[#F06D24] p-6 md:p-8 rounded-[2rem] flex flex-col items-center text-center shadow-xl transition-all duration-500 transform group-hover:-translate-y-2 h-full z-10">
+                            <h3 class="text-white text-2xl md:text-3xl font-extrabold mb-5 tracking-wide drop-shadow-md">Fakta</h3>
+                            <div class="w-full h-32 md:h-40 lg:h-48 rounded-xl overflow-hidden mb-5 shadow-inner border-2 border-white/20">
+                                <img id="fakta-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600" alt="Fakta Image" class="w-full h-full object-cover transition-opacity duration-300">
+                            </div>
+                            <h4 id="fakta-statement" class="text-white font-bold text-sm md:text-base lg:text-lg leading-snug mb-3 transition-opacity duration-300">
+                                Genetik hanya berpengaruh kecil, nutrisi penentu utamanya!
+                            </h4>
+                            <p id="fakta-detail" class="text-white/90 text-xs md:text-sm font-light leading-relaxed transition-opacity duration-300">
+                                Asupan gizi yang cukup dan pola makan sehat sangat berpengaruh terhadap tinggi dan perkembangan anak melebihi faktor keturunan.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+     <section class="cta-wrapper" id="cta-action-section">
+        <div class="container mx-auto px-4 md:px-6 max-w-7xl">
+            
+            <div class="cta-box">
+                
+                <div class="cta-text-area">
+                    <h3 class="cta-title">Sudah paham ilmunya?</h3>
+                    <p class="cta-desc">Yuk mulai terapkan dan pantau gizi si Kecil sekarang!</p>
+                    
+                    <div class="cta-action-group">
+                        <a href="meal-planner.html" class="cta-btn-primary" style="text-decoration: none; text-align: center;">
+                            Buka Meal Planner
+                        </a>
+                        
+                        <a href="tracker.html" class="cta-btn-secondary" style="text-decoration: none; text-align: center;">
+                            Gunakan Tracker
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cta-image-container">
+                    <img src="assets/img/doctor-boy-cta.png" alt="Dokter Cilik" class="cta-img">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer class="relative bg-bg-page pt-20 pb-8 overflow-hidden w-full">
+        
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle Dekorasi" class="absolute top-8 md:top-12 -right-4 md:right-8 w-16 md:w-24 object-contain pointer-events-none opacity-90" data-aos="fade-left" data-aos-duration="1500">
+
+        <div class="container mx-auto px-6 w-full relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 md:gap-8 xl:gap-10 mb-10 md:mb-12 w-full">
+                
+                <div class="w-full xl:max-w-sm shrink-0">
+                    <a href="index.html" class="font-sans font-bold text-3xl md:text-4xl text-primary tracking-tight mb-2 md:mb-3 block hover:opacity-80 transition-opacity">
+                        NutriGenius
+                    </a>
+                    <p class="font-sans text-gray-500 text-sm leading-relaxed pr-4 max-w-[320px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-none">
+                        Pendamping cerdas Bunda untuk memantau tumbuh kembang dan memastikan asupan gizi harian anak terpenuhi secara optimal.
+                    </p>
+                </div>
+
+                <div class="w-full xl:w-auto flex flex-col sm:flex-row flex-wrap justify-start xl:justify-end items-start sm:items-center gap-6 md:gap-x-12 lg:gap-x-16 xl:gap-x-12 mt-2 xl:mt-0">
+                    
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-phone text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Tel</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">0895 6288 94070</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-envelope-simple text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Mail</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">hello@nutrigenius.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-map-pin text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Address</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">Medan, Sumatera Utara</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-10 w-full">
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 mb-12 w-full">
+                
+                <div class="w-full lg:w-1/3 flex flex-col items-start">
+                    <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Follow for News Letter</h3>
+                    
+                    <form class="flex items-center gap-3 w-full max-w-md lg:max-w-full">
+                        <div class="flex-grow bg-primary rounded-full px-5 py-3 md:py-3.5 flex items-center text-white shadow-md focus-within:ring-2 focus-within:ring-orange-300 transition-all">
+                            <i class="ph ph-envelope-simple text-xl mr-3 opacity-90"></i>
+                            <input type="email" placeholder="enter email here ..." required class="bg-transparent border-none outline-none text-white placeholder-white/80 text-sm w-full p-0 focus:ring-0">
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-orange-600 transition-colors duration-300 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-md active:scale-95">
+                            <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 lg:pl-16 xl:pl-24">
+                    
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Support</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Pusat Bantuan</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Panduan Pengguna</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Hubungi Kami</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Quick Link</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="index.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Beranda Utama</a></li>
+                            <li><a href="tracker.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Fitur Tracker</a></li>
+                            <li><a href="meal-planner.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Meal Planner</a></li>
+                            <li><a href="education.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Artikel Edukasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Faqs</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Cara Cek Stunting?</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Info Meal Planner</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Konsultasi Gizi</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Keamanan Data</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-6 md:mb-8 w-full">
+
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-6 w-full">
+                
+                <p class="font-sans text-gray-600 text-xs md:text-sm text-center md:text-left font-medium">
+                    Copyright 2026 NutriGenius. All rights reserved
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4">
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Instagram">
+                        <i class="ph ph-instagram-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Facebook">
+                        <i class="ph ph-facebook-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="YouTube">
+                        <i class="ph ph-youtube-logo text-base md:text-lg"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+
+        //scroll food menu
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cari semua rak makanan yang punya tombol scroll
+            const foodRacks = document.querySelectorAll('.bg-\\[\\#ea580c\\]');
+
+            foodRacks.forEach(rack => {
+                const scrollContainer = rack.querySelector('.rack-scroll');
+                const btnLeft = rack.querySelector('.btn-scroll-left');
+                const btnRight = rack.querySelector('.btn-scroll-right');
+
+                if (scrollContainer && btnLeft && btnRight) {
+                    // Geser ke Kiri saat ditekan
+                    btnLeft.addEventListener('click', () => {
+                        scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+                    });
+
+                    // Geser ke Kanan saat ditekan
+                    btnRight.addEventListener('click', () => {
+                        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

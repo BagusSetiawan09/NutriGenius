@@ -1240,3 +1240,349 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 })();
+
+/**
+ * 16. CATEGORY FILTER & SEARCH LOGIC: SINGLE-SELECT & SPA EXPERIENCE
+ * Mengelola interaktivitas UI pada section pencarian dan filter kategori artikel.
+ * Menerapkan algoritma "Single-Select" (radio button behavior) pada tag kategori
+ * untuk mempertegas UX, serta melakukan intercept (e.preventDefault) pada 
+ * default form submission agar tidak memicu page reload (mendukung ilusi SPA).
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- A. Logika Filter Kategori (Single-Select) ---
+        const filterButtons = document.querySelectorAll('.category-filter');
+        
+        // Proteksi eksekusi: Pastikan elemen ada di halaman saat ini
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    
+                    // 1. Matikan Semua Kapsul (Reset ke styling default/inactive)
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-[#F06D24]', 'text-white', 'shadow-md', 'shadow-orange-500/30');
+                        btn.classList.add('bg-transparent', 'text-gray-800', 'hover:bg-orange-100');
+                    });
+
+                    // 2. Mekarkan Kapsul yang Diklik (Active state)
+                    this.classList.remove('bg-transparent', 'text-gray-800', 'hover:bg-orange-100');
+                    this.classList.add('bg-[#F06D24]', 'text-white', 'shadow-md', 'shadow-orange-500/30');
+                    
+                    // 3. Trigger endpoint/filter logic (Siap disambung ke Backend/API)
+                    // const selectedTag = this.innerText.trim();
+                    // console.log("Mencari artikel dengan kategori:", selectedTag);
+                });
+            });
+        }
+
+        // --- B. Logika Search Form (Prevent Reload) ---
+        const searchForm = document.getElementById('search-form');
+        
+        // Proteksi eksekusi
+        if (searchForm) {
+            searchForm.addEventListener('submit', (e) => {
+                // 1. Cegah perilaku default browser (refresh halaman)
+                e.preventDefault(); 
+                
+                // 2. Eksekusi pencarian
+                // const searchInput = searchForm.querySelector('input').value;
+                // console.log("Keyword pencarian:", searchInput);
+            });
+        }
+
+    });
+})();
+
+/**
+ * 17. PENYARINGAN ARTIKEL SISI KLIEN (CLIENT-SIDE)
+ * Mengelola manipulasi DOM untuk menyaring kartu artikel berdasarkan kategori 
+ * yang dipilih. Mengimplementasikan teknik reflow DOM untuk memastikan 
+ * integritas transisi CSS tetap berjalan mulus selama perubahan status tampilan.
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const filterButtons = document.querySelectorAll('.article-filter');
+        const articleCards = document.querySelectorAll('.article-card');
+
+        // Klausa pelindung (Guard clause) untuk mencegah error jika elemen tidak ditemukan
+        if (filterButtons.length > 0 && articleCards.length > 0) {
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    
+                    // 1. Reset status UI untuk semua tombol filter
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-[#F06D24]', 'text-white', 'shadow-md', 'shadow-orange-500/30', 'font-semibold');
+                        btn.classList.add('bg-transparent', 'text-gray-600', 'hover:text-[#F06D24]', 'font-medium');
+                    });
+
+                    // 2. Terapkan status UI aktif pada tombol yang dipilih
+                    this.classList.remove('bg-transparent', 'text-gray-600', 'hover:text-[#F06D24]', 'font-medium');
+                    this.classList.add('bg-[#F06D24]', 'text-white', 'shadow-md', 'shadow-orange-500/30', 'font-semibold');
+
+                    // 3. Eksekusi logika penyaringan kartu
+                    const selectedFilter = this.getAttribute('data-filter');
+
+                    articleCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        // Kondisi: Tampilkan semua kartu ATAU cocokkan kategori secara spesifik
+                        if (selectedFilter === 'Semua' || cardCategory === selectedFilter) {
+                            
+                            // Kembalikan elemen ke dalam aliran tata letak (layout flow)
+                            card.style.display = ''; 
+                            
+                            // Picu reflow DOM untuk memulai ulang transisi akselerasi perangkat keras CSS
+                            void card.offsetWidth; 
+                            card.style.opacity = '1';
+                            
+                        } else {
+                            // Hapus dari aliran tata letak dan sembunyikan elemen
+                            card.style.display = 'none'; 
+                            card.style.opacity = '0';
+                        }
+                    });
+
+                });
+            });
+        }
+    });
+})();
+
+/**
+ * 18. POPULAR ARTICLES CAROUSEL NAVIGATION
+ * Mengontrol logika penggeseran (scrolling) horizontal pada carousel artikel 
+ * populer. Memanfaatkan Web API scrollBy untuk animasi yang mulus.
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const carousel = document.getElementById('popular-carousel');
+        const btnPrev = document.getElementById('btn-carousel-prev');
+        const btnNext = document.getElementById('btn-carousel-next');
+
+        // Klausa pelindung (Guard clause) memastikan elemen ada di halaman ini
+        if (carousel && btnPrev && btnNext) {
+            
+            // Logika untuk menggeser ke KANAN (Next)
+            btnNext.addEventListener('click', () => {
+                // Kalkulasi lebar pergeseran: Selebar ukuran 1 kartu pertama terlihat
+                const scrollAmount = carousel.firstElementChild.clientWidth + 24; // 24px adalah perkiraan gap
+                carousel.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Logika untuk menggeser ke KIRI (Prev)
+            btnPrev.addEventListener('click', () => {
+                const scrollAmount = carousel.firstElementChild.clientWidth + 24;
+                carousel.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    });
+})();
+
+/**
+ * 19. Modul Interaksi Galeri Video dan Pemutar YouTube
+ *
+ * Menangani event klik untuk memutar iframe YouTube secara dinamis.
+ * Modul ini juga mengelola navigasi thumbnail, menyetel ulang status pemutar,
+ * serta memperbarui metadata antarmuka (sampul, judul, deskripsi) dengan efek transisi.
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const thumbnails = document.querySelectorAll('.vid-thumb');
+        const mainCover = document.getElementById('main-video-cover');
+        const mainTitle = document.getElementById('main-video-title');
+        const mainDesc = document.getElementById('main-video-desc');
+        
+        // Referensi elemen pemutar YouTube
+        const coverUI = document.getElementById('video-cover-ui');
+        const iframe = document.getElementById('main-video-iframe');
+        const btnPlay = document.getElementById('btn-play-video');
+
+        // Memastikan elemen DOM yang dibutuhkan tersedia sebelum inisialisasi
+        if (thumbnails.length > 0 && mainCover && btnPlay) {
+            
+            // Mengambil ID video default dari thumbnail yang memiliki status aktif
+            let currentVideoId = document.querySelector('.vid-thumb.active').getAttribute('data-youtube-id');
+
+            // Event listener untuk inisialisasi pemutaran video
+            btnPlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Menyembunyikan antarmuka sampul utama
+                coverUI.classList.add('hidden');
+                
+                // Menampilkan elemen iframe ke dalam viewport
+                iframe.classList.remove('hidden');
+                
+                // Memuat URL YouTube dengan parameter autoplay dan menyembunyikan info standar
+                iframe.src = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0&showinfo=0`;
+            });
+
+            // Event listener untuk navigasi pergantian thumbnail
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    
+                    // Menghentikan pemutaran video aktif dan memulihkan antarmuka sampul
+                    iframe.classList.add('hidden'); 
+                    iframe.src = ""; 
+                    coverUI.classList.remove('hidden'); 
+
+                    // Menghapus status aktif dari seluruh elemen thumbnail
+                    thumbnails.forEach(t => {
+                        t.classList.remove('active', 'border-[#F06D24]', 'border-[3px]', 'shadow-lg', 'scale-105');
+                        t.classList.add('border-transparent', 'border-2');
+                    });
+
+                    // Menerapkan status aktif pada elemen thumbnail yang dipilih
+                    this.classList.remove('border-transparent', 'border-2');
+                    this.classList.add('active', 'border-[#F06D24]', 'border-[3px]', 'shadow-lg', 'scale-105');
+
+                    // Mengekstrak metadata dari atribut kustom
+                    const newCoverUrl = this.getAttribute('data-cover');
+                    const newTitle = this.getAttribute('data-title');
+                    const newDesc = this.getAttribute('data-desc');
+                    
+                    // Memperbarui referensi ID video untuk sesi pemutaran berikutnya
+                    currentVideoId = this.getAttribute('data-youtube-id'); 
+
+                    // Memulai siklus animasi fade out
+                    mainCover.style.opacity = '0';
+                    mainTitle.style.opacity = '0';
+                    mainDesc.style.opacity = '0';
+
+                    // Menunda pembaruan DOM agar sinkron dengan durasi transisi CSS
+                    setTimeout(() => {
+                        mainCover.src = newCoverUrl;
+                        mainTitle.innerText = newTitle;
+                        mainDesc.innerText = newDesc;
+                        
+                        // Memulai siklus animasi fade in
+                        mainCover.style.opacity = '1';
+                        mainTitle.style.opacity = '1';
+                        mainDesc.style.opacity = '1';
+                    }, 250); 
+
+                });
+            });
+        }
+    });
+})();
+
+/**
+ * 20. Modul Navigasi Carousel Thumbnail Video
+ *
+ * Menangani event klik pada tombol panah kiri dan kanan untuk menggeser 
+ * secara horizontal daftar thumbnail video edukasi.
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const vidScrollContainer = document.getElementById('vid-thumb-container');
+        const btnVidPrev = document.getElementById('btn-vid-prev');
+        const btnVidNext = document.getElementById('btn-vid-next');
+
+        if (vidScrollContainer && btnVidPrev && btnVidNext) {
+            
+            // Logika geser ke kanan (Next)
+            btnVidNext.addEventListener('click', () => {
+                // Menggeser sejauh kurang lebih 2 thumbnail (280px)
+                vidScrollContainer.scrollBy({ left: 280, behavior: 'smooth' });
+            });
+
+            // Logika geser ke kiri (Prev)
+            btnVidPrev.addEventListener('click', () => {
+                vidScrollContainer.scrollBy({ left: -280, behavior: 'smooth' });
+            });
+            
+        }
+    });
+})();
+
+/**
+ * 21. Modul Interaksi Galeri Mitos vs Fakta
+ *
+ * Mengelola basis data lokal berisi 3 pasang informasi mitos dan fakta.
+ * Menangani event klik untuk memperbarui antarmuka pengguna secara dinamis
+ * dengan efek transisi opacity.
+ */
+let currentMythFactIndex = 0;
+
+// Basis Data Lokal Mitos & Fakta (Dengan Gambar yang Valid)
+const mythFactData = [
+    {
+        mitosImg: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=600",
+        mitosStatement: "Anak pendek sudah pasti karena keturunan orang tuanya.",
+        mitosDetail: "Banyak orang tua pasrah jika anaknya pendek, menganggap genetik adalah takdir mutlak yang tidak bisa diubah.",
+        faktaImg: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600",
+        faktaStatement: "Genetik hanya berpengaruh kecil, nutrisi penentu utamanya!",
+        faktaDetail: "Asupan gizi yang cukup dan pola asuh sehat dapat memaksimalkan potensi tinggi badan anak melebihi genetik orang tuanya."
+    },
+    {
+        mitosImg: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=600",
+        mitosStatement: "Anak yang gemuk dan gempal sudah pasti sehat dan bebas stunting.",
+        mitosDetail: "Banyak orang tua mengira anak gemuk pasti gizinya tercukupi dengan baik dan pertumbuhannya aman dari stunting.",
+        faktaImg: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600",
+        faktaStatement: "Gemuk belum tentu bergizi seimbang!",
+        faktaDetail: "Stunting diukur dari kondisi 'gagal tumbuh' (kurangnya tinggi badan menurut usia), bukan sekadar dari berat badannya."
+    },
+    {
+        mitosImg: "https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&q=80&w=600",
+        mitosStatement: "Sayur dan buah saja sudah cukup untuk mencegah stunting pada anak.",
+        mitosDetail: "Seringkali anak dipaksa makan sayur dalam jumlah banyak tanpa diimbangi lauk pauk yang cukup.",
+        faktaImg: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&q=80&w=600",
+        faktaStatement: "Anak di masa pertumbuhan sangat wajib mengonsumsi Protein Hewani!",
+        faktaDetail: "Telur, ikan, daging, dan susu mengandung asam amino esensial yang secara spesifik memacu hormon pertumbuhan tulang."
+    }
+];
+
+/**
+ * Fungsi untuk memutar indeks data dan memperbarui DOM
+ * Dieksekusi saat area kartu diklik (atribut onclick pada elemen HTML).
+ */
+function swapMythFact() {
+    const dataLength = mythFactData.length;
+    
+    // Perbarui indeks (Looping 0 -> 1 -> 2 -> 0)
+    currentMythFactIndex = (currentMythFactIndex + 1) % dataLength;
+    const currentData = mythFactData[currentMythFactIndex];
+
+    // Referensi Elemen DOM
+    const els = {
+        mImg: document.getElementById('mitos-img'),
+        mStmt: document.getElementById('mitos-statement'),
+        mDet: document.getElementById('mitos-detail'),
+        fImg: document.getElementById('fakta-img'),
+        fStmt: document.getElementById('fakta-statement'),
+        fDet: document.getElementById('fakta-detail')
+    };
+
+    // Langkah 1: Transisi Opacity (Fade Out)
+    for (let key in els) {
+        if(els[key]) els[key].style.opacity = '0';
+    }
+
+    // Langkah 2: Menunggu fade out selesai (300ms dari CSS), lalu perbarui data
+    setTimeout(() => {
+        els.mImg.src = currentData.mitosImg;
+        els.mStmt.innerText = currentData.mitosStatement;
+        els.mDet.innerText = currentData.mitosDetail;
+        
+        els.fImg.src = currentData.faktaImg;
+        els.fStmt.innerText = currentData.faktaStatement;
+        els.fDet.innerText = currentData.faktaDetail;
+
+        // Langkah 3: Transisi Opacity (Fade In)
+        for (let key in els) {
+            if(els[key]) els[key].style.opacity = '1';
+        }
+    }, 300);
+}
