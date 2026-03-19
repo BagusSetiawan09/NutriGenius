@@ -1641,3 +1641,72 @@ document.addEventListener("DOMContentLoaded", () => {
     // Aktifkan sensor pada section statistik
     observer.observe(section);
 });
+
+/**
+ * 23. MODULE: AI FOOD SCANNER
+ * DESCRIPTION: Menangani simulasi UI kamera, animasi laser scanning AI, 
+ * dan logika kemunculan bottom sheet hasil gizi.
+ */
+
+/**
+ * Memulai simulasi proses scanning AI.
+ * Termasuk animasi UI, efek laser, dan jeda loading buatan (mock delay).
+ */
+function startScanning() {
+    // 1. Inisialisasi Elemen DOM
+    const shutterBtn = document.getElementById('shutter-btn');
+    const laser = document.getElementById('laser-beam');
+    const statusText = document.getElementById('scan-status-text');
+    const corners = document.querySelectorAll('.viewfinder-corner');
+
+    // [SAFETY CHECK] Pastikan elemen ada di halaman ini untuk mencegah error di page lain
+    if (!shutterBtn || !laser || !statusText) return;
+
+    // 2. Efek Jepretan (Shutter Press): Mengecil, memudar, & nonaktifkan klik ganda
+    shutterBtn.classList.add('scale-90', 'opacity-50', 'pointer-events-none');
+    
+    // 3. Aktivasi Laser & Update Teks Status
+    laser.classList.remove('hidden');
+    statusText.innerHTML = "<i class='ph-bold ph-spinner animate-spin inline-block mr-2'></i> AI Menganalisis Gizi...";
+    statusText.classList.add('text-[#f97316]', 'scale-110');
+    
+    // 4. Efek Fokus Bidikan: Ubah warna siku target menjadi hijau
+    corners.forEach(corner => corner.style.borderColor = "#10B981");
+
+    // 5. Simulasi Jeda Pemrosesan Jaringan/AI (2.5 Detik)
+    setTimeout(() => {
+        // Matikan Laser & Reset UI Kamera
+        laser.classList.add('hidden');
+        statusText.innerHTML = "Selesai! Membuka hasil...";
+        shutterBtn.classList.remove('scale-90', 'opacity-50', 'pointer-events-none');
+        corners.forEach(corner => corner.style.borderColor = "#f97316");
+
+        // Munculkan Bottom Sheet Hasil Gizi (Slide-up)
+        const resultSheet = document.getElementById('result-sheet');
+        if (resultSheet) {
+            resultSheet.classList.remove('translate-y-full');
+        }
+    }, 2500);
+}
+
+/**
+ * Menutup bottom sheet hasil gizi dan mereset state UI kamera
+ * agar siap digunakan untuk pemindaian berikutnya.
+ */
+function closeSheet() {
+    // 1. Inisialisasi Elemen DOM
+    const resultSheet = document.getElementById('result-sheet');
+    const statusText = document.getElementById('scan-status-text');
+
+    // [SAFETY CHECK]
+    if (!resultSheet || !statusText) return;
+
+    // 2. Sembunyikan Bottom Sheet (Slide-down)
+    resultSheet.classList.add('translate-y-full');
+    
+    // 3. Reset Teks Status setelah animasi slide-down selesai (500ms)
+    setTimeout(() => {
+        statusText.innerHTML = "Arahkan kamera ke makanan si Kecil";
+        statusText.classList.remove('text-[#f97316]', 'scale-110');
+    }, 500);
+}

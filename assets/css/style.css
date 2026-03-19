@@ -314,3 +314,32 @@ html, body {
         width: max-content;
     }
 }
+
+/* MODULE: AI FOOD SCANNER STYLES */
+
+/* Animasi Laser Scanner Naik Turun */
+@keyframes scan-laser {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.animate-laser {
+    animation: scan-laser 2s linear infinite;
+}
+
+/* Border siku-siku untuk Viewfinder (Bidikan Kamera AI) */
+.viewfinder-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: #f97316; /* Primary Orange NutriGenius */
+    border-style: solid;
+}
+
+/* Penempatan presisi untuk ke-4 sudut bidikan */
+.tl { top: -2px; left: -2px; border-width: 4px 0 0 4px; border-top-left-radius: 16px; }
+.tr { top: -2px; right: -2px; border-width: 4px 4px 0 0; border-top-right-radius: 16px; }
+.bl { bottom: -2px; left: -2px; border-width: 0 0 4px 4px; border-bottom-left-radius: 16px; }
+.br { bottom: -2px; right: -2px; border-width: 0 4px 4px 0; border-bottom-right-radius: 16px; }

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="NutriGenius adalah pendamping cerdas Bunda untuk memantau gizi si Kecil dan mewujudkan generasi emas bebas stunting.">
+    <meta name="keywords" content="nutrisi anak, cegah stunting, kalkulator gizi balita, meal planner anak, kesehatan anak, NutriGenius">
+    <meta name="author" content="Tim NutriGenius">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.nutrigenius.com/"> 
+    <meta property="og:title" content="NutriGenius - Pendamping Cerdas Gizi Anak">
+    <meta property="og:description" content="Pantau gizi si Kecil dan wujudkan generasi emas bebas stunting. Cek status gizi sekarang!">
+    <meta property="og:image" content="assets/img/og-preview.png"> 
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="NutriGenius - Pendamping Cerdas Gizi Anak">
+    <meta property="twitter:image" content="assets/img/og-preview.png">
+
+    <title>AI Food Scanner - NutriGenius</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="./assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-black font-jakarta overflow-hidden antialiased">
+
+    <main class="relative w-full h-[100dvh] max-w-md mx-auto bg-[#111827] sm:shadow-2xl sm:rounded-[2rem] sm:h-[850px] sm:my-10 overflow-hidden">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1582466184457-e5bda54e39ed?q=80&w=676&auto=format&fit=crop" alt="Camera Feed" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
+        </div>
+
+        <div class="absolute top-0 w-full p-6 flex justify-between items-center z-10">
+            <a href="index.html" class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-[#f97316] transition">
+                <i class="ph ph-caret-left text-xl"></i>
+            </a>
+            <div class="flex gap-4">
+                <button class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/40 transition">
+                    <i class="ph ph-lightning text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none mt-10">
+            <p id="scan-status-text" class="text-white font-semibold tracking-wide drop-shadow-md mb-6 transition-all duration-300">
+                Arahkan kamera ke makanan si Kecil
+            </p>
+
+            <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+                <div class="viewfinder-corner tl transition-all duration-300"></div>
+                <div class="viewfinder-corner tr transition-all duration-300"></div>
+                <div class="viewfinder-corner bl transition-all duration-300"></div>
+                <div class="viewfinder-corner br transition-all duration-300"></div>
+                
+                <div id="laser-beam" class="absolute w-full h-1 bg-[#f97316] shadow-[0_0_20px_4px_#f97316] hidden animate-laser z-20"></div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 w-full pb-10 pt-20 px-8 flex justify-between items-end z-10 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <button class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition">
+                    <i class="ph ph-image text-2xl"></i>
+                </div>
+                <span class="text-xs text-white/70 font-medium">Galeri</span>
+            </button>
+
+            <button id="shutter-btn" onclick="startScanning()" class="relative flex items-center justify-center w-20 h-20 bg-transparent border-4 border-white rounded-full mb-4 group transition-transform active:scale-90">
+                <div class="w-[60px] h-[60px] bg-white rounded-full group-hover:bg-[#f97316] transition-colors duration-300"></div>
+            </button>
+
+            <button class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition">
+                    <i class="ph ph-camera-rotate text-2xl"></i>
+                </div>
+                <span class="text-xs text-white/70 font-medium">Putar</span>
+            </button>
+        </div>
+
+        <div id="result-sheet" class="absolute bottom-0 w-full bg-[#FAFAFA] rounded-t-[2.5rem] shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-50 transform translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col h-[70dvh] sm:h-[65%]">
+            
+            <div class="w-full flex justify-center pt-4 pb-2" onclick="closeSheet()">
+                <div class="w-14 h-1.5 bg-gray-300 rounded-full cursor-pointer hover:bg-gray-400 transition"></div>
+            </div>
+
+            <div class="px-6 pb-6 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                <div class="flex items-center gap-2 text-[#059669] bg-[#D1FAE5] px-3 py-1.5 rounded-full w-max mb-4">
+                    <i class="ph-fill ph-check-circle text-lg"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Aman Untuk Balita</span>
+                </div>
+
+                <h2 class="text-2xl font-bold tracking-tight text-[#111827] leading-tight mb-1">Sayur Sop Daging & Nasi</h2>
+                <p class="text-sm text-gray-500 font-medium mb-6">Analisis AI memiliki tingkat akurasi 94%.</p>
+
+                <div class="flex items-center justify-between p-5 bg-white border border-gray-100 rounded-2xl shadow-sm mb-6">
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Total Kalori</p>
+                        <p class="text-4xl font-bold tracking-tight text-[#f97316]">320 <span class="text-lg font-bold text-gray-500 tracking-normal">kcal</span></p>
+                    </div>
+                    <div class="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center">
+                        <i class="ph-fill ph-fire text-3xl text-[#f97316]"></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 mb-8">
+                    <div class="bg-[#EFF6FF] p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+                        <span class="text-xs font-bold text-blue-500 uppercase mb-2">Protein</span>
+                        <span class="text-xl font-bold text-[#111827]">18g</span>
+                        <div class="w-full h-1.5 bg-blue-200 rounded-full mt-2 overflow-hidden"><div class="h-full bg-blue-500 w-[70%]"></div></div>
+                    </div>
+                    <div class="bg-[#FEF3C7] p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+                        <span class="text-xs font-bold text-yellow-600 uppercase mb-2">Karbo</span>
+                        <span class="text-xl font-bold text-[#111827]">45g</span>
+                        <div class="w-full h-1.5 bg-yellow-200 rounded-full mt-2 overflow-hidden"><div class="h-full bg-yellow-500 w-[50%]"></div></div>
+                    </div>
+                    <div class="bg-[#FCE7F3] p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+                        <span class="text-xs font-bold text-pink-500 uppercase mb-2">Lemak</span>
+                        <span class="text-xl font-bold text-[#111827]">8g</span>
+                        <div class="w-full h-1.5 bg-pink-200 rounded-full mt-2 overflow-hidden"><div class="h-full bg-pink-500 w-[30%]"></div></div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-orange-50 border border-[#f97316]/20 rounded-2xl flex gap-3 mb-24">
+                    <i class="ph-fill ph-info text-[#f97316] text-2xl shrink-0 mt-0.5"></i>
+                    <p class="text-sm font-medium text-gray-700 leading-relaxed">
+                        Kandungan protein tinggi dari daging sangat baik untuk mencegah stunting dan mengoptimalkan tinggi badan anak.
+                    </p>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 w-full p-4 bg-white/90 backdrop-blur border-t border-gray-100">
+                <button onclick="closeSheet()" class="w-full py-4 bg-[#111827] hover:bg-black text-white rounded-full font-bold text-lg shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2">
+                    <i class="ph-bold ph-plus"></i> Tambahkan ke Meal Plan
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 100 });
+    </script>
+    
+    <script src="./assets/js/main.js"></script>
+
+</body>
+</html>
