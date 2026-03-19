@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth overflow-x-hidden max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+    
+    <link href="./assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-bg-page font-sans text-secondary antialiased overflow-x-hidden w-full relative">
+
+    <!-- Navbar -->
+     <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <a href="index.html" class="font-title font-semibold text-2xl text-primary tracking-tight hover:opacity-80 transition relative z-50">
+                Nutri<span class="text-secondary">Genius</span>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Home</a>
+                <a href="tracker.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Tracker</a>
+                <a href="meal-planner.html" class="text-secondary font-medium transition-colors duration-300">Meal Planner</a>
+                <a href="education.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">Education</a>
+                <a href="about.html" class="text-secondary font-medium hover:text-primary transition-colors duration-300">About</a>
+            </div>
+
+            <div class="hidden lg:block">
+                <a href="tracker.html" class="group bg-primary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 border-transparent hover:bg-[#FFF7ED] hover:text-primary hover:border-primary flex items-center gap-2">
+                    Get started
+                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="hidden nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border-orange-200/50 ph-fill drop-shadow-sm text-xl md:text-2xl whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 duration-300 ease-out transition-all"></div>
+
+    <nav id="bottom-nav" class="lg:hidden fixed bottom-6 left-4 right-4 z-[999] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform translate-y-0">
+        <div class="bg-white/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/40 p-2 flex justify-between items-center max-w-md mx-auto">
+            
+            <a href="index.html" id="nav-index" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-house text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Home</span>
+            </a>
+            <a href="tracker.html" id="nav-tracker" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-chart-line-up text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Tracker</span>
+            </a>
+            <a href="meal-planner.html" id="nav-meal-planner" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-cookie text-2xl transition-all duration-300"></i>
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Meal Planner</span>
+            </a>
+            <a href="education.html" id="nav-education" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-book-open text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">Edu</span>
+            </a>
+            <a href="about.html" id="nav-about" class="nav-item flex items-center justify-center h-12 px-3 text-gray-500 hover:text-primary transition-all duration-300 ease-out">
+                <i class="ph ph-info text-2xl transition-all duration-300"></i> 
+                <span class="text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-0 opacity-0 ml-0 transition-all duration-300 ease-out">About</span>
+            </a>
+
+        </div>
+    </nav>
+
+    <script>
+        (function() {
+            var url = window.location.href;
+            var targetMenu = 'index';
+            
+            if (url.includes('tracker')) targetMenu = 'tracker';
+            else if (url.includes('meal-planner')) targetMenu = 'meal-planner';
+            else if (url.includes('education')) targetMenu = 'education';
+            else if (url.includes('about')) targetMenu = 'about';
+
+            var activeItem = document.getElementById('nav-' + targetMenu);
+
+            if (activeItem) {
+                activeItem.className = 'nav-item active flex items-center justify-center h-12 px-5 bg-gradient-to-r from-orange-100/90 to-orange-50/90 text-primary rounded-full transition-none shadow-[0_4px_15px_-3px_rgba(249,115,22,0.15)] border border-orange-200/50';
+                var icon = activeItem.querySelector('i');
+                if (icon) icon.className = icon.className.replace('ph ', 'ph-fill ') + ' drop-shadow-sm text-xl md:text-2xl transition-none';
+                var text = activeItem.querySelector('span');
+                if (text) text.className = 'text-sm font-sans font-bold whitespace-nowrap overflow-hidden max-w-[120px] opacity-100 ml-2 transition-none';
+            }
+        })();
+    </script>
+
+    <!-- Hero -->
+     <section class="relative w-full bg-[#FFF7ED] pt-[150px] pb-20 px-6 md:px-12 lg:px-20 xl:px-24 overflow-hidden">
+        <div class="w-full mx-auto relative">
+
+            <div class="flex flex-col xl:flex-row items-start justify-between mb-12 xl:mb-16 relative">
+
+            <div class="w-full xl:w-[75%] relative z-10 text-left">
+                
+                <h1 class="font-jakarta font-extrabold text-3xl md:text-4xl xl:text-[3.5rem] leading-[1.3] md:leading-[1.4] xl:leading-[1.2] text-[#111827] mb-4 md:mb-6">
+                    <span>Bersama Wujudkan Generasi</span> 
+                    <br>
+                    <span class="text-[#f97316]">Cerdas Bebas Stunting.</span>
+                </h1>
+
+                <p class="font-jakarta text-gray-700 text-base md:text-lg xl:text-xl leading-relaxed md:max-w-[85%] xl:max-w-4xl">
+                    NutriGenius hadir mendampingi Bunda untuk memantau dan memastikan <br class="hidden xl:block">
+                    pemenuhan gizi optimal sejak 1000 Hari Pertama Kehidupan si Kecil.
+                </p>
+            </div>
+
+            <div class="hidden xl:flex xl:w-[25%] justify-end z-10 pointer-events-none">
+                <svg class="w-48 floating-sparkle" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 10 C60 40 80 60 110 60 C80 60 60 80 60 110 C60 80 40 60 10 60 C40 60 60 40 60 10 Z" fill="#f97316"/>
+                    <path d="M30 15 C30 25 35 30 45 30 C35 30 30 35 30 45 C30 35 25 30 15 30 C25 30 30 25 30 15 Z" fill="#f97316"/>
+                    <path d="M95 15 C95 20 98 23 105 23 C98 23 95 26 95 32 C95 26 92 23 85 23 C92 23 95 20 95 15 Z" fill="#f97316"/>
+                </svg>
+            </div>
+
+        </div>
+
+            <div class="w-full relative z-10" data-aos="fade-up" data-aos-duration="1000">
+                <div class="w-full h-[300px] md:h-[400px] lg:h-[550px] rounded-[2rem] lg:rounded-[2rem] overflow-hidden shadow-2xl relative">
+                    <img src="assets/img/cooking-mom.jpg" alt="Ibu dan Anak NutriGenius" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-in-out">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Counter -->
+     <section id="statistic-section" class="relative w-full bg-[#f97316] py-8 md:py-10 font-jakarta overflow-hidden">
+    
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+            style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px; mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center text-white" data-aos="fade-up" data-aos-duration="1000">
+                
+                <div class="flex flex-col items-center justify-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="counter-value font-extrabold text-4xl md:text-[3rem] tracking-tight" data-target="10">0</span>
+                        <span class="text-xl md:text-2xl font-bold ml-1">K+</span>
+                    </div>
+                    <p class="mt-1 text-sm md:text-base text-white/90 font-medium">Ibu Teredukasi</p>
+                </div>
+
+                <div class="flex flex-col items-center justify-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="counter-value font-extrabold text-4xl md:text-[3rem] tracking-tight" data-target="500">0</span>
+                        <span class="text-xl md:text-2xl font-bold ml-1">+</span>
+                    </div>
+                    <p class="mt-1 text-sm md:text-base text-white/90 font-medium">Resep Bergizi</p>
+                </div>
+
+                <div class="flex flex-col items-center justify-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="counter-value font-extrabold text-4xl md:text-[3rem] tracking-tight" data-target="1000">0</span>
+                        <span class="text-xl md:text-2xl font-bold ml-2">Hari</span>
+                    </div>
+                    <p class="mt-1 text-sm md:text-base text-white/90 font-medium">Fokus Pendampingan</p>
+                </div>
+
+                <div class="flex flex-col items-center justify-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="counter-value font-extrabold text-4xl md:text-[3rem] tracking-tight" data-target="24">0</span>
+                        <span class="text-xl md:text-2xl font-bold ml-1">/7</span>
+                    </div>
+                    <p class="mt-1 text-sm md:text-base text-white/90 font-medium">Akses Gratis</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lebih Cerdas, Lebih Praktis -->
+    <section class="w-full bg-[#FFF7ED] py-16 md:py-24 font-jakarta">
+        <div class="w-full mx-auto px-6 md:px-12 lg:px-20 xl:px-24">
+            
+            <div class="mb-12 md:mb-16" data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="font-extrabold text-3xl md:text-4xl lg:text-5xl text-[#111827] mb-4 md:mb-6 leading-tight">
+                    Lebih Cerdas, Lebih Praktis.
+                </h2>
+                <p class="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed">
+                    NutriGenius memadukan teknologi terkini dan ilmu gizi terpercaya untuk mempermudah <br class="hidden md:block"> 
+                    langkah Bunda mengawal tumbuh kembang si Kecil.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
+
+                <div class="card-premium bg-[#f97316] text-white p-8 md:p-10 rounded-[2rem] flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-bounce w-20 h-20 bg-white rounded-full flex items-center justify-center ring-8 ring-white/30 mb-8">
+                        <svg class="w-10 h-10 text-[#f97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl md:text-2xl mb-4">Edukasi Tervalidasi</h3>
+                    <p class="text-white/90 text-sm md:text-base leading-relaxed">
+                        Materi gizi dan mitos-fakta <br class="hidden xl:block"> dari panduan ahli profesional.
+                    </p>
+                </div>
+
+                <div class="card-premium bg-[#f97316] text-white p-8 md:p-10 rounded-[2rem] flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-bounce w-20 h-20 bg-white rounded-full flex items-center justify-center ring-8 ring-white/30 mb-8">
+                        <svg class="w-10 h-10 text-[#f97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl md:text-2xl mb-4">Pemantauan Cerdas</h3>
+                    <p class="text-white/90 text-sm md:text-base leading-relaxed">
+                        Sistem peringatan otomatis <br class="hidden xl:block"> untuk pantau gizi real-time.
+                    </p>
+                </div>
+
+                <div class="card-premium bg-[#f97316] text-white p-8 md:p-10 rounded-[2rem] flex flex-col items-center text-center md:col-span-2 xl:col-span-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-bounce w-20 h-20 bg-white rounded-full flex items-center justify-center ring-8 ring-white/30 mb-8">
+                        <svg class="w-10 h-10 text-[#f97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl md:text-2xl mb-4">Gamifikasi Seru</h3>
+                    <p class="text-white/90 text-sm md:text-base leading-relaxed">
+                        Belajar gizi makin asyik <br class="hidden xl:block"> dengan level dan lencana.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the team -->
+     <section class="w-full bg-[#FFF7ED] py-16 md:py-24 lg:py-32 font-jakarta">
+        <div class="w-full mx-auto px-6 md:px-12 lg:px-20 xl:px-24">
+            
+            <div class="text-center mb-8 md:mb-55 lg:mb-60" data-aos="fade-down" data-aos-duration="1000">
+                <h2 class="font-extrabold text-3xl md:text-4xl lg:text-5xl text-[#f97316] mb-4">
+                    Sosok di Balik Inovasi NutriGenius
+                </h2>
+                <p class="text-gray-700 text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-4 md:px-0">
+                    Memadukan inovasi teknologi dan ilmu gizi terpercaya, <br class="hidden md:block">
+                    siap mendampingi Bunda mewujudkan generasi emas bebas stunting.
+                </p>
+            </div>
+
+            <div class="flex overflow-x-auto md:overflow-visible md:grid md:grid-cols-3 gap-x-6 lg:gap-x-10 snap-x snap-mandatory pt-36 pb-12 -mx-6 px-6 md:mx-0 md:px-0 md:pt-0 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            
+                <div class="flex-none w-[85%] sm:w-[60%] md:w-auto snap-center flex flex-col items-center group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative w-full max-w-[280px] lg:max-w-[300px] aspect-[5/4] bg-[#f97316] rounded-2xl rounded-tl-[4.5rem] transition duration-500 ease-in-out group-hover:-translate-y-3 group-hover:shadow-2xl group-hover:shadow-[#f97316]/40">
+                        <img src="assets/img/team/team1.png" alt="Muhammad Eka Wiguna" class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[160%] md:h-[170%] lg:h-[180%] w-auto max-w-none object-contain object-bottom drop-shadow-xl transition duration-500 ease-in-out origin-bottom group-hover:scale-105">
+                    </div>
+                    <div class="mt-8 text-center">
+                        <h3 class="font-extrabold text-xl lg:text-2xl text-[#111827] mb-1 transition duration-300 group-hover:text-[#f97316]">
+                            Muhammad Eka Wiguna
+                        </h3>
+                        <p class="text-gray-600 font-medium text-sm lg:text-base">
+                            Chief Medical Officer
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex-none w-[85%] sm:w-[60%] md:w-auto snap-center flex flex-col items-center group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative w-full max-w-[280px] lg:max-w-[300px] aspect-[5/4] bg-[#f97316] rounded-2xl rounded-tl-[4.5rem] transition duration-500 ease-in-out group-hover:-translate-y-3 group-hover:shadow-2xl group-hover:shadow-[#f97316]/40">
+                        <img src="assets/img/team/team2.png" alt="Bagus Setiawan" class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[160%] md:h-[170%] lg:h-[180%] w-auto max-w-none object-contain object-bottom drop-shadow-xl transition duration-500 ease-in-out origin-bottom group-hover:scale-105">
+                    </div>
+                    <div class="mt-8 text-center">
+                        <h3 class="font-extrabold text-xl lg:text-2xl text-[#111827] mb-1 transition duration-300 group-hover:text-[#f97316]">
+                            Bagus Setiawan
+                        </h3>
+                        <p class="text-gray-600 font-medium text-sm lg:text-base">
+                            Chief Executive Officer
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex-none w-[85%] sm:w-[60%] md:w-auto snap-center flex flex-col items-center group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative w-full max-w-[280px] lg:max-w-[300px] aspect-[5/4] bg-[#f97316] rounded-2xl rounded-tl-[4.5rem] transition duration-500 ease-in-out group-hover:-translate-y-3 group-hover:shadow-2xl group-hover:shadow-[#f97316]/40">
+                        <img src="assets/img/team/team3.png" alt="Mutiara" class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[160%] md:h-[170%] lg:h-[180%] w-auto max-w-none object-contain object-bottom drop-shadow-xl transition duration-500 ease-in-out origin-bottom group-hover:scale-105">
+                    </div>
+                    <div class="mt-8 text-center">
+                        <h3 class="font-extrabold text-xl lg:text-2xl text-[#111827] mb-1 transition duration-300 group-hover:text-[#f97316]">
+                            Mutiara
+                        </h3>
+                        <p class="text-gray-600 font-medium text-sm lg:text-base">
+                            Chief Product Officer
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Partner -->
+     <section class="w-full bg-[#f97316] py-10 md:py-12 border-y border-white/10 overflow-hidden font-jakarta">
+        <div class="max-w-7xl mx-auto px-6 overflow-hidden group">
+            
+            <div id="brand-slider" class="flex items-center gap-x-16 md:gap-x-24 animate-loop hover:[animation-play-state:paused]">
+                
+                <div class="flex-none flex items-center gap-x-16 md:gap-x-24">
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">NutriCare</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Klinik Gizi Anak</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">Pediatric Pro</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Layanan Medis</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">BioShield</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Imunisasi Terpadu</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">GreenLeaf</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Suplemen Organik</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto pr-16 md:pr-24">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">NaturGrow</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Nutrisi Organik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-none flex items-center gap-x-16 md:gap-x-24" aria-hidden="true">
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">NutriCare</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Klinik Gizi Anak</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">Pediatric Pro</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Layanan Medis</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">BioShield</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Imunisasi Terpadu</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">GreenLeaf</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Suplemen Organik</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-[250px] shrink-0 md:w-auto pr-16 md:pr-24">
+                        <div class="w-12 h-12 bg-[#111827] rounded-lg flex items-center justify-center text-white shrink-0 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#111827] text-lg leading-tight">NaturGrow</h4>
+                            <p class="text-[#111827]/70 text-xs font-medium">Nutrisi Organik</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+     <section class="cta-wrapper mt-24 mb-20" id="cta-action-section">
+    <div class="container mx-auto px-4 md:px-6 max-w-7xl">
+        
+        <div class="cta-box">
+            
+            <div class="cta-text-area">
+                
+                <div class="w-full md:w-[50%] lg:w-[80%] relative z-10">
+                    
+                    <h3 class="cta-title">Pantau Gizi si Kecil Hari Ini</h3>
+                    
+                    <p class="cta-desc">Langkah cerdas Bunda wujudkan generasi emas bebas stunting!</p>
+                    
+                    <div class="cta-action-group">
+                        <a href="tracker.html" class="cta-btn-primary" style="text-decoration: none; text-align: center; font-weight: 500;">
+                            Cek Status Gizi
+                        </a>
+                        
+                        <a href="meal-planner.html" class="cta-btn-secondary" style="text-decoration: none; text-align: center; font-weight: 500;">
+                            Meal Planner
+                        </a>
+                    </div>
+
+                </div>
+                </div>
+
+            <div class="cta-image-container">
+                <img src="assets/img/doctor-boy-cta-abt.png" alt="Dokter Cilik" class="cta-img">
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- Footer -->
+     <footer class="relative bg-bg-page pt-20 pb-8 overflow-hidden w-full">
+        
+        <img src="./assets/img/sparkle-icon.png" alt="Sparkle Dekorasi" class="absolute top-8 md:top-12 -right-4 md:right-8 w-16 md:w-24 object-contain pointer-events-none opacity-90" data-aos="fade-left" data-aos-duration="1500">
+
+        <div class="container mx-auto px-6 w-full relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 md:gap-8 xl:gap-10 mb-10 md:mb-12 w-full">
+                
+                <div class="w-full xl:max-w-sm shrink-0">
+                    <a href="index.html" class="font-sans font-bold text-3xl md:text-4xl text-primary tracking-tight mb-2 md:mb-3 block hover:opacity-80 transition-opacity">
+                        NutriGenius
+                    </a>
+                    <p class="font-sans text-gray-500 text-sm leading-relaxed pr-4 max-w-[320px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-none">
+                        Pendamping cerdas Bunda untuk memantau tumbuh kembang dan memastikan asupan gizi harian anak terpenuhi secara optimal.
+                    </p>
+                </div>
+
+                <div class="w-full xl:w-auto flex flex-col sm:flex-row flex-wrap justify-start xl:justify-end items-start sm:items-center gap-6 md:gap-x-12 lg:gap-x-16 xl:gap-x-12 mt-2 xl:mt-0">
+                    
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-phone text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Tel</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">0895 6288 94070</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-envelope-simple text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Mail</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">hello@nutrigenius.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
+                        <i class="ph ph-map-pin text-2xl md:text-3xl text-secondary group-hover:text-primary transition-colors duration-300"></i>
+                        <div>
+                            <p class="font-sans text-xs text-gray-500 mb-0.5 whitespace-nowrap">Address</p>
+                            <p class="font-sans font-bold text-secondary text-sm md:text-base group-hover:text-primary transition-colors duration-300 whitespace-nowrap">Medan, Sumatera Utara</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-10 w-full">
+
+            <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 mb-12 w-full">
+                
+                <div class="w-full lg:w-1/3 flex flex-col items-start">
+                    <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Follow for News Letter</h3>
+                    
+                    <form class="flex items-center gap-3 w-full max-w-md lg:max-w-full">
+                        <div class="flex-grow bg-primary rounded-full px-5 py-3 md:py-3.5 flex items-center text-white shadow-md focus-within:ring-2 focus-within:ring-orange-300 transition-all">
+                            <i class="ph ph-envelope-simple text-xl mr-3 opacity-90"></i>
+                            <input type="email" placeholder="enter email here ..." required class="bg-transparent border-none outline-none text-white placeholder-white/80 text-sm w-full p-0 focus:ring-0">
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-orange-600 transition-colors duration-300 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-md active:scale-95">
+                            <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 lg:pl-16 xl:pl-24">
+                    
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Support</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Pusat Bantuan</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Panduan Pengguna</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Hubungi Kami</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Quick Link</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="index.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Beranda Utama</a></li>
+                            <li><a href="tracker.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Fitur Tracker</a></li>
+                            <li><a href="meal-planner.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Meal Planner</a></li>
+                            <li><a href="education.html" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Artikel Edukasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-5 whitespace-nowrap">Faqs</h3>
+                        <ul class="flex flex-col gap-3">
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Cara Cek Stunting?</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Info Meal Planner</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Konsultasi Gizi</a></li>
+                            <li><a href="#" class="font-sans text-gray-600 hover:text-primary transition-colors text-sm font-medium whitespace-nowrap">Keamanan Data</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-6 md:mb-8 w-full">
+
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-6 w-full">
+                
+                <p class="font-sans text-gray-600 text-xs md:text-sm text-center md:text-left font-medium">
+                    Copyright 2026 NutriGenius. All rights reserved
+                </p>
+
+                <div class="flex items-center gap-3 md:gap-4">
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Instagram">
+                        <i class="ph ph-instagram-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="Facebook">
+                        <i class="ph ph-facebook-logo text-base md:text-lg"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-orange-600 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300" aria-label="YouTube">
+                        <i class="ph ph-youtube-logo text-base md:text-lg"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <div id="custom-alert" class="fixed inset-0 z-[100] flex items-center justify-center px-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        
+        <div class="absolute inset-0 bg-secondary/60 backdrop-blur-sm transition-opacity" id="alert-backdrop"></div>
+
+        <div class="bg-white rounded-3xl p-8 md:p-10 max-w-sm md:max-w-md w-full relative z-10 transform scale-95 opacity-0 transition-all duration-300 shadow-2xl flex flex-col items-center text-center" id="alert-card">
+            
+            <div class="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-5 md:mb-6 shadow-inner" id="alert-icon-wrap">
+                <i class="ph-fill ph-check-circle text-5xl md:text-6xl" id="alert-icon"></i>
+            </div>
+
+            <h3 class="font-sans font-bold text-2xl md:text-3xl text-secondary mb-3" id="alert-title">Judul Alert</h3>
+            <p class="font-sans text-gray-600 text-sm md:text-base leading-relaxed mb-8" id="alert-message">
+                Pesan deskripsi alert akan muncul di sini.
+            </p>
+
+            <button type="button" id="btn-close-alert" class="w-full bg-primary hover:bg-orange-600 text-white font-sans font-bold text-base md:text-lg py-3.5 md:py-4 rounded-xl transition-all duration-300 active:scale-[0.98] shadow-lg shadow-orange-500/30">
+                Tutup & Lanjutkan
+            </button>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+    </script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

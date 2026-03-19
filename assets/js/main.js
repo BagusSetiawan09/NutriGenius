@@ -1586,3 +1586,58 @@ function swapMythFact() {
         }
     }, 300);
 }
+
+/**
+ * 22. Modul Animasi Counter / Statistik
+ *
+ * Mengelola animasi penghitungan angka (counter-up) secara dinamis pada halaman About.
+ * Menggunakan IntersectionObserver agar animasi hanya dipicu saat elemen masuk
+ * ke dalam area pandang pengguna (viewport), dan requestAnimationFrame untuk
+ * pergerakan angka yang mulus (60fps).
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.counter-value');
+    const section = document.getElementById('statistic-section');
+
+    // Jika tidak ada elemen counter di halaman ini (misal sedang di halaman lain), hentikan eksekusi
+    if (!section || counters.length === 0) return;
+
+    let animated = false; // Kunci status animasi
+
+    const animateCounters = () => {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const duration = 2000; // Durasi animasi dalam milidetik (2 detik)
+            
+            // Menghitung kecepatan penambahan angka per frame (~16ms per frame untuk 60fps)
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.innerText = Math.ceil(current);
+                    requestAnimationFrame(updateCounter); // Loop animasi tingkat tinggi
+                } else {
+                    // Pastikan angka berhenti tepat di target akhir
+                    counter.innerText = target; 
+                }
+            };
+            
+            updateCounter();
+        });
+    };
+
+    // Sensor Cerdas: Pantau pergerakan scroll layar
+    const observer = new IntersectionObserver((entries) => {
+        // Jika section sudah masuk ke layar dan belum pernah dianimasikan
+        if (entries[0].isIntersecting && !animated) {
+            animateCounters();
+            animated = true; // Kunci agar animasi tidak berulang saat di-scroll naik turun
+            observer.unobserve(section); // Cabut sensor untuk menghemat memori browser
+        }
+    }, { threshold: 0.5 }); // Animasi akan tertrigger saat 50% bagian section terlihat di layar
+
+    // Aktifkan sensor pada section statistik
+    observer.observe(section);
+});
