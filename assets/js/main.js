@@ -6,7 +6,7 @@
  */
 
 /* -------------------------------------------------------------------------- */
-/* 1 & 2 & 3. DOM ELEMENTS, NAVBAR SCROLL & MOBILE MENU LOGIC                 */
+/* DOM ELEMENTS, NAVBAR SCROLL & MOBILE MENU LOGIC                 */
 /* -------------------------------------------------------------------------- */
 const navbar = document.getElementById('navbar');
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -57,14 +57,14 @@ if (hamburgerBtn) {
 mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
 /* -------------------------------------------------------------------------- */
-/* 4. ANIMATION LIBRARY INIT (AOS)                                            */
+/* ANIMATION LIBRARY INIT (AOS)                                            */
 /* -------------------------------------------------------------------------- */
 if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 1000, once: true, offset: 100 });
 }
 
 /* -------------------------------------------------------------------------- */
-/* 6. FAQ 3D CAROUSEL LOGIC                                                   */
+/* FAQ 3D CAROUSEL LOGIC                                                   */
 /* -------------------------------------------------------------------------- */
 const faqCards = document.querySelectorAll('.faq-card');
 if (faqCards.length === 3) {
@@ -94,7 +94,7 @@ if (faqCards.length === 3) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 7. CUSTOM GENDER DROPDOWN LOGIC (TRACKER)                                  */
+/* CUSTOM GENDER DROPDOWN LOGIC (TRACKER)                                  */
 /* -------------------------------------------------------------------------- */
 const genderTrigger = document.getElementById('gender-trigger');
 const genderOptions = document.getElementById('gender-options');
@@ -136,7 +136,7 @@ if (genderTrigger) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 10. DYNAMIC DATE (MEAL PLANNER HERO)                                       */
+/* DYNAMIC DATE (MEAL PLANNER HERO)                                       */
 /* -------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
     const dateElement = document.getElementById('current-date-hero');
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* -------------------------------------------------------------------------- */
-/* 13. REKOMENDASI MENU HARIAN (TAB, KALENDER, MODAL VIDEO)                   */
+/* REKOMENDASI MENU HARIAN (TAB, KALENDER, MODAL VIDEO)                   */
 /* -------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* -------------------------------------------------------------------------- */
-/* 14 & 15. MOBILE BOTTOM NAVIGATION LOGIC                                    */
+/* MOBILE BOTTOM NAVIGATION LOGIC                                    */
 /* -------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function() {
     const bottomNav = document.getElementById('bottom-nav');
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* -------------------------------------------------------------------------- */
-/* 16, 17, 18, 19, 20. ARTICLE & VIDEO GALLERIES                              */
+/* ARTICLE & VIDEO GALLERIES                              */
 /* -------------------------------------------------------------------------- */
 (function() {
     document.addEventListener('DOMContentLoaded', () => {
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 /* -------------------------------------------------------------------------- */
-/* 21. MITOS VS FAKTA LOGIC                                                   */
+/* MITOS VS FAKTA LOGIC                                                   */
 /* -------------------------------------------------------------------------- */
 let currentMythFactIndex = 0;
 
@@ -537,10 +537,10 @@ function swapMythFact() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 22 & 23. STATS COUNTER (UNIVERSAL) & AI SCANNER LOGIC                      */
+/* STATS COUNTER (UNIVERSAL) & AI SCANNER LOGIC                      */
 /* -------------------------------------------------------------------------- */
 
-// 22. UNIVERSAL STATS COUNTER
+// UNIVERSAL STATS COUNTER
 document.addEventListener("DOMContentLoaded", () => {
     const counters = document.querySelectorAll('.counter, .counter-value');
     
@@ -577,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 23. AI SCANNER LOGIC
+// AI SCANNER LOGIC
 function startScanning() {
     const shutterBtn = document.getElementById('shutter-btn');
     const laser = document.getElementById('laser-beam');

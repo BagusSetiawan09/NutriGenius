@@ -2,7 +2,6 @@
  * ============================================================================
  * NUTRIGENIUS DATA SCRIPT (data.js)
  * Menyimpan variabel mentah, array, dan objek data statis.
- * WAJIB DI-LOAD PERTAMA KALI DI HTML!
  * ============================================================================
  */
 

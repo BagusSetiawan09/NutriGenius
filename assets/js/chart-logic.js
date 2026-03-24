@@ -7,7 +7,7 @@
  */
 
 /* -------------------------------------------------------------------------- */
-/* 8. TRACKER: OVERVIEW RESULT & CHART.JS                                     */
+/* TRACKER: OVERVIEW RESULT & CHART.JS                                     */
 /* -------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function() {
     const cekStatusBtn = document.querySelector('form button[type="button"]');
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 /* -------------------------------------------------------------------------- */
-/* 9. TRACKER: DAILY NUTRITION CHECKLIST & RING CHART                         */
+/* TRACKER: DAILY NUTRITION CHECKLIST & RING CHART                         */
 /* -------------------------------------------------------------------------- */
     const checkboxes = document.querySelectorAll('.nutrisi-checkbox');
     const progressText = document.getElementById('progress-text');
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /**
  * --------------------------------------------------------------------------
- * Modul 11: Meal Planner - Gauge Charts
+ * Meal Planner - Gauge Charts
  * --------------------------------------------------------------------------
  */
 document.addEventListener('DOMContentLoaded', function() {
